@@ -5,14 +5,23 @@ using UnityEngine;
 public class CameraTarget : MonoBehaviour
 {
     [SerializeField] Transform ship;
-    private Transform tr;
+    [SerializeField] float rayLength;
+    [SerializeField] LayerMask groundLayer;
+    private float yPos;
 
-    private void Start()
-    {
-        tr = transform;
-    }
     private void Update()
     {
-        tr.position = new Vector3(ship.position.x, 0, ship.position.z);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ship.position, Vector3.down, out hit, rayLength, groundLayer))
+        {
+            yPos = hit.point.y;
+        }
+        else
+        { 
+            yPos = ship.position.y; 
+        }
+
+        transform.position = new Vector3(ship.position.x, yPos, ship.position.z);
     }
 }

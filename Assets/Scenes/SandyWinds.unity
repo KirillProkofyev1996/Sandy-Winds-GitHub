@@ -7346,6 +7346,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2064911075}
+  - {fileID: 1419419052}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &231027506
@@ -26527,7 +26528,7 @@ Transform:
   m_GameObject: {fileID: 830997221}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.205, z: 0}
+  m_LocalPosition: {x: 0, y: 0.205, z: 0.137}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -29503,7 +29504,7 @@ MonoBehaviour:
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 1
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -45001,7 +45002,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1823435925}
+  m_Father: {fileID: 231027504}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1419419053
 MonoBehaviour:
@@ -45016,6 +45017,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ship: {fileID: 2064911075}
+  rayLength: 5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1420903841
 GameObject:
   m_ObjectHideFlags: 0
@@ -59751,7 +59756,6 @@ Transform:
   - {fileID: 963194228}
   - {fileID: 295413857}
   - {fileID: 1678028292}
-  - {fileID: 1419419052}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1823435926
@@ -68015,8 +68019,8 @@ Rigidbody:
   m_GameObject: {fileID: 2064911074}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1.5
+  m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
