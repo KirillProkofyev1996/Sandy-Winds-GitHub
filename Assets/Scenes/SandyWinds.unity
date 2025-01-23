@@ -7407,11 +7407,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e07a4e4f6cd64b48ac3923586b0649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 8682693522825396822, guid: 6011d36f11a6845398a83e298228a924, type: 3}
-  shootPoint: {fileID: 998924258}
-  speed: 4.25
-  fireRate: 0.8
+  cannon: {fileID: 8682693522825396822, guid: 6011d36f11a6845398a83e298228a924, type: 3}
+  cannonShootPoint: {fileID: 998924258}
+  cannonSpeed: 10
+  cannonRate: 0.8
+  crossbow: {fileID: 8682693522825396822, guid: 99527daade7e04a928da8a7e07714550, type: 3}
+  crossbowShootPoint: {fileID: 998924258}
+  crossbowSpeed: 15
+  crossbowRate: 0.8
+  machinegun: {fileID: 8682693522825396822, guid: bd9f2f425c9684cd78b17bc7b407e193, type: 3}
+  machinegunShootPoint: {fileID: 998924258}
+  machinegunSpeed: 18
+  machinegunRate: 0.08
+  gun: {fileID: 42459099261647579, guid: eab78247a9eab4f9b91b4fe1acef9aca, type: 3}
+  gunShootPoint: {fileID: 998924258}
+  gunSpeed: 14
+  gunRate: 0.18
   maxDistance: 8
+  shootPoint: {fileID: 998924258}
   aim: {fileID: 302249321}
 --- !u!114 &231027511
 MonoBehaviour:
@@ -26532,8 +26545,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 998924258}
   - {fileID: 1901632566}
+  - {fileID: 998924258}
   - {fileID: 1598428730}
   m_Father: {fileID: 2064911075}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -31543,7 +31556,7 @@ GameObject:
   m_Component:
   - component: {fileID: 998924258}
   m_Layer: 11
-  m_Name: MiddlePoint
+  m_Name: Middle
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -51746,7 +51759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1598428730}
   m_Layer: 11
-  m_Name: RightPoint
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -62913,7 +62926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1901632566}
   m_Layer: 11
-  m_Name: LeftPoint
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

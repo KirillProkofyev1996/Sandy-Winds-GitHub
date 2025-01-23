@@ -55,7 +55,7 @@ public class Aim : MonoBehaviour
         }
     }
 
-    public Vector3 GetAimPoint()
+    public Vector3 GetAimPosition()
     {
         return transform.position;
     }
