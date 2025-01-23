@@ -211,7 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4758988}
   m_Layer: 5
-  m_Name: 04
+  m_Name: Stage4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7603,7 +7603,7 @@ GameObject:
   m_Component:
   - component: {fileID: 233195984}
   m_Layer: 5
-  m_Name: 03
+  m_Name: Orange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8816,7 +8816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 267964607}
   m_Layer: 5
-  m_Name: 02
+  m_Name: Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9386,7 +9386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 281215406}
   m_Layer: 5
-  m_Name: 01
+  m_Name: Yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18367,7 +18367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 540919776}
   m_Layer: 5
-  m_Name: 02
+  m_Name: Stage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19412,7 +19412,7 @@ GameObject:
   - component: {fileID: 579952383}
   - component: {fileID: 579952382}
   m_Layer: 5
-  m_Name: 00
+  m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32469,7 +32469,7 @@ GameObject:
   - component: {fileID: 1022143605}
   - component: {fileID: 1022143604}
   m_Layer: 5
-  m_Name: 00
+  m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32885,7 +32885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1032815346}
   m_Layer: 5
-  m_Name: 01
+  m_Name: Stage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33069,7 +33069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1040163385}
   m_Layer: 5
-  m_Name: 04
+  m_Name: Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36118,7 +36118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1150333411}
   m_Layer: 5
-  m_Name: 01
+  m_Name: Yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47678,7 +47678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1505115891}
   m_Layer: 5
-  m_Name: 04
+  m_Name: Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50713,7 +50713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1576097281}
   m_Layer: 5
-  m_Name: 03
+  m_Name: Stage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55374,7 +55374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1704185100}
   m_Layer: 5
-  m_Name: 02
+  m_Name: Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58496,7 +58496,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1792909762}
   m_Layer: 5
-  m_Name: 03
+  m_Name: Orange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
