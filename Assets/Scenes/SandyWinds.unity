@@ -7438,12 +7438,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c05e5315ca484cc5a94557e4e99d67c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  rotationSpeed: 0.15
+  movementSpeed: 4.5
+  rotationSpeed: 0.18
   procentMovementSpeed: 0
   boostSpeed: 25
-  startStoppingPower: 25
-  breakStoppingPower: 10
+  startStoppingPower: 15
+  breakStoppingPower: 5
   curMovementSpeed: 0
   curBoostSpeed: 0
   curStartStoppingPower: 0
@@ -7458,8 +7458,6 @@ MonoBehaviour:
   checkerOffset: 0.15
   tr: {fileID: 2064911075}
   rb: {fileID: 2064911082}
-  shipSurfaceCollision: {fileID: 2064911084}
-  tiltSpeed: 10
 --- !u!1 &231334432
 GameObject:
   m_ObjectHideFlags: 0
@@ -51947,8 +51945,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.75, y: 0.49624747, z: 1.5837488}
-  m_Center: {x: 0, y: 0.041466862, z: -0.044707417}
+  m_Size: {x: 0.75, y: 0.32340044, z: 1.5564117}
+  m_Center: {x: 0, y: 0.12789038, z: -0.058375955}
 --- !u!1 &1601984079
 GameObject:
   m_ObjectHideFlags: 0
@@ -59229,9 +59227,9 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0.5
+  m_YDamping: 0.5
+  m_ZDamping: 0.5
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
@@ -67974,9 +67972,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2064911075}
   - component: {fileID: 2064911081}
-  - component: {fileID: 2064911083}
+  - component: {fileID: 2064911088}
+  - component: {fileID: 2064911087}
+  - component: {fileID: 2064911086}
+  - component: {fileID: 2064911085}
   - component: {fileID: 2064911082}
-  - component: {fileID: 2064911084}
   m_Layer: 11
   m_Name: Ship
   m_TagString: Player
@@ -68031,9 +68031,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064911074}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 1.5
-  m_AngularDrag: 1
+  m_AngularDrag: 0.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -68048,9 +68048,9 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 96
   m_CollisionDetection: 1
---- !u!135 &2064911083
+--- !u!135 &2064911085
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68069,20 +68069,71 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.18894519
-  m_Center: {x: 0, y: -0.11133556, z: -0.11999975}
---- !u!114 &2064911084
-MonoBehaviour:
+  m_Radius: 0.12
+  m_Center: {x: -0.23, y: -0.18, z: -0.51}
+--- !u!135 &2064911086
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064911074}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45fb80b4d64424ad88842d0635cb3bde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 3
+  m_Radius: 0.12
+  m_Center: {x: 0.23, y: -0.18, z: -0.51}
+--- !u!135 &2064911087
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064911074}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.12
+  m_Center: {x: 0.23, y: -0.18, z: 0.24}
+--- !u!135 &2064911088
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064911074}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.12
+  m_Center: {x: -0.23, y: -0.18, z: 0.24}
 --- !u!1 &2068169063
 GameObject:
   m_ObjectHideFlags: 0

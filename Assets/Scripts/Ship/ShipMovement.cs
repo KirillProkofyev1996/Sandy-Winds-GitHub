@@ -29,10 +29,7 @@ public class ShipMovement : MonoBehaviour
     [SerializeField] Transform tr;
     [SerializeField] Rigidbody rb;
     private ShipInput shipInput;
-
-    [Header("Tilt rotation settings")]
-    [SerializeField] private ShipSurfaceCollision shipSurfaceCollision;
-    [SerializeField] private float tiltSpeed;
+    
 
     private void Start()
     {
@@ -52,14 +49,6 @@ public class ShipMovement : MonoBehaviour
         Rotation();
         Jump();
         Gravity();
-
-        TiltRotation();
-    }
-
-    private void TiltRotation()
-    {
-        Quaternion targetRotation = Quaternion.FromToRotation(transform.up, shipSurfaceCollision.GetNormal());
-        tr.rotation = Quaternion.Slerp(tr.rotation, targetRotation, Time.deltaTime * tiltSpeed);
     }
 
     private void Movement(float speed, float boost)
@@ -91,15 +80,15 @@ public class ShipMovement : MonoBehaviour
     {
         if (shipInput.GetHorizontalDirection() > 0)
         {
-            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, rotationSpeed, Time.fixedDeltaTime/curStartStoppingPower);
+            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, rotationSpeed, Time.deltaTime/curStartStoppingPower);
         }
         if (shipInput.GetHorizontalDirection() < 0)
         {
-            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, -rotationSpeed, Time.fixedDeltaTime/curStartStoppingPower);
+            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, -rotationSpeed, Time.deltaTime/curStartStoppingPower);
         }
         if (shipInput.GetHorizontalDirection() == 0)
         {
-            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, 0, Time.fixedDeltaTime/curBreakStoppingPower);
+            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, 0, Time.deltaTime/curBreakStoppingPower);
         }
 
         tr.Rotate(new Vector3(0, currentRotationSpeed, 0));
