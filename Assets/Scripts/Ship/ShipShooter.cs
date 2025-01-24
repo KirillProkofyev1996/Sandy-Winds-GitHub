@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShipShooter : MonoBehaviour
@@ -26,11 +22,14 @@ public class ShipShooter : MonoBehaviour
 
 
     [Header("Machinegun settings")]
+    
     [SerializeField] private Rigidbody machinegun;
     [SerializeField] private Transform machinegunShootPoint;
     [SerializeField] private float machinegunSpeed;
     [SerializeField] private float machinegunRate;
     [SerializeField] private float machinegunDistance;
+    [SerializeField] private int machinegunCounts;
+    [SerializeField] private float machinegunAngle;
     private string machinegunWeapon = "Machinegun";
 
 
@@ -102,26 +101,17 @@ public class ShipShooter : MonoBehaviour
         {
             if (shipInput.GetShootButton() && Time.time >= currentRate && distance <= machinegunDistance)
             {
-                Rigidbody currentMachinegun0 = Instantiate(machinegun, machinegunShootPoint.position, Quaternion.identity);
-                currentMachinegun0.velocity = direction * machinegunSpeed;
-                currentMachinegun0.transform.LookAt(currentMachinegun0.transform.position + currentMachinegun0.velocity);
+                float halfSpread = machinegunAngle / 2f;
+                float angleIncrement = machinegunAngle / (machinegunCounts - 1);
 
-                Rigidbody currentMachinegun1 = Instantiate(machinegun, machinegunShootPoint.position, Quaternion.identity);
-                currentMachinegun1.velocity = (direction + new Vector3(0.1f, 0, 0)) * machinegunSpeed;
-                currentMachinegun1.transform.LookAt(currentMachinegun1.transform.position + currentMachinegun1.velocity);
+                for (int i = 0; i < machinegunCounts; i++)
+                {
+                    float angle = -halfSpread + i * angleIncrement;
+                    Quaternion machinegunRotation = Quaternion.Euler(0, angle, 0);
+                    Rigidbody currentMachinegun = Instantiate(machinegun, machinegunShootPoint.position, machinegunShootPoint.rotation);
+                    currentMachinegun.velocity = machinegunRotation * direction * machinegunSpeed;
+                }
 
-                Rigidbody currentMachinegun2 = Instantiate(machinegun, machinegunShootPoint.position, Quaternion.identity);
-                currentMachinegun2.velocity = (direction + new Vector3(0.2f, 0, 0)) * machinegunSpeed;
-                currentMachinegun2.transform.LookAt(currentMachinegun2.transform.position + currentMachinegun2.velocity);
-
-                Rigidbody currentMachinegun3 = Instantiate(machinegun, machinegunShootPoint.position, Quaternion.identity);
-                currentMachinegun3.velocity = (direction + new Vector3(-0.1f, 0, 0)) * machinegunSpeed;
-                currentMachinegun3.transform.LookAt(currentMachinegun3.transform.position + currentMachinegun3.velocity);
-
-                Rigidbody currentMachinegun4 = Instantiate(machinegun, machinegunShootPoint.position, Quaternion.identity);
-                currentMachinegun4.velocity = (direction + new Vector3(-0.2f, 0, 0)) * machinegunSpeed;
-                currentMachinegun4.transform.LookAt(currentMachinegun4.transform.position + currentMachinegun4.velocity);
-                
                 currentRate = Time.time + machinegunRate;
             }
         }

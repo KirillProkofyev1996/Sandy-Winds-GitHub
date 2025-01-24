@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipMovement : MonoBehaviour
@@ -106,7 +103,9 @@ public class ShipMovement : MonoBehaviour
     {
         if (!isGrounded)
         {
-            rb.velocity += new Vector3(0, Physics.gravity.y * gravityMultiplier * Time.deltaTime, 0);
+            //rb.velocity += new Vector3(0, Physics.gravity.y * gravityMultiplier * Time.deltaTime, 0);
+            //rb.velocity = new Vector3(0, Physics.gravity.y * gravityMultiplier * Time.deltaTime, 0); 
+            tr.position -= tr.up * gravityMultiplier * Time.deltaTime;
         }
     }
 }

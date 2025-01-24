@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraTarget : MonoBehaviour
@@ -7,7 +5,7 @@ public class CameraTarget : MonoBehaviour
     [SerializeField] Transform ship;
     [SerializeField] float rayLength;
     [SerializeField] LayerMask groundLayer;
-    private float yPos;
+    private float yPosition;
 
     private void Update()
     {
@@ -15,13 +13,13 @@ public class CameraTarget : MonoBehaviour
 
         if (Physics.Raycast(ship.position, Vector3.down, out hit, rayLength, groundLayer))
         {
-            yPos = hit.point.y;
+            yPosition = hit.point.y;
         }
         else
         { 
-            yPos = ship.position.y; 
+            yPosition = ship.position.y; 
         }
 
-        transform.position = new Vector3(ship.position.x, yPos, ship.position.z);
+        transform.position = new Vector3(ship.position.x, yPosition, ship.position.z);
     }
 }
