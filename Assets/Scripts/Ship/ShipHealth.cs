@@ -7,12 +7,12 @@ public class ShipHealth : MonoBehaviour
     [SerializeField] private GameObject ship;
     [SerializeField] private float maxHealth;
     [SerializeField] private float timeToDestroy = 0.65f;
-    private float curHealth;
-    private bool IsAlive => curHealth > 0;
+    [SerializeField] private float currentHealth;
+    private bool IsAlive => currentHealth > 0;
 
     private void Start()
     {
-        curHealth = maxHealth;
+        currentHealth = maxHealth;
     }
 
     private void CheckIsAlive()
@@ -23,15 +23,15 @@ public class ShipHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void Damage(float damage)
     {
-        curHealth -= damage;
-        
+        currentHealth -= damage;
         CheckIsAlive();
     }
 
-    public float GetMaxHealth()
+    public void ImproveHealth(float health)
     {
-        return maxHealth;
+        maxHealth += health;
+        currentHealth = maxHealth;
     }
 }

@@ -41,9 +41,9 @@ public class Aim : MonoBehaviour
         }
     }
 
-    public void ShowRedAim(float distance, float maxDistance)
+    public void ShowRedAim(float distance, float weaponDistance)
     {
-        if (distance >= maxDistance)
+        if (distance >= weaponDistance)
         {
             redAim.SetActive(true);
             whiteAim.SetActive(false);
