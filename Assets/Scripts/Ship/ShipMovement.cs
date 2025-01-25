@@ -5,17 +5,23 @@ public class ShipMovement : MonoBehaviour
     [Header("Movement vars")]
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotationSpeed;
-    [SerializeField] private float procentMovementSpeed;    
-    [SerializeField] private float boostSpeed;
-    [SerializeField] private float startStoppingPower, breakStoppingPower;
-    [SerializeField] private float curMovementSpeed, curBoostSpeed, curStartStoppingPower, curBreakStoppingPower;
+    [SerializeField] private float procentMovementSpeed; // Сила воздействия на скорость в процентах
+    [SerializeField] private float boostSpeed; // Сила воздействия на скорость в процентах
+    [SerializeField] private float startStoppingPower, breakStoppingPower; // Сила воздействия на скорость в процентах
+
+    [Header("Current vars")]
+    [SerializeField] private float currentMovementSpeed;
+    [SerializeField] private float currentBoostSpeed;
+    [SerializeField] private float currentStartStoppingPower;
+    [SerializeField] private float currentBreakStoppingPower;
+
     private float currentSpeed, currentRotationSpeed;
 
     
     [Header("Jump settings")]
     [SerializeField] private float jumpForce;
-    public float gravity = -9.81f;
-    public float gravityMultiplier;
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float gravityMultiplier;
     [SerializeField] private Transform groundChecker;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float checkerOffset;
@@ -27,7 +33,6 @@ public class ShipMovement : MonoBehaviour
     [SerializeField] Rigidbody rb;
     private ShipInput shipInput;
     
-
     private void Start()
     {
         shipInput = GetComponent<ShipInput>();
@@ -35,14 +40,17 @@ public class ShipMovement : MonoBehaviour
 
     private void Update()
     {   
+        // Проверка на нахождение корабля на земле
         isGrounded = Physics.CheckSphere(groundChecker.position, checkerOffset, groundMask);
         
-        curMovementSpeed = movementSpeed + (movementSpeed/100 * procentMovementSpeed);
-        curBoostSpeed = curMovementSpeed + (curMovementSpeed/100 * boostSpeed);
-        curStartStoppingPower = movementSpeed/100 * startStoppingPower;
-        curBreakStoppingPower = movementSpeed/100 * breakStoppingPower;
+        // Просчет скорости, ускорения, иннерции остановки
+        // и начала движения с учетом процентов
+        currentMovementSpeed = movementSpeed + (movementSpeed/100 * procentMovementSpeed);
+        currentBoostSpeed = currentMovementSpeed + (currentMovementSpeed/100 * boostSpeed);
+        currentStartStoppingPower = movementSpeed/100 * startStoppingPower;
+        currentBreakStoppingPower = movementSpeed/100 * breakStoppingPower;
         
-        Movement(curMovementSpeed, curBoostSpeed);
+        Movement(currentMovementSpeed, currentBoostSpeed);
         Rotation();
         Jump();
         Gravity();
@@ -54,20 +62,20 @@ public class ShipMovement : MonoBehaviour
         {
             if (shipInput.GetBoostButton())
             {
-                currentSpeed = Mathf.Lerp(currentSpeed, speed + boost, Time.deltaTime/curStartStoppingPower);
+                currentSpeed = Mathf.Lerp(currentSpeed, speed + boost, Time.deltaTime/currentStartStoppingPower);
             }
             else
             {
-                currentSpeed = Mathf.Lerp(currentSpeed, speed, Time.deltaTime/curStartStoppingPower);
+                currentSpeed = Mathf.Lerp(currentSpeed, speed, Time.deltaTime/currentStartStoppingPower);
             }
         }
         if (shipInput.GetVerticalDirection() < 0)
         {
-            currentSpeed = Mathf.Lerp(currentSpeed, -speed, Time.deltaTime/curStartStoppingPower);
+            currentSpeed = Mathf.Lerp(currentSpeed, -speed, Time.deltaTime/currentStartStoppingPower);
         }
         if (shipInput.GetVerticalDirection() == 0)
         {
-            currentSpeed = Mathf.Lerp(currentSpeed, 0, Time.deltaTime/curBreakStoppingPower);
+            currentSpeed = Mathf.Lerp(currentSpeed, 0, Time.deltaTime/currentBreakStoppingPower);
         }
 
         tr.position += tr.forward * currentSpeed * Time.deltaTime;
@@ -77,15 +85,15 @@ public class ShipMovement : MonoBehaviour
     {
         if (shipInput.GetHorizontalDirection() > 0)
         {
-            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, rotationSpeed, Time.deltaTime/curStartStoppingPower);
+            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, rotationSpeed, Time.deltaTime/currentStartStoppingPower);
         }
         if (shipInput.GetHorizontalDirection() < 0)
         {
-            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, -rotationSpeed, Time.deltaTime/curStartStoppingPower);
+            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, -rotationSpeed, Time.deltaTime/currentStartStoppingPower);
         }
         if (shipInput.GetHorizontalDirection() == 0)
         {
-            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, 0, Time.deltaTime/curBreakStoppingPower);
+            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, 0, Time.deltaTime/currentBreakStoppingPower);
         }
 
         tr.Rotate(new Vector3(0, currentRotationSpeed, 0));

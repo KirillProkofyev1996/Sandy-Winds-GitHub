@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using Unity.VisualScripting;
-using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
@@ -14,20 +10,25 @@ public class CameraController : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private Aim aim;
+    [SerializeField] private ShipInput shipInput;
+    [SerializeField] private ShipShooter shipShooter;
 
     private void Update()
     {
         CameraSwitcher();
-        aim.ShowWhiteAim(IsAimButtonPressed);
+        
+        // Метод появления прицела в пространстве в цвете
+        aim.ShowColoredAim(IsAimButtonPressed, shipShooter.GetDistance(), shipShooter.GetWeaponDistance());
     }
 
+    // Метод переключения основной камеры и камеры
+    // для прицеливания по нажатию правой кнопки мыши
     private void CameraSwitcher()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (shipInput.GetAimButton())
         {
             IsAimButtonPressed =! IsAimButtonPressed;
         }
-
         if (IsAimButtonPressed == true)
         {
             shipCamera.gameObject.SetActive(false);

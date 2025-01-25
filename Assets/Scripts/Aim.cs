@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Aim : MonoBehaviour
 {
     [SerializeField] private Transform shootPoint;
-    [SerializeField] private GameObject whiteAim, redAim;
+    [SerializeField] private GameObject greenAim, redAim;
 
     private void Update()
     { 
         TrackAimPosition();
     }
 
+    // Метод отслеживания прицела лучем на поверхность,
+    // где высота прицела равна высоте точке выстрела
     private void TrackAimPosition()
     {
         Vector3 mousePosition = Input.mousePosition;
-
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         RaycastHit hit;
 
@@ -23,35 +22,31 @@ public class Aim : MonoBehaviour
         {
             Vector3 hitPosition = hit.point;
             hitPosition.y = shootPoint.position.y;
-
             transform.position = hitPosition;
         }
     }
 
-    public void ShowWhiteAim(bool IsAimButton)
+    // Публичный метод скрытия и показа прицела 
+    // в цвете при смене на камеру прицеливания
+    public void ShowColoredAim(bool IsAimButtonPressed, float distance, float weaponDistance)
     {
-        if (IsAimButton == true)
+        if (IsAimButtonPressed == true)
         {
-            whiteAim.SetActive(true);
+            if (distance <= weaponDistance)
+            {
+                greenAim.SetActive(true);
+                redAim.SetActive(false);
+            }
+            else
+            {
+                greenAim.SetActive(false);
+                redAim.SetActive(true);
+            }
         }
-        else
+        if (IsAimButtonPressed == false)
         {
-            whiteAim.SetActive(false);
+            greenAim.SetActive(false);
             redAim.SetActive(false);
-        }
-    }
-
-    public void ShowRedAim(float distance, float weaponDistance)
-    {
-        if (distance >= weaponDistance)
-        {
-            redAim.SetActive(true);
-            whiteAim.SetActive(false);
-        }
-        else
-        {
-            redAim.SetActive(false);
-            whiteAim.SetActive(true);
         }
     }
 

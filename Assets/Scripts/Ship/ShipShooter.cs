@@ -22,7 +22,6 @@ public class ShipShooter : MonoBehaviour
 
 
     [Header("Machinegun settings")]
-    
     [SerializeField] private Rigidbody machinegun;
     [SerializeField] private Transform machinegunShootPoint;
     [SerializeField] private float machinegunSpeed;
@@ -64,9 +63,9 @@ public class ShipShooter : MonoBehaviour
     {
         SwitchWeapon();
         Shoot();
-        aim.ShowRedAim(distance, weaponDistance);
     }
 
+    // Метод стрельбы из разных видов оружия
     private void Shoot()
     {
         distance = Vector3.Distance(aim.GetAimPosition(), shootPoint.position);
@@ -127,6 +126,7 @@ public class ShipShooter : MonoBehaviour
         }
     }
 
+    // Метод смены оружия по нажатию цифр от 1 до 4
     private void SwitchWeapon()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -149,5 +149,15 @@ public class ShipShooter : MonoBehaviour
             currentWeapon = gunWeapon;
             weaponDistance = gunDistance;
         }
+    }
+
+    // Публичные методы получения дистанций
+    public float GetDistance()
+    {
+        return distance;
+    }
+    public float GetWeaponDistance()
+    {
+        return weaponDistance;
     }
 }

@@ -6,8 +6,10 @@ public class ShipHealth : MonoBehaviour
 {
     [SerializeField] private GameObject ship;
     [SerializeField] private float maxHealth;
-    [SerializeField] private float timeToDestroy = 0.65f;
+    [SerializeField] private float timeToDestroy;
     [SerializeField] private float currentHealth;
+
+    // Корабль жив, если здоровье больше нуля
     private bool IsAlive => currentHealth > 0;
 
     private void Start()
@@ -15,6 +17,7 @@ public class ShipHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    // Проверка на то, мертв ли корабль
     private void CheckIsAlive()
     {   
         if (IsAlive == false)
@@ -23,12 +26,14 @@ public class ShipHealth : MonoBehaviour
         }
     }
 
+    // Публичный метод для нанесения урона кораблю
     public void Damage(float damage)
     {
         currentHealth -= damage;
         CheckIsAlive();
     }
 
+    // Публичный метод увеличения здоровья для чертежей 
     public void ImproveHealth(float health)
     {
         maxHealth += health;
