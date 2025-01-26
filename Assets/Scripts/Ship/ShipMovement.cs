@@ -38,6 +38,11 @@ public class ShipMovement : MonoBehaviour
         shipInput = GetComponent<ShipInput>();
     }
 
+    private void FixedUpdate()
+    {
+        Jump();
+    }
+
     private void Update()
     {   
         // Проверка на нахождение корабля на земле
@@ -52,7 +57,6 @@ public class ShipMovement : MonoBehaviour
         
         Movement(currentMovementSpeed, currentBoostSpeed);
         Rotation();
-        Jump();
         Gravity();
     }
 
