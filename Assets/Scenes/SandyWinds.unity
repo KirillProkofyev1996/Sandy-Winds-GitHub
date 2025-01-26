@@ -10535,9 +10535,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b59ee2e61cc40a6a35b9a2d457c3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootPoint: {fileID: 998924258}
   greenAim: {fileID: 1821054486}
   redAim: {fileID: 1814884071}
+  ground:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!33 &302249324
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -53059,8 +53061,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0.1
-  m_LookaheadSmoothing: 1
+  m_LookaheadTime: 0.05
+  m_LookaheadSmoothing: 0.5
   m_LookaheadIgnoreY: 1
   m_XDamping: 1
   m_YDamping: 0
@@ -59529,8 +59531,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0.1
-  m_LookaheadSmoothing: 1
+  m_LookaheadTime: 0.05
+  m_LookaheadSmoothing: 0.5
   m_LookaheadIgnoreY: 1
   m_XDamping: 0.5
   m_YDamping: 0

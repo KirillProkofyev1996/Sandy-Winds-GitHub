@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShipShooter : MonoBehaviour
@@ -61,15 +62,30 @@ public class ShipShooter : MonoBehaviour
 
     private void Update()
     {
+        Direction(aim.GetAimPosition());
+        Distance(aim.GetAimPosition());
+        
         SwitchWeapon();
         Shoot();
+    }
+
+    private void Direction(Vector3 aim)
+    {
+        Vector3 aimPosition = new Vector3(aim.x, shootPoint.position.y, aim.z);
+        direction = (aimPosition - shootPoint.position).normalized;
+    }
+
+    private void Distance(Vector3 aim)
+    {
+        Vector3 aimPosition = new Vector3(aim.x, shootPoint.position.y, aim.z);
+        distance = Vector3.Distance(aimPosition, shootPoint.position);
     }
 
     // Метод стрельбы из разных видов оружия
     private void Shoot()
     {
-        distance = Vector3.Distance(aim.GetAimPosition(), shootPoint.position);
-        direction = (aim.GetAimPosition() - shootPoint.position).normalized;
+        //distance = Vector3.Distance(aim.GetAimPosition(), shootPoint.position);
+        //direction = (aim.GetAimPosition() - shootPoint.position).normalized;
 
         if (currentWeapon == cannonWeapon)
         {
