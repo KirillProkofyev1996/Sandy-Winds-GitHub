@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private float cannonSpeed;
     [SerializeField] private float cannonRate;
     [SerializeField] private float cannonDistance;
+    [SerializeField] private float cannonShootAngle; // если угол = 50
+    [SerializeField] private float cannonAngleMultiplier; // то multiplier = 1.5
     private string cannonWeapon = "Cannon";
 
 
@@ -44,11 +47,13 @@ public class ShipShooter : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private float aimOffsetY;
     private float weaponDistance;
     private string currentWeapon;
     private float currentRate;
     private float distance;
     private Vector3 direction;
+    private Vector3 aimPosition;
 
     
     [Header("Components")]
@@ -60,41 +65,83 @@ public class ShipShooter : MonoBehaviour
         shipInput = GetComponent<ShipInput>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        Direction(aim.GetAimPosition());
-        Distance(aim.GetAimPosition());
-        
-        SwitchWeapon();
         Shoot();
     }
 
-    private void Direction(Vector3 aim)
+    private void Update()
     {
-        Vector3 aimPosition = new Vector3(aim.x, shootPoint.position.y, aim.z);
-        direction = (aimPosition - shootPoint.position).normalized;
+        AimPosition();
+        Direction();
+        Distance();
+        SwitchWeapon();
     }
 
-    private void Distance(Vector3 aim)
+    private void AimPosition()
     {
-        Vector3 aimPosition = new Vector3(aim.x, shootPoint.position.y, aim.z);
+        aimPosition = new Vector3(aim.GetAimPosition().x, aim.GetAimPosition().y + aimOffsetY, aim.GetAimPosition().z);
+    }
+
+    private void Direction()
+    {
+        direction = aimPosition - shootPoint.position;
+        direction = direction.normalized;
+    }
+
+    private void Distance()
+    {
         distance = Vector3.Distance(aimPosition, shootPoint.position);
     }
 
     // Метод стрельбы из разных видов оружия
     private void Shoot()
     {
-        //distance = Vector3.Distance(aim.GetAimPosition(), shootPoint.position);
-        //direction = (aim.GetAimPosition() - shootPoint.position).normalized;
-
         if (currentWeapon == cannonWeapon)
         {
             if (shipInput.GetShootButton() && Time.time >= currentRate && distance <= cannonDistance)
             {
+                // Создаем снаряд
                 Rigidbody currentCannon = Instantiate(cannon, cannonShootPoint.position, Quaternion.identity);
+
+                // Рассчитываем направление и высоту
+                Vector3 directionToTarget = aimPosition - shootPoint.position;
+                float heightDifference = directionToTarget.y; // Разница в высоте
+                directionToTarget.y = 0; // Игнорируем высоту для горизонтального расчета
+                float horizontalDistance = directionToTarget.magnitude; // Горизонтальное расстояние до цели
+
+                // Рассчитываем угол в радианах
+                float angleRad = cannonShootAngle * Mathf.Deg2Rad;
+
+                // Рассчитываем необходимую скорость
+                float gravitationalAcceleration = Physics.gravity.y; // Гравитация
+                float verticalSpeed = cannonSpeed * Mathf.Sin(angleRad);
+                // Проверяем, может ли снаряд достичь цели с заданной launchSpeed
+                float requiredLaunchSpeed = Mathf.Sqrt(horizontalDistance * gravitationalAcceleration / 
+                                                (horizontalDistance * Mathf.Tan(angleRad) - heightDifference));
+
+                // Если launchSpeed меньше необходимой скорости, то используем необходимую
+                if (cannonSpeed < requiredLaunchSpeed)
+                {
+                    cannonSpeed = requiredLaunchSpeed;
+                }
+
+                // Корректируем вектор направления
+                Vector3 launchDirection = directionToTarget / cannonAngleMultiplier; // Нормализуем для получения единичного вектора
+                launchDirection.y = verticalSpeed; // Устанавливаем вертикальную скорость
+
+                // Устанавливаем скорость снаряда
+                currentCannon.velocity = launchDirection * cannonSpeed;
+
+                // Убедитесь, что снаряд выглядит в направлении движения
+                currentCannon.transform.LookAt(currentCannon.transform.position + currentCannon.velocity);
+
+                currentRate = Time.time + cannonRate;
+
+                /*Rigidbody currentCannon = Instantiate(cannon, cannonShootPoint.position, cannonShootPoint.rotation);
                 currentCannon.velocity = direction * cannonSpeed;
                 currentCannon.transform.LookAt(currentCannon.transform.position + currentCannon.velocity);
-                currentRate = Time.time + cannonRate;
+                currentRate = Time.time + cannonRate;*/
             }
         }
         if (currentWeapon == crossbowWeapon)

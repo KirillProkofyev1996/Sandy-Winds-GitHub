@@ -18,7 +18,7 @@ public class Aim : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
+        if (Physics.Raycast(ray, out hit, 50, ground))
         {
             Vector3 hitPosition = hit.point;
             transform.position = hitPosition;

@@ -107,6 +107,7 @@ public class ShipMovement : MonoBehaviour
     {
         if (shipInput.GetJumpButton() && isGrounded)
         {
+            //rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse); #2
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
         }
     }
@@ -115,8 +116,8 @@ public class ShipMovement : MonoBehaviour
     {
         if (!isGrounded)
         {
-            //rb.velocity += new Vector3(0, Physics.gravity.y * gravityMultiplier * Time.deltaTime, 0);
-            //rb.velocity = new Vector3(0, Physics.gravity.y * gravityMultiplier * Time.deltaTime, 0); 
+            //rb.velocity += new Vector3(0, Physics.gravity.y * gravityMultiplier * Time.deltaTime, 0); #2
+            //rb.velocity = new Vector3(0, Physics.gravity.y * gravityMultiplier * Time.deltaTime, 0); #3
             tr.position -= tr.up * gravityMultiplier * Time.deltaTime;
         }
     }
