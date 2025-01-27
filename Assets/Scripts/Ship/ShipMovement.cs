@@ -23,7 +23,6 @@ public class ShipMovement : MonoBehaviour
     [Header("Current vars in air")]
     [SerializeField] private float currentMoveSpeedInAir;
     [SerializeField] private float currentDelayPowerInAir;
-    [SerializeField] private float currentRotationSpeedInAir;
 
 
     [Header("Jump settings")]
@@ -45,7 +44,6 @@ public class ShipMovement : MonoBehaviour
     // Дополнительные переменные для просчета скорости и поворота корабля
     private float newCurrentMoveSpeed;
     private float newCurrentRotationSpeed;
-    private float newCurrentRotationSpeedInAir;
     
     private void Start()
     {
@@ -72,10 +70,9 @@ public class ShipMovement : MonoBehaviour
         // Просчет движения и поворота в воздухе
         currentMoveSpeedInAir = moveSpeedInAir;
         currentDelayPowerInAir = moveSpeedInAir/100 * delayPowerInAir;
-        currentRotationSpeedInAir = rotationSpeedInAir;
         
         Movement(currentMoveSpeed, currentBoostSpeed);
-        MovementInAir(currentMoveSpeedInAir, currentRotationSpeedInAir);
+        MovementInAir(currentMoveSpeedInAir);
         Rotation();
         Gravity();
     }
@@ -109,7 +106,7 @@ public class ShipMovement : MonoBehaviour
         }
     }
     
-    // Метод поворота корабля по оси У на земле
+    // Метод поворота корабля по оси У на земле и в воздухе
     private void Rotation()
     {
         if (isGrounded)
@@ -126,9 +123,24 @@ public class ShipMovement : MonoBehaviour
             {
                 newCurrentRotationSpeed = Mathf.Lerp(newCurrentRotationSpeed, 0, Time.deltaTime / currentBreakMovePower);
             }
-
-            tr.Rotate(new Vector3(0, newCurrentRotationSpeed, 0));
         }
+        if (!isGrounded)
+        {
+            if (shipInput.GetHorizontalDirection() > 0)
+            {
+                newCurrentRotationSpeed = Mathf.Lerp(newCurrentRotationSpeed, rotationSpeedInAir, Time.deltaTime / currentDelayPowerInAir);
+            }
+            if (shipInput.GetHorizontalDirection() < 0)
+            {
+                newCurrentRotationSpeed = Mathf.Lerp(newCurrentRotationSpeed, -rotationSpeedInAir, Time.deltaTime / currentDelayPowerInAir);
+            }
+            if (shipInput.GetHorizontalDirection() == 0)
+            {
+                newCurrentRotationSpeed = Mathf.Lerp(newCurrentRotationSpeed, 0, Time.deltaTime / currentDelayPowerInAir);
+            }
+        }
+
+        tr.Rotate(new Vector3(0, newCurrentRotationSpeed, 0));
     }
 
     // Метод прыжка
@@ -150,9 +162,10 @@ public class ShipMovement : MonoBehaviour
     }
     
     // Метод движения и поворот корабля в воздухе
-    private void MovementInAir(float moveSpeed, float rotationSpeed)
+    private void MovementInAir(float moveSpeed)
     {
         // Отслеживание скорости движения корабля перед прыжком
+        // и делать прыжок назад, вперед или на месте
         if (newCurrentMoveSpeed < speedLimit && newCurrentMoveSpeed > -speedLimit)
         {
             if (!isGrounded)
@@ -173,25 +186,6 @@ public class ShipMovement : MonoBehaviour
             {
                 tr.position -= tr.forward * moveSpeed * Time.deltaTime;
             }
-        }
-
-        // Поворот корабля в воздухе
-        if (!isGrounded)
-        {
-            if (shipInput.GetHorizontalDirection() > 0)
-            {
-                newCurrentRotationSpeedInAir = Mathf.Lerp(newCurrentRotationSpeedInAir, rotationSpeed, Time.deltaTime / currentDelayPowerInAir);
-            }
-            if (shipInput.GetHorizontalDirection() < 0)
-            {
-                newCurrentRotationSpeedInAir = Mathf.Lerp(newCurrentRotationSpeedInAir, -rotationSpeed, Time.deltaTime / currentDelayPowerInAir);
-            }
-            if (shipInput.GetHorizontalDirection() == 0)
-            {
-                newCurrentRotationSpeedInAir = Mathf.Lerp(newCurrentRotationSpeedInAir, 0, Time.deltaTime / currentDelayPowerInAir);
-            }
-
-            tr.Rotate(new Vector3(0, newCurrentRotationSpeedInAir, 0));
         }
     }
 }
