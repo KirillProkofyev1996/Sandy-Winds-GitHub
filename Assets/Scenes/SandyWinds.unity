@@ -7561,24 +7561,26 @@ MonoBehaviour:
   rotationSpeed: 0.18
   procentMoveSpeed: 0
   boostSpeed: 25
-  startMovePower: 16
-  breakMovePower: 10
-  moveSpeedInAir: 4
-  delayMoveSpeedInAir: 4
+  startMovePower: 12
+  breakMovePower: 8
   currentMoveSpeed: 0
   currentBoostSpeed: 0
   currentStartMovePower: 0
   currentBreakMovePower: 0
+  moveSpeedInAir: 4.2
+  rotationSpeedInAir: 0.16
+  delayPowerInAir: 12
   currentMoveSpeedInAir: 0
-  currentDelayMoveSpeedInAir: 0
+  currentDelayPowerInAir: 0
+  currentRotationSpeedInAir: 0
   jumpForce: 35
-  gravity: -9.81
-  gravityMultiplier: 1.25
+  gravity: -1.5
+  gravityMultiplier: 0.6
   groundChecker: {fileID: 1845385383}
   groundMask:
     serializedVersion: 2
     m_Bits: 128
-  checkerOffset: 0.1
+  checkerOffset: 0.5
   tr: {fileID: 2064911075}
   rb: {fileID: 2064911082}
 --- !u!114 &231027512
@@ -52035,7 +52037,7 @@ Transform:
   m_GameObject: {fileID: 1598428729}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.152, z: 0.336}
+  m_LocalPosition: {x: 0, y: 0.152, z: 0.255}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -63255,7 +63257,7 @@ Transform:
   m_GameObject: {fileID: 1901632565}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.152, z: -0.852}
+  m_LocalPosition: {x: 0, y: 0.152, z: -0.708}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

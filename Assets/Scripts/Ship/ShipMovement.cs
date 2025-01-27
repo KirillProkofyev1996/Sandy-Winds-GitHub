@@ -2,29 +2,30 @@ using UnityEngine;
 
 public class ShipMovement : MonoBehaviour
 {
-    [Header("Movement vars")]
+    [Header("Movement vars on ground")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
-
     [SerializeField] private float procentMoveSpeed; // Сила воздействия на скорость в процентах
     [SerializeField] private float boostSpeed; // Сила воздействия на скорость в процентах
     [SerializeField] private float startMovePower, breakMovePower; // Сила воздействия на скорость в процентах
 
-    [SerializeField] private float moveSpeedInAir;
-    [SerializeField] private float delayMoveSpeedInAir; // Сила воздействия на скорость в воздухе в процентах
-
-    [Header("Current vars")]
+    [Header("Current vars on ground")]
     [SerializeField] private float currentMoveSpeed;
     [SerializeField] private float currentBoostSpeed;
     [SerializeField] private float currentStartMovePower;
     [SerializeField] private float currentBreakMovePower;
+
+    [Header("Movement vars in air")]
+    [SerializeField] private float moveSpeedInAir;
+    [SerializeField] private float rotationSpeedInAir;
+    [SerializeField] private float delayPowerInAir; // Сила воздействия на повороты в воздухе в процентах
+
+    [Header("Current vars in air")]
     [SerializeField] private float currentMoveSpeedInAir;
-    [SerializeField] private float currentDelayMoveSpeedInAir;
+    [SerializeField] private float currentDelayPowerInAir;
+    [SerializeField] private float currentRotationSpeedInAir;
 
-    private float newCurrentMoveSpeed, newCurrentRotationSpeed;
-    private float newCurrentMoveSpeedInAirVertical, newCurrentMoveSpeedInAirHorizontal;
 
-    
     [Header("Jump settings")]
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravity = -9.81f;
@@ -33,12 +34,17 @@ public class ShipMovement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float checkerOffset;
     private bool isGrounded;
-
+    
 
     [Header("Components")]
     [SerializeField] Transform tr;
     [SerializeField] Rigidbody rb;
     private ShipInput shipInput;
+
+    // Дополнительные переменные для просчета скорости и поворота корабля
+    private float newCurrentMoveSpeed;
+    private float newCurrentRotationSpeed;
+    private float newCurrentRotationSpeedInAir;
     
     private void Start()
     {
@@ -62,19 +68,20 @@ public class ShipMovement : MonoBehaviour
         currentStartMovePower = moveSpeed/100 * startMovePower;
         currentBreakMovePower = moveSpeed/100 * breakMovePower;
 
-        // Просчет скорости и инерции движения в воздухе
+        // Просчет движения и поворота в воздухе
         currentMoveSpeedInAir = moveSpeedInAir;
-        currentDelayMoveSpeedInAir = moveSpeedInAir/100 * delayMoveSpeedInAir;
+        currentDelayPowerInAir = moveSpeedInAir/100 * delayPowerInAir;
+        currentRotationSpeedInAir = rotationSpeedInAir;
         
         Movement(currentMoveSpeed, currentBoostSpeed);
-        MovementInAir(currentMoveSpeedInAir);
+        MovementInAir(currentMoveSpeedInAir, currentRotationSpeedInAir);
         Rotation();
         Gravity();
     }
 
+    // Метод движения корабля на земле и с ускорением
     private void Movement(float speed, float boost)
     {
-        // Движение корабля на земле и с ускорением
         if (isGrounded)
         {
             if (shipInput.GetVerticalDirection() > 0)
@@ -100,47 +107,10 @@ public class ShipMovement : MonoBehaviour
             tr.position += tr.forward * newCurrentMoveSpeed * Time.deltaTime;
         }
     }
-    private void MovementInAir(float speed)
-    {
-        // Движение корабля в воздухе
-        if (isGrounded == false)
-        {
-            // Движение вперед и назад
-            if (shipInput.GetVerticalDirection() > 0)
-            {
-                newCurrentMoveSpeedInAirVertical = Mathf.Lerp(newCurrentMoveSpeedInAirVertical, speed, Time.deltaTime / currentDelayMoveSpeedInAir);
-            }
-            if (shipInput.GetVerticalDirection() < 0)
-            {
-                newCurrentMoveSpeedInAirVertical = Mathf.Lerp(newCurrentMoveSpeedInAirVertical, -speed, Time.deltaTime / currentDelayMoveSpeedInAir);
-            }
-            if (shipInput.GetVerticalDirection() == 0)
-            {
-                newCurrentMoveSpeedInAirVertical = Mathf.Lerp(newCurrentMoveSpeedInAirVertical, 0, Time.deltaTime / currentDelayMoveSpeedInAir);
-            }
-
-            // Движение в стороны
-            if (shipInput.GetHorizontalDirection() > 0)
-            {
-                newCurrentMoveSpeedInAirHorizontal = Mathf.Lerp(newCurrentMoveSpeedInAirHorizontal, speed, Time.deltaTime / currentDelayMoveSpeedInAir);
-            }
-            if (shipInput.GetHorizontalDirection() < 0)
-            {
-                newCurrentMoveSpeedInAirHorizontal = Mathf.Lerp(newCurrentMoveSpeedInAirHorizontal, -speed, Time.deltaTime / currentDelayMoveSpeedInAir);
-            }
-            if (shipInput.GetHorizontalDirection() == 0)
-            {
-                newCurrentMoveSpeedInAirHorizontal = Mathf.Lerp(newCurrentMoveSpeedInAirHorizontal, 0, Time.deltaTime / currentDelayMoveSpeedInAir);
-            }
-
-            tr.position += tr.right * newCurrentMoveSpeedInAirHorizontal * Time.deltaTime;
-            tr.position += tr.forward * newCurrentMoveSpeedInAirVertical * Time.deltaTime;
-        }
-    }
-
+    
+    // Метод поворота корабля по оси У на земле
     private void Rotation()
     {
-        // Поворот корабля по оси У на земле
         if (isGrounded)
         {
             if (shipInput.GetHorizontalDirection() > 0)
@@ -159,26 +129,49 @@ public class ShipMovement : MonoBehaviour
             tr.Rotate(new Vector3(0, newCurrentRotationSpeed, 0));
         }
     }
-    
+
+    // Метод прыжка
     private void Jump()
     {
-        // Прыжок
         if (shipInput.GetJumpButton() && isGrounded)
         {
             rb.velocity = new Vector3(0, jumpForce, 0);
-            // Обнуление скорости корабля на цемле, чтобы при приземлении
-            // корабль не сохранял ускорение, если оно было нажато перед прыжком
-            newCurrentMoveSpeed = 0;
+
+            // Установление скорости корабля при приземлении до
+            // скорости полета, чтобы движение не выглядело резким
+            newCurrentMoveSpeed = currentMoveSpeedInAir;
         }
     }
 
+    // Метод уменьшения гравитации, когда корабль в воздухе
     private void Gravity()
     {
-        // Действие увеличения гравитации,
-        // когда корабль в воздухе
         if (!isGrounded)
         {
             tr.position -= tr.up * gravityMultiplier * Time.deltaTime;
+        }
+    }
+    
+    // Метод движения и поворот корабля в воздухе
+    private void MovementInAir(float moveSpeed, float rotationSpeed)
+    {
+        if (isGrounded == false)
+        {
+            if (shipInput.GetHorizontalDirection() > 0)
+            {
+                newCurrentRotationSpeedInAir = Mathf.Lerp(newCurrentRotationSpeedInAir, rotationSpeed, Time.deltaTime / currentDelayPowerInAir);
+            }
+            if (shipInput.GetHorizontalDirection() < 0)
+            {
+                newCurrentRotationSpeedInAir = Mathf.Lerp(newCurrentRotationSpeedInAir, -rotationSpeed, Time.deltaTime / currentDelayPowerInAir);
+            }
+            if (shipInput.GetHorizontalDirection() == 0)
+            {
+                newCurrentRotationSpeedInAir = Mathf.Lerp(newCurrentRotationSpeedInAir, 0, Time.deltaTime / currentDelayPowerInAir);
+            }
+
+            tr.position += tr.forward * moveSpeed * Time.deltaTime;
+            tr.Rotate(new Vector3(0, newCurrentRotationSpeedInAir, 0));
         }
     }
 }
