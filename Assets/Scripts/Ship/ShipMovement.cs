@@ -33,6 +33,7 @@ public class ShipMovement : MonoBehaviour
     [SerializeField] private Transform groundChecker;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float checkerOffset;
+    [SerializeField] private float speedLimit;
     private bool isGrounded;
     
 
@@ -136,10 +137,6 @@ public class ShipMovement : MonoBehaviour
         if (shipInput.GetJumpButton() && isGrounded)
         {
             rb.velocity = new Vector3(0, jumpForce, 0);
-
-            // Установление скорости корабля при приземлении до
-            // скорости полета, чтобы движение не выглядело резким
-            newCurrentMoveSpeed = currentMoveSpeedInAir;
         }
     }
 
@@ -155,7 +152,31 @@ public class ShipMovement : MonoBehaviour
     // Метод движения и поворот корабля в воздухе
     private void MovementInAir(float moveSpeed, float rotationSpeed)
     {
-        if (isGrounded == false)
+        // Отслеживание скорости движения корабля перед прыжком
+        if (newCurrentMoveSpeed < speedLimit && newCurrentMoveSpeed > -speedLimit)
+        {
+            if (!isGrounded)
+            {
+                tr.position += Vector3.zero;
+            }
+        }
+        if (newCurrentMoveSpeed >= speedLimit)
+        {
+            if (!isGrounded)
+            {
+                tr.position += tr.forward * moveSpeed * Time.deltaTime;
+            }
+        }
+        if (newCurrentMoveSpeed <= -speedLimit)
+        {
+            if (!isGrounded)
+            {
+                tr.position -= tr.forward * moveSpeed * Time.deltaTime;
+            }
+        }
+
+        // Поворот корабля в воздухе
+        if (!isGrounded)
         {
             if (shipInput.GetHorizontalDirection() > 0)
             {
@@ -170,7 +191,6 @@ public class ShipMovement : MonoBehaviour
                 newCurrentRotationSpeedInAir = Mathf.Lerp(newCurrentRotationSpeedInAir, 0, Time.deltaTime / currentDelayPowerInAir);
             }
 
-            tr.position += tr.forward * moveSpeed * Time.deltaTime;
             tr.Rotate(new Vector3(0, newCurrentRotationSpeedInAir, 0));
         }
     }
