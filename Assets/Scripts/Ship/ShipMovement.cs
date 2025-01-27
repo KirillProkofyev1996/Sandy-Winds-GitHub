@@ -3,19 +3,26 @@ using UnityEngine;
 public class ShipMovement : MonoBehaviour
 {
     [Header("Movement vars")]
-    [SerializeField] private float movementSpeed;
+    [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
-    [SerializeField] private float procentMovementSpeed; // Сила воздействия на скорость в процентах
+
+    [SerializeField] private float procentMoveSpeed; // Сила воздействия на скорость в процентах
     [SerializeField] private float boostSpeed; // Сила воздействия на скорость в процентах
-    [SerializeField] private float startStoppingPower, breakStoppingPower; // Сила воздействия на скорость в процентах
+    [SerializeField] private float startMovePower, breakMovePower; // Сила воздействия на скорость в процентах
+
+    [SerializeField] private float moveSpeedInAir;
+    [SerializeField] private float delayMoveSpeedInAir; // Сила воздействия на скорость в воздухе в процентах
 
     [Header("Current vars")]
-    [SerializeField] private float currentMovementSpeed;
+    [SerializeField] private float currentMoveSpeed;
     [SerializeField] private float currentBoostSpeed;
-    [SerializeField] private float currentStartStoppingPower;
-    [SerializeField] private float currentBreakStoppingPower;
+    [SerializeField] private float currentStartMovePower;
+    [SerializeField] private float currentBreakMovePower;
+    [SerializeField] private float currentMoveSpeedInAir;
+    [SerializeField] private float currentDelayMoveSpeedInAir;
 
-    private float currentSpeed, currentRotationSpeed;
+    private float newCurrentMoveSpeed, newCurrentRotationSpeed;
+    private float newCurrentMoveSpeedInAirVertical, newCurrentMoveSpeedInAirHorizontal;
 
     
     [Header("Jump settings")]
@@ -50,74 +57,127 @@ public class ShipMovement : MonoBehaviour
         
         // Просчет скорости, ускорения, иннерции остановки
         // и начала движения с учетом процентов
-        currentMovementSpeed = movementSpeed + (movementSpeed/100 * procentMovementSpeed);
-        currentBoostSpeed = currentMovementSpeed + (currentMovementSpeed/100 * boostSpeed);
-        currentStartStoppingPower = movementSpeed/100 * startStoppingPower;
-        currentBreakStoppingPower = movementSpeed/100 * breakStoppingPower;
+        currentMoveSpeed = moveSpeed + (moveSpeed/100 * procentMoveSpeed);
+        currentBoostSpeed = currentMoveSpeed + (currentMoveSpeed/100 * boostSpeed);
+        currentStartMovePower = moveSpeed/100 * startMovePower;
+        currentBreakMovePower = moveSpeed/100 * breakMovePower;
+
+        // Просчет скорости и инерции движения в воздухе
+        currentMoveSpeedInAir = moveSpeedInAir;
+        currentDelayMoveSpeedInAir = moveSpeedInAir/100 * delayMoveSpeedInAir;
         
-        Movement(currentMovementSpeed, currentBoostSpeed);
+        Movement(currentMoveSpeed, currentBoostSpeed);
+        MovementInAir(currentMoveSpeedInAir);
         Rotation();
         Gravity();
     }
 
     private void Movement(float speed, float boost)
-    {    
-        if (shipInput.GetVerticalDirection() > 0)
+    {
+        // Движение корабля на земле и с ускорением
+        if (isGrounded)
         {
-            if (shipInput.GetBoostButton())
+            if (shipInput.GetVerticalDirection() > 0)
             {
-                currentSpeed = Mathf.Lerp(currentSpeed, speed + boost, Time.deltaTime/currentStartStoppingPower);
+                if (shipInput.GetBoostButton())
+                {
+                    newCurrentMoveSpeed = Mathf.Lerp(newCurrentMoveSpeed, speed + boost, Time.deltaTime / currentStartMovePower);
+                }
+                else
+                {
+                    newCurrentMoveSpeed = Mathf.Lerp(newCurrentMoveSpeed, speed, Time.deltaTime / currentStartMovePower);
+                }
             }
-            else
+            if (shipInput.GetVerticalDirection() < 0)
             {
-                currentSpeed = Mathf.Lerp(currentSpeed, speed, Time.deltaTime/currentStartStoppingPower);
+                newCurrentMoveSpeed = Mathf.Lerp(newCurrentMoveSpeed, -speed, Time.deltaTime / currentStartMovePower);
             }
-        }
-        if (shipInput.GetVerticalDirection() < 0)
-        {
-            currentSpeed = Mathf.Lerp(currentSpeed, -speed, Time.deltaTime/currentStartStoppingPower);
-        }
-        if (shipInput.GetVerticalDirection() == 0)
-        {
-            currentSpeed = Mathf.Lerp(currentSpeed, 0, Time.deltaTime/currentBreakStoppingPower);
-        }
+            if (shipInput.GetVerticalDirection() == 0)
+            {
+                newCurrentMoveSpeed = Mathf.Lerp(newCurrentMoveSpeed, 0, Time.deltaTime / currentBreakMovePower);
+            }
 
-        tr.position += tr.forward * currentSpeed * Time.deltaTime;
+            tr.position += tr.forward * newCurrentMoveSpeed * Time.deltaTime;
+        }
+    }
+    private void MovementInAir(float speed)
+    {
+        // Движение корабля в воздухе
+        if (isGrounded == false)
+        {
+            // Движение вперед и назад
+            if (shipInput.GetVerticalDirection() > 0)
+            {
+                newCurrentMoveSpeedInAirVertical = Mathf.Lerp(newCurrentMoveSpeedInAirVertical, speed, Time.deltaTime / currentDelayMoveSpeedInAir);
+            }
+            if (shipInput.GetVerticalDirection() < 0)
+            {
+                newCurrentMoveSpeedInAirVertical = Mathf.Lerp(newCurrentMoveSpeedInAirVertical, -speed, Time.deltaTime / currentDelayMoveSpeedInAir);
+            }
+            if (shipInput.GetVerticalDirection() == 0)
+            {
+                newCurrentMoveSpeedInAirVertical = Mathf.Lerp(newCurrentMoveSpeedInAirVertical, 0, Time.deltaTime / currentDelayMoveSpeedInAir);
+            }
+
+            // Движение в стороны
+            if (shipInput.GetHorizontalDirection() > 0)
+            {
+                newCurrentMoveSpeedInAirHorizontal = Mathf.Lerp(newCurrentMoveSpeedInAirHorizontal, speed, Time.deltaTime / currentDelayMoveSpeedInAir);
+            }
+            if (shipInput.GetHorizontalDirection() < 0)
+            {
+                newCurrentMoveSpeedInAirHorizontal = Mathf.Lerp(newCurrentMoveSpeedInAirHorizontal, -speed, Time.deltaTime / currentDelayMoveSpeedInAir);
+            }
+            if (shipInput.GetHorizontalDirection() == 0)
+            {
+                newCurrentMoveSpeedInAirHorizontal = Mathf.Lerp(newCurrentMoveSpeedInAirHorizontal, 0, Time.deltaTime / currentDelayMoveSpeedInAir);
+            }
+
+            tr.position += tr.right * newCurrentMoveSpeedInAirHorizontal * Time.deltaTime;
+            tr.position += tr.forward * newCurrentMoveSpeedInAirVertical * Time.deltaTime;
+        }
     }
 
     private void Rotation()
     {
-        if (shipInput.GetHorizontalDirection() > 0)
+        // Поворот корабля по оси У на земле
+        if (isGrounded)
         {
-            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, rotationSpeed, Time.deltaTime/currentStartStoppingPower);
-        }
-        if (shipInput.GetHorizontalDirection() < 0)
-        {
-            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, -rotationSpeed, Time.deltaTime/currentStartStoppingPower);
-        }
-        if (shipInput.GetHorizontalDirection() == 0)
-        {
-            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, 0, Time.deltaTime/currentBreakStoppingPower);
-        }
+            if (shipInput.GetHorizontalDirection() > 0)
+            {
+                newCurrentRotationSpeed = Mathf.Lerp(newCurrentRotationSpeed, rotationSpeed, Time.deltaTime / currentStartMovePower);
+            }
+            if (shipInput.GetHorizontalDirection() < 0)
+            {
+                newCurrentRotationSpeed = Mathf.Lerp(newCurrentRotationSpeed, -rotationSpeed, Time.deltaTime / currentStartMovePower);
+            }
+            if (shipInput.GetHorizontalDirection() == 0)
+            {
+                newCurrentRotationSpeed = Mathf.Lerp(newCurrentRotationSpeed, 0, Time.deltaTime / currentBreakMovePower);
+            }
 
-        tr.Rotate(new Vector3(0, currentRotationSpeed, 0));
+            tr.Rotate(new Vector3(0, newCurrentRotationSpeed, 0));
+        }
     }
     
     private void Jump()
     {
+        // Прыжок
         if (shipInput.GetJumpButton() && isGrounded)
         {
-            //rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse); #2
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+            rb.velocity = new Vector3(0, jumpForce, 0);
+            // Обнуление скорости корабля на цемле, чтобы при приземлении
+            // корабль не сохранял ускорение, если оно было нажато перед прыжком
+            newCurrentMoveSpeed = 0;
         }
     }
 
     private void Gravity()
     {
+        // Действие увеличения гравитации,
+        // когда корабль в воздухе
         if (!isGrounded)
         {
-            //rb.velocity += new Vector3(0, Physics.gravity.y * gravityMultiplier * Time.deltaTime, 0); #2
-            //rb.velocity = new Vector3(0, Physics.gravity.y * gravityMultiplier * Time.deltaTime, 0); #3
             tr.position -= tr.up * gravityMultiplier * Time.deltaTime;
         }
     }

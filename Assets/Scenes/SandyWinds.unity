@@ -7557,16 +7557,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c05e5315ca484cc5a94557e4e99d67c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4.6
+  moveSpeed: 4.6
   rotationSpeed: 0.18
-  procentMovementSpeed: 0
+  procentMoveSpeed: 0
   boostSpeed: 25
-  startStoppingPower: 16
-  breakStoppingPower: 6
-  currentMovementSpeed: 0
+  startMovePower: 16
+  breakMovePower: 10
+  moveSpeedInAir: 4
+  delayMoveSpeedInAir: 4
+  currentMoveSpeed: 0
   currentBoostSpeed: 0
-  currentStartStoppingPower: 0
-  currentBreakStoppingPower: 0
+  currentStartMovePower: 0
+  currentBreakMovePower: 0
+  currentMoveSpeedInAir: 0
+  currentDelayMoveSpeedInAir: 0
   jumpForce: 35
   gravity: -9.81
   gravityMultiplier: 1.25
@@ -10240,8 +10244,8 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 10
-    NearClipPlane: 0.1
-    FarClipPlane: 1000
+    NearClipPlane: 0.05
+    FarClipPlane: 250
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -29614,8 +29618,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 1000
+  near clip plane: 0.05
+  far clip plane: 250
   field of view: 60
   orthographic: 0
   orthographic size: 10
@@ -55111,8 +55115,8 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 80
     OrthographicSize: 10
-    NearClipPlane: 0.1
-    FarClipPlane: 1000
+    NearClipPlane: 0.05
+    FarClipPlane: 250
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -59535,7 +59539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
   m_LookaheadTime: 0.05
-  m_LookaheadSmoothing: 0.5
+  m_LookaheadSmoothing: 15.5
   m_LookaheadIgnoreY: 1
   m_XDamping: 0.5
   m_YDamping: 0
