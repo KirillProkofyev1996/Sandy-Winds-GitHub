@@ -73,7 +73,7 @@ public class ShipShooter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Shoot();
+        
     }
 
     private void Update()
@@ -81,7 +81,9 @@ public class ShipShooter : MonoBehaviour
         AimPosition();
         Direction();
         Distance();
+
         SwitchWeapon();
+        Shoot();
     }
 
     private void AimPosition()
@@ -92,7 +94,7 @@ public class ShipShooter : MonoBehaviour
     private void Direction()
     {
         direction = aimPosition - shootPoint.position;
-        direction = direction.normalized;
+        direction.Normalize();
     }
 
     private void Distance()
@@ -229,7 +231,7 @@ public class ShipShooter : MonoBehaviour
         {
             float t = i / (float)resolution;
             float x = launchDirection.x * cannonSpeed * t;
-            float y = (launchDirection.y * t) - (correctionFactor * gravitationalAcceleration * t * t);
+            float y = launchDirection.y * t - (correctionFactor * gravitationalAcceleration * t * t);
             float z = launchDirection.z * cannonSpeed * t;
 
             if (i < lineRenderer.positionCount)
