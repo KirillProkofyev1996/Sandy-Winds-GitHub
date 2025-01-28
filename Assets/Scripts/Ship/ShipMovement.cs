@@ -27,12 +27,11 @@ public class ShipMovement : MonoBehaviour
 
     [Header("Jump settings")]
     [SerializeField] private float jumpForce;
-    [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float gravityMultiplier;
     [SerializeField] private Transform groundChecker;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float checkerOffset;
-    [SerializeField] private float speedLimit;
+    [SerializeField] private float speedJumpLimit;
     private bool isGrounded;
     
 
@@ -166,21 +165,21 @@ public class ShipMovement : MonoBehaviour
     {
         // Отслеживание скорости движения корабля перед прыжком
         // и делать прыжок назад, вперед или на месте
-        if (newCurrentMoveSpeed < speedLimit && newCurrentMoveSpeed > -speedLimit)
+        if (newCurrentMoveSpeed < speedJumpLimit && newCurrentMoveSpeed > -speedJumpLimit)
         {
             if (!isGrounded)
             {
                 tr.position += Vector3.zero;
             }
         }
-        if (newCurrentMoveSpeed >= speedLimit)
+        if (newCurrentMoveSpeed >= speedJumpLimit)
         {
             if (!isGrounded)
             {
                 tr.position += tr.forward * moveSpeed * Time.deltaTime;
             }
         }
-        if (newCurrentMoveSpeed <= -speedLimit)
+        if (newCurrentMoveSpeed <= -speedJumpLimit)
         {
             if (!isGrounded)
             {

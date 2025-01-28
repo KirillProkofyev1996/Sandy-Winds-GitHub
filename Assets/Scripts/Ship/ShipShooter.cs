@@ -8,8 +8,8 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private float cannonSpeed;
     [SerializeField] private float cannonRate;
     [SerializeField] private float cannonDistance;
-    [SerializeField] private float cannonShootAngle; // если угол = 50
-    [SerializeField] private float cannonAngleMultiplier; // то multiplier = 1.5
+    [SerializeField] private float cannonShootAngle; // Если угол = 50
+    [SerializeField] private float cannonAngleMultiplier; // То множитель = 1.5
     private string cannonWeapon = "Cannon";
 
 
@@ -43,6 +43,13 @@ public class ShipShooter : MonoBehaviour
     private string gunWeapon = "Gun";
 
 
+    [Header("Cannon draw trajectory")]
+    [SerializeField] private int resolution;
+    [SerializeField] private float correctionFactor; // При угле = 50, множителе 1.5, фактор = -0.28
+    private Vector3 launchDirection;
+    private float gravitationalAcceleration;
+
+
     [Header("Settings")]
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float aimOffsetY;
@@ -56,6 +63,7 @@ public class ShipShooter : MonoBehaviour
     
     [Header("Components")]
     [SerializeField] private Aim aim;
+    [SerializeField] private LineRenderer lineRenderer;
     private ShipInput shipInput;
 
     private void Start()
@@ -97,51 +105,23 @@ public class ShipShooter : MonoBehaviour
     {
         if (currentWeapon == cannonWeapon)
         {
+            lineRenderer.enabled = true;
+            CannonShootTarget();
+            CannonShowTrajectory();
+
             if (shipInput.GetShootButton() && Time.time >= currentRate && distance <= cannonDistance)
             {
-                // Создаем снаряд
                 Rigidbody currentCannon = Instantiate(cannon, cannonShootPoint.position, Quaternion.identity);
-
-                // Рассчитываем направление и высоту
-                Vector3 directionToTarget = aimPosition - shootPoint.position;
-                float heightDifference = directionToTarget.y; // Разница в высоте
-                directionToTarget.y = 0; // Игнорируем высоту для горизонтального расчета
-                float horizontalDistance = directionToTarget.magnitude; // Горизонтальное расстояние до цели
-
-                // Рассчитываем угол в радианах
-                float angleRad = cannonShootAngle * Mathf.Deg2Rad;
-
-                // Рассчитываем необходимую скорость
-                float gravitationalAcceleration = Physics.gravity.y; // Гравитация
-                float verticalSpeed = cannonSpeed * Mathf.Sin(angleRad);
-                // Проверяем, может ли снаряд достичь цели с заданной launchSpeed
-                float requiredLaunchSpeed = Mathf.Sqrt(horizontalDistance * gravitationalAcceleration / 
-                                                (horizontalDistance * Mathf.Tan(angleRad) - heightDifference));
-
-                // Если launchSpeed меньше необходимой скорости, то используем необходимую
-                if (cannonSpeed < requiredLaunchSpeed)
-                {
-                    cannonSpeed = requiredLaunchSpeed;
-                }
-
-                // Корректируем вектор направления
-                Vector3 launchDirection = directionToTarget / cannonAngleMultiplier; // Нормализуем для получения единичного вектора
-                launchDirection.y = verticalSpeed; // Устанавливаем вертикальную скорость
-
-                // Устанавливаем скорость снаряда
                 currentCannon.velocity = launchDirection * cannonSpeed;
-
-                // Убедитесь, что снаряд выглядит в направлении движения
                 currentCannon.transform.LookAt(currentCannon.transform.position + currentCannon.velocity);
-
                 currentRate = Time.time + cannonRate;
-
-                /*Rigidbody currentCannon = Instantiate(cannon, cannonShootPoint.position, cannonShootPoint.rotation);
-                currentCannon.velocity = direction * cannonSpeed;
-                currentCannon.transform.LookAt(currentCannon.transform.position + currentCannon.velocity);
-                currentRate = Time.time + cannonRate;*/
             }
         }
+        else
+        {
+            lineRenderer.enabled = false;
+        }
+
         if (currentWeapon == crossbowWeapon)
         {
             if (shipInput.GetShootButton() && Time.time >= currentRate && distance <= crossbowDistance)
@@ -157,6 +137,7 @@ public class ShipShooter : MonoBehaviour
                 currentRate = Time.time + crossbowRate;
             }
         }
+
         if (currentWeapon == machinegunWeapon)
         {
             if (shipInput.GetShootButton() && Time.time >= currentRate && distance <= machinegunDistance)
@@ -209,6 +190,52 @@ public class ShipShooter : MonoBehaviour
         {
             currentWeapon = gunWeapon;
             weaponDistance = gunDistance;
+        }
+    }
+
+    private void CannonShootTarget()
+    {
+        // Рассчитываем направление и высоту
+        Vector3 directionToTarget = aimPosition - shootPoint.position;
+        float heightDifference = directionToTarget.y; // Разница в высоте
+        directionToTarget.y = 0; // Игнорируем высоту для горизонтального расчета
+        float horizontalDistance = directionToTarget.magnitude; // Горизонтальное расстояние до цели
+
+        // Рассчитываем угол в радианах
+        float angleRad = cannonShootAngle * Mathf.Deg2Rad;
+
+        // Рассчитываем необходимую скорость
+        gravitationalAcceleration = Physics.gravity.y; // Гравитация
+        float verticalSpeed = cannonSpeed * Mathf.Sin(angleRad);
+        // Проверяем, может ли снаряд достичь цели с заданной launchSpeed
+        float requiredLaunchSpeed = Mathf.Sqrt(horizontalDistance * gravitationalAcceleration /
+                                        (horizontalDistance * Mathf.Tan(angleRad) - heightDifference));
+
+        // Если launchSpeed меньше необходимой скорости, то используем необходимую
+        if (cannonSpeed < requiredLaunchSpeed)
+        {
+            cannonSpeed = requiredLaunchSpeed;
+        }
+
+        // Корректируем вектор направления
+        launchDirection = directionToTarget / cannonAngleMultiplier; // Нормализуем для получения единичного вектора
+        launchDirection.y = verticalSpeed; // Устанавливаем вертикальную скорость
+    }
+
+    // Метод отрисовки траектории ядра пушки
+    private void CannonShowTrajectory()
+    {
+        for (int i = 0; i <= resolution; i++)
+        {
+            float t = i / (float)resolution;
+            float x = launchDirection.x * cannonSpeed * t;
+            float y = (launchDirection.y * t) - (correctionFactor * gravitationalAcceleration * t * t);
+            float z = launchDirection.z * cannonSpeed * t;
+
+            if (i < lineRenderer.positionCount)
+            {
+                lineRenderer.SetPosition(i, shootPoint.position + new Vector3(x, y, z));
+            }
         }
     }
 
