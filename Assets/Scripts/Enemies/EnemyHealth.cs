@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipHealth : MonoBehaviour, IDamageable
+public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth;
     [SerializeField] private float timeToDestroy;
     [SerializeField] private float currentHealth;
 
-    // Корабль жив, если здоровье больше нуля
+    // Противник жив, если здоровье больше нуля
     private bool IsAlive => currentHealth > 0;
 
     private void Start()
@@ -16,26 +16,17 @@ public class ShipHealth : MonoBehaviour, IDamageable
         currentHealth = maxHealth;
     }
 
-    // Проверка на то, мертв ли корабль
     private void CheckIsAlive()
-    {   
+    {
         if (IsAlive == false)
         {
             Destroy(gameObject, timeToDestroy);
         }
     }
 
-    // Публичный метод для нанесения урона кораблю
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         CheckIsAlive();
-    }
-
-    // Публичный метод увеличения здоровья для чертежей 
-    public void ImproveHealth(float health)
-    {
-        maxHealth += health;
-        currentHealth = maxHealth;
     }
 }

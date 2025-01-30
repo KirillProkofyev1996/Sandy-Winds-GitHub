@@ -51,7 +51,7 @@ public class ShipMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Jump();
+        //Jump();
     }
 
     private void Update()

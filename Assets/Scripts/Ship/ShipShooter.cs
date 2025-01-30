@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShipShooter : MonoBehaviour
@@ -81,6 +82,7 @@ public class ShipShooter : MonoBehaviour
         AimPosition();
         Direction();
         Distance();
+        ShootPointsRotation();
 
         SwitchWeapon();
         Shoot();
@@ -102,6 +104,16 @@ public class ShipShooter : MonoBehaviour
         distance = Vector3.Distance(aimPosition, shootPoint.position);
     }
 
+    private void ShootPointsRotation()
+    {
+        shootPoint.LookAt(direction);
+        cannonShootPoint.LookAt(direction);
+        crossbowFrontShootPoint.LookAt(direction);
+        crossbowBackShootPoint.LookAt(direction);
+        machinegunShootPoint.LookAt(direction);
+        gunShootPoint.LookAt(direction);
+    }
+
     // Метод стрельбы из разных видов оружия
     private void Shoot()
     {
@@ -113,7 +125,7 @@ public class ShipShooter : MonoBehaviour
 
             if (shipInput.GetShootButton() && Time.time >= currentRate && distance <= cannonDistance)
             {
-                Rigidbody currentCannon = Instantiate(cannon, cannonShootPoint.position, Quaternion.identity);
+                Rigidbody currentCannon = Instantiate(cannon, cannonShootPoint.position, cannonShootPoint.rotation);
                 currentCannon.velocity = launchDirection * cannonSpeed;
                 currentCannon.transform.LookAt(currentCannon.transform.position + currentCannon.velocity);
                 currentRate = Time.time + cannonRate;
@@ -128,11 +140,11 @@ public class ShipShooter : MonoBehaviour
         {
             if (shipInput.GetShootButton() && Time.time >= currentRate && distance <= crossbowDistance)
             {
-                Rigidbody currentFrontCrossbow = Instantiate(crossbow, crossbowFrontShootPoint.position, Quaternion.identity);
+                Rigidbody currentFrontCrossbow = Instantiate(crossbow, crossbowFrontShootPoint.position, crossbowFrontShootPoint.rotation);
                 currentFrontCrossbow.velocity = direction * crossbowSpeed;
                 currentFrontCrossbow.transform.LookAt(currentFrontCrossbow.transform.position + currentFrontCrossbow.velocity);
 
-                Rigidbody currentBackCrossbow = Instantiate(crossbow, crossbowBackShootPoint.position, Quaternion.identity);
+                Rigidbody currentBackCrossbow = Instantiate(crossbow, crossbowBackShootPoint.position, crossbowBackShootPoint.rotation);
                 currentBackCrossbow.velocity = direction * crossbowSpeed;
                 currentBackCrossbow.transform.LookAt(currentBackCrossbow.transform.position + currentBackCrossbow.velocity);
 
@@ -162,7 +174,7 @@ public class ShipShooter : MonoBehaviour
         {
             if (shipInput.GetShootButton() && Time.time >= currentRate && distance <= gunDistance)
             {
-                Rigidbody currentGun = Instantiate(gun, gunShootPoint.position, Quaternion.identity);
+                Rigidbody currentGun = Instantiate(gun, gunShootPoint.position, gunShootPoint.rotation);
                 currentGun.velocity = direction * gunSpeed;
                 currentGun.transform.LookAt(currentGun.transform.position + currentGun.velocity);
                 currentRate = Time.time + gunRate;
