@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipHealth : MonoBehaviour, IDamageable
+public class ShipHealth : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
     [SerializeField] private float timeToDestroy;
