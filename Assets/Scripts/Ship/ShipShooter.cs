@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -70,11 +72,6 @@ public class ShipShooter : MonoBehaviour
     private void Start()
     {
         shipInput = GetComponent<ShipInput>();
-    }
-
-    private void FixedUpdate()
-    {
-        
     }
 
     private void Update()
