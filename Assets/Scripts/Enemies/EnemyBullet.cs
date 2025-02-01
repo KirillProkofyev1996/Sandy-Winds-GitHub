@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipBullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     [SerializeField] private float damage;
 
@@ -13,9 +13,9 @@ public class ShipBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Ship"))
         {
-            other.GetComponent<EnemyHealth>().TakeDamage(damage);
+            other.GetComponent<ShipHealth>().TakeDamage(damage);
         }
 
         Destroy(gameObject);

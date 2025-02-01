@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyHiter : MonoBehaviour
+public class WhiteCrabAttack : MonoBehaviour
 {
     [SerializeField] private float damage;
     [SerializeField] private float radius;
