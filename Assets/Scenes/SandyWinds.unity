@@ -3518,7 +3518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   radius: 1.25
-  timeToHit: 2
+  timeToHit: 1
   ship: {fileID: 2064911074}
 --- !u!1 &116138074
 GameObject:
@@ -13803,9 +13803,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 9097832476768580482, guid: 9a19527084af94fb183ce0609284e02b, type: 3}
-  speed: 12
+  speed: 13
   radius: 6.1
-  timeToHit: 1
+  timeToShoot: 1
+  countsToSuperShoot: 8
+  superShootAngle: 15
+  superShootBullets: 3
   ship: {fileID: 2064911074}
   shootPoint: {fileID: 252614879}
 --- !u!1 &370517907
@@ -29215,8 +29218,8 @@ Transform:
   m_GameObject: {fileID: 927520357}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.91, y: 1.05, z: 10.36}
-  m_LocalScale: {x: 11, y: 2, z: 11}
+  m_LocalPosition: {x: -7.99, y: 1.05, z: 9.77}
+  m_LocalScale: {x: 14, y: 2, z: 12}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1932318608}
@@ -29884,8 +29887,8 @@ Transform:
   m_GameObject: {fileID: 942878831}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.58, y: 1.05, z: -3.46}
-  m_LocalScale: {x: 11, y: 2, z: 11}
+  m_LocalPosition: {x: -22.58, y: 1.05, z: -5.12}
+  m_LocalScale: {x: 13, y: 2, z: 13}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1932318608}
@@ -30030,8 +30033,8 @@ Transform:
   m_GameObject: {fileID: 954548643}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.74, y: 1.05, z: 10.36}
-  m_LocalScale: {x: 11, y: 2, z: 11}
+  m_LocalPosition: {x: 7.74, y: 1.05, z: 8.43}
+  m_LocalScale: {x: 14, y: 2, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1932318608}
