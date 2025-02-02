@@ -1829,6 +1829,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57936837}
   m_CullTransparentMesh: 1
+--- !u!1 &61620650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 61620651}
+  - component: {fileID: 61620653}
+  - component: {fileID: 61620652}
+  m_Layer: 10
+  m_Name: Damager
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &61620651
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61620650}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 112586847}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &61620652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61620650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7878d02d1a214e3cb635040c67a6c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 3
+  timeToHit: 1
+  ship: {fileID: 2064911074}
+--- !u!135 &61620653
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61620650}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &65039191
 GameObject:
   m_ObjectHideFlags: 0
@@ -3333,7 +3402,6 @@ GameObject:
   - component: {fileID: 112586842}
   - component: {fileID: 112586849}
   - component: {fileID: 112586850}
-  - component: {fileID: 112586851}
   m_Layer: 13
   m_Name: WhiteCrab
   m_TagString: Enemy
@@ -3473,7 +3541,8 @@ Transform:
   m_LocalPosition: {x: 22.43, y: 0.223, z: 14.8}
   m_LocalScale: {x: 0.26, y: 0.26, z: 0.26}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 61620651}
   m_Father: {fileID: 884035518}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &112586849
@@ -3504,22 +3573,6 @@ MonoBehaviour:
   maxHealth: 5
   timeToDestroy: 0
   currentHealth: 0
---- !u!114 &112586851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112586841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7878d02d1a214e3cb635040c67a6c80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 3
-  radius: 1.25
-  timeToHit: 1
-  ship: {fileID: 2064911074}
 --- !u!1 &116138074
 GameObject:
   m_ObjectHideFlags: 0
@@ -13803,11 +13856,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 9097832476768580482, guid: 9a19527084af94fb183ce0609284e02b, type: 3}
-  speed: 13
+  speed: 14
   radius: 6.1
   timeToShoot: 1
   countsToSuperShoot: 8
-  superShootAngle: 15
+  superShootAngle: 20
   superShootBullets: 3
   ship: {fileID: 2064911074}
   shootPoint: {fileID: 252614879}
@@ -30254,8 +30307,8 @@ Transform:
   m_GameObject: {fileID: 954548643}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.74, y: 1.05, z: 8.43}
-  m_LocalScale: {x: 14, y: 2, z: 15}
+  m_LocalPosition: {x: 7.74, y: 1.05, z: 9.18}
+  m_LocalScale: {x: 14, y: 2, z: 13.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1932318608}

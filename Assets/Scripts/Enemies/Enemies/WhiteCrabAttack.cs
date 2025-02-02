@@ -6,21 +6,35 @@ using UnityEngine.AI;
 public class WhiteCrabAttack : MonoBehaviour
 {
     [SerializeField] private float damage;
-    [SerializeField] private float radius;
     [SerializeField] private float timeToHit;
     [SerializeField] private GameObject ship;
     private float time;
-    private float distance;
+    private bool isAttack;
 
     private void Update()
     {
-        distance = Vector3.Distance(transform.position, ship.transform.position);
         Hit(ship);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ship"))
+        {
+            isAttack = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Ship"))
+        {
+            isAttack = false;
+        }
     }
 
     private void Hit(GameObject ship)
     {
-        if (distance <= radius)
+        if (isAttack)
         {
             time += Time.deltaTime;
 
@@ -33,7 +47,7 @@ public class WhiteCrabAttack : MonoBehaviour
                 ship.GetComponent<ShipHealth>().TakeDamage(damage); // Атака корабля
             }
         }
-        if (distance > radius)
+        if (!isAttack)
         {
             time = 0;
         }

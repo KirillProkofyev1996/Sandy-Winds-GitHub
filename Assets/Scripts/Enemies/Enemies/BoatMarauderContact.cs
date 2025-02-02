@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDamager : MonoBehaviour
+public class BoatMarauderContact : MonoBehaviour
 {
     [SerializeField] private float damage;
 
