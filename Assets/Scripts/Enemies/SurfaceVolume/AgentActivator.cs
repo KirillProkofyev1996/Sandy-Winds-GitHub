@@ -9,14 +9,20 @@ public class AgentActivator : MonoBehaviour
 
     private void Start()
     {
-        agent.SetActive(false);
+        if (agent != null)
+        {
+            agent.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ship"))
         {
-            agent.SetActive(true);
+            if (agent != null)
+            {
+                agent.SetActive(true);
+            }
         }
     }
 
@@ -24,7 +30,10 @@ public class AgentActivator : MonoBehaviour
     {
         if (other.CompareTag("Ship"))
         {
-            agent.SetActive(false);
+            if (agent != null)
+            {
+                agent.SetActive(false);
+            }
         }
     }
 }

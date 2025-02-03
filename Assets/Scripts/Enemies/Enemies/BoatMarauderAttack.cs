@@ -8,10 +8,14 @@ public class BoatMarauderAttack : MonoBehaviour
     [SerializeField] private float distanceAttack;
     [SerializeField] private GameObject ship;
     [SerializeField] private float timeToAttack;
+    private float timeAttack;
     private Vector3 direction;
     private float distance;
-    private float time;
+    
     private Rigidbody rb;
+    [SerializeField] private BoatMarauderContact contact;
+    [SerializeField] private float maxBackDistance;
+    [SerializeField] private float backMoveSpeed;
     
     private void Start()
     {
@@ -23,14 +27,31 @@ public class BoatMarauderAttack : MonoBehaviour
         distance = Vector3.Distance(transform.position, ship.transform.position);
         direction = (ship.transform.position - transform.position).normalized;
         Attack();
+        
+        MoveBackAfterAttack();
     }
 
     private void Attack()
     {
-        if (distance <= distanceAttack && Time.time >= time)
+        if (distance <= distanceAttack && Time.time >= timeAttack)
         {
             rb.velocity = direction * speed;
-            time = Time.time + timeToAttack;
+            timeAttack = Time.time + timeToAttack;
+        }
+    }
+
+    private void MoveBackAfterAttack()
+    {
+        bool isContact = contact.GetIsContact();
+
+        if (isContact)
+        {
+            rb.velocity = (-direction) * backMoveSpeed;
+
+            if (distance >= maxBackDistance)
+            {
+                rb.velocity = Vector3.zero;
+            }
         }
     }
 }

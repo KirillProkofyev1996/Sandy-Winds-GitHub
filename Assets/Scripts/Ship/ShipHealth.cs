@@ -6,7 +6,7 @@ public class ShipHealth : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
     [SerializeField] private float timeToDestroy;
-    [SerializeField] private float currentHealth;
+    [SerializeField] public float currentHealth;
 
     // Корабль жив, если здоровье больше нуля
     private bool IsAlive => currentHealth > 0;
