@@ -4,7 +4,7 @@ public class ShipInput : MonoBehaviour
 {
     [Header("Variables")]
     private float horizontalDirection, verticalDirection;
-    private bool isShootButton, isAimButton, isJumpButton, isBoostButton;
+    private bool isShootButton, isAimButton, isJumpButton, isBoostButton, isRecoveryButton;
 
     private void Update()
     {
@@ -14,6 +14,7 @@ public class ShipInput : MonoBehaviour
         isAimButton = Input.GetMouseButtonDown(1);
         isJumpButton = Input.GetButton("Jump");
         isBoostButton = Input.GetKey(KeyCode.LeftShift);
+        isRecoveryButton = Input.GetKey(KeyCode.R);
     }
 
     // Публичные методы получения переменных для
@@ -41,5 +42,9 @@ public class ShipInput : MonoBehaviour
     public bool GetBoostButton()
     {
         return isBoostButton;
+    }
+    public bool GetRecoveryButton()
+    {
+        return isRecoveryButton;
     }
 }

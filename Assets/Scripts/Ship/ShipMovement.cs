@@ -74,6 +74,8 @@ public class ShipMovement : MonoBehaviour
         MovementInAir(currentMoveSpeedInAir);
         Rotation();
         Gravity();
+        Recovery();
+        Stabilization();
     }
 
     // Метод движения корабля на земле и с ускорением
@@ -185,6 +187,22 @@ public class ShipMovement : MonoBehaviour
             {
                 tr.position -= tr.forward * moveSpeed * Time.deltaTime;
             }
+        }
+    }
+
+    private void Recovery()
+    {
+        if (shipInput.GetRecoveryButton())
+        {
+            
+        }
+    }
+
+    private void Stabilization()
+    {
+        if (!isGrounded)
+        {
+            tr.eulerAngles = new Vector3(0, tr.eulerAngles.y, 0);
         }
     }
 }
