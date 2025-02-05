@@ -19,8 +19,8 @@ NavMeshProjectSettings:
     cost: 5
   - name: Boat Marauder
     cost: 5
-  - name: 
-    cost: 1
+  - name: GiantHyena
+    cost: 5
   - name: 
     cost: 1
   - name: 
