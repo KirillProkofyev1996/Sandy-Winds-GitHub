@@ -22,6 +22,7 @@ public class ShipMovement : MonoBehaviour
     [SerializeField] private float delayPowerInAir; // Сила воздействия на повороты в воздухе в процентах
 
     [Header("Current vars in air")]
+    [SerializeField] private float stabilizationPower;
     [SerializeField] private float currentMoveSpeedInAir;
     [SerializeField] private float currentDelayPowerInAir;
 
@@ -196,7 +197,8 @@ public class ShipMovement : MonoBehaviour
     {
         if (!isGrounded)
         {
-            tr.eulerAngles = new Vector3(0, tr.eulerAngles.y, 0);
+            Quaternion targetRotation = Quaternion.Euler(0, tr.eulerAngles.y, 0);
+            tr.rotation = Quaternion.Slerp(tr.rotation, targetRotation, Time.deltaTime * stabilizationPower);
         }
     }
 }

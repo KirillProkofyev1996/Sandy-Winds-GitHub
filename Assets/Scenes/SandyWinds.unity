@@ -3573,9 +3573,6 @@ MonoBehaviour:
   maxHealth: 5
   timeToDestroy: 0
   currentHealth: 0
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &116138074
 GameObject:
   m_ObjectHideFlags: 0
@@ -7879,6 +7876,7 @@ MonoBehaviour:
   moveSpeedInAir: 4.3
   rotationSpeedInAir: 0.18
   delayPowerInAir: 12
+  stabilizationPower: 5
   currentMoveSpeedInAir: 0
   currentDelayPowerInAir: 0
   jumpForce: 32
@@ -13697,9 +13695,6 @@ MonoBehaviour:
   maxHealth: 20
   timeToDestroy: 0
   currentHealth: 0
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &370193437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20820,9 +20815,6 @@ MonoBehaviour:
   maxHealth: 40
   timeToDestroy: 0
   currentHealth: 0
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &599754016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25374,21 +25366,6 @@ MonoBehaviour:
   maxHealth: 1
   timeToDestroy: 0
   currentHealth: 0
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 734366237}
-        m_TargetAssemblyTypeName: BalloonMarauderHealthChecker, Assembly-CSharp
-        m_MethodName: HealthChecker
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &741295633
 GameObject:
   m_ObjectHideFlags: 0
@@ -51904,21 +51881,6 @@ MonoBehaviour:
   maxHealth: 1
   timeToDestroy: 0
   currentHealth: 0
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 734366237}
-        m_TargetAssemblyTypeName: BalloonMarauderHealthChecker, Assembly-CSharp
-        m_MethodName: HealthChecker
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1544357151
 GameObject:
   m_ObjectHideFlags: 0
@@ -54110,21 +54072,6 @@ MonoBehaviour:
   maxHealth: 1
   timeToDestroy: 0
   currentHealth: 0
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 734366237}
-        m_TargetAssemblyTypeName: BalloonMarauderHealthChecker, Assembly-CSharp
-        m_MethodName: HealthChecker
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1592496241
 GameObject:
   m_ObjectHideFlags: 0
@@ -72959,21 +72906,6 @@ MonoBehaviour:
   maxHealth: 1
   timeToDestroy: 0
   currentHealth: 0
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 734366237}
-        m_TargetAssemblyTypeName: BalloonMarauderHealthChecker, Assembly-CSharp
-        m_MethodName: HealthChecker
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &2137995281
 GameObject:
   m_ObjectHideFlags: 0
