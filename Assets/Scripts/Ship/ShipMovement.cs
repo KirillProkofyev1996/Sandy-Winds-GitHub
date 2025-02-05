@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ShipMovement : MonoBehaviour
@@ -74,7 +75,6 @@ public class ShipMovement : MonoBehaviour
         MovementInAir(currentMoveSpeedInAir);
         Rotation();
         Gravity();
-        Recovery();
         Stabilization();
     }
 
@@ -190,14 +190,8 @@ public class ShipMovement : MonoBehaviour
         }
     }
 
-    private void Recovery()
-    {
-        if (shipInput.GetRecoveryButton())
-        {
-            
-        }
-    }
-
+    // Метод выравнивания корабля по осям х и z,
+    // если корабль в воздухе
     private void Stabilization()
     {
         if (!isGrounded)
