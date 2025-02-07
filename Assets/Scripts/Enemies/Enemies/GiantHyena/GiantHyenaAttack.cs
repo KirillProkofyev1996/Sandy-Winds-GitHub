@@ -22,7 +22,6 @@ public class GiantHyenaAttack : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
     }
 
     private void Update()
@@ -46,7 +45,6 @@ public class GiantHyenaAttack : MonoBehaviour
         isAttack = true;
 
         Vector3 retreatPosition = transform.position - transform.forward * retreatDistance;
-
         float retreatStartTime = Time.time;
         while (Time.time < retreatStartTime + retreatTime)
         {
@@ -65,7 +63,6 @@ public class GiantHyenaAttack : MonoBehaviour
         }
 
         isAttack = false;
-
         yield return new WaitForSeconds(1f);
     }
 }

@@ -87,7 +87,7 @@
     <Compile Include="Assets/Scripts/Ship/Improvements/AttackImprovement.cs" />
     <Compile Include="Assets/Scripts/Enemies/Enemies/BalloonMarauder/BalloonMarauderHealthChecker.cs" />
     <Compile Include="Assets/Scripts/Enemies/Enemies/BoatMarauder/BoatMarauderAttack.cs" />
-    <Compile Include="Assets/HealthShowText.cs" />
+    <Compile Include="Assets/Scripts/HealthShowText.cs" />
     <Compile Include="Assets/Scripts/Old/CameraTarget.cs" />
     <Compile Include="Assets/Scripts/Ship/Aim.cs" />
   </ItemGroup>
