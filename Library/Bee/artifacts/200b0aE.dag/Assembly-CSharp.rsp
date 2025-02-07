@@ -370,6 +370,8 @@
 "Assets/Scripts/Enemies/Enemies/BalloonMarauder/BalloonMarauderHealthChecker.cs"
 "Assets/Scripts/Enemies/Enemies/BoatMarauder/BoatMarauderAttack.cs"
 "Assets/Scripts/Enemies/Enemies/BoatMarauder/BoatMarauderContact.cs"
+"Assets/Scripts/Enemies/Enemies/GiantHyena/GiantHyenaAttack.cs"
+"Assets/Scripts/Enemies/Enemies/GiantHyena/GiantHyenaContact.cs"
 "Assets/Scripts/Enemies/Enemies/SloopMarauder/SloopMarauderAttack.cs"
 "Assets/Scripts/Enemies/Enemies/WhiteCrab/WhiteCrabAttack.cs"
 "Assets/Scripts/Enemies/EnemyHealth.cs"

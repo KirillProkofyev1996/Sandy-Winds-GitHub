@@ -72,11 +72,13 @@
     <Compile Include="Assets/Scripts/Camera/CameraController.cs" />
     <Compile Include="Assets/Scripts/Ship/ShipMovement.cs" />
     <Compile Include="Assets/Scripts/Enemies/EnemyMovement.cs" />
+    <Compile Include="Assets/Scripts/Enemies/Enemies/GiantHyena/GiantHyenaContact.cs" />
     <Compile Include="Assets/Scripts/Ship/ShipHealth.cs" />
     <Compile Include="Assets/Scripts/Enemies/Enemies/SloopMarauder/SloopMarauderAttack.cs" />
     <Compile Include="Assets/Scripts/Enemies/SurfaceVolume/AgentActivator.cs" />
     <Compile Include="Assets/Scripts/Old/Aim2D.cs" />
     <Compile Include="Assets/Scripts/Ship/ShipInput.cs" />
+    <Compile Include="Assets/Scripts/Enemies/Enemies/GiantHyena/GiantHyenaAttack.cs" />
     <Compile Include="Assets/Scripts/Enemies/EnemyHealth.cs" />
     <Compile Include="Assets/Scripts/Enemies/Enemies/BalloonMarauder/BalloonMarauderAttack.cs" />
     <Compile Include="Assets/Scripts/Ship/ShipBullet.cs" />
