@@ -10720,13 +10720,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af401ddbb1fe446b94d342aa90958a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceAttack: 2.5
-  retreatDistance: 2.5
-  retreatTime: 1
-  attackDistance: 6
-  attackDuration: 2
+  OnHowl:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 231027510}
+        m_TargetAssemblyTypeName: ShipShooter, Assembly-CSharp
+        m_MethodName: ShootOff
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 4
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  distanceToAttack: 2.25
+  retreatDistance: 1.5
+  retreatTime: 1.5
+  attackDistance: 5
+  attackDuration: 2.5
   ship: {fileID: 2064911074}
-  isAttack: 0
+  isHowl: 0
+  isBlocked: 0
 --- !u!54 &291452596
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10932,7 +10948,7 @@ Transform:
   m_GameObject: {fileID: 295413856}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: -8.68, y: 6.395088, z: -1.8144003}
+  m_LocalPosition: {x: -43.98, y: 7.3150883, z: -26.974401}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31750,7 +31766,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: -8.68, y: 6.395088, z: -1.8144003}
+  m_LocalPosition: {x: -43.98, y: 7.3150883, z: -26.974401}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -58295,7 +58311,7 @@ Transform:
   m_GameObject: {fileID: 1678028290}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: -8.68, y: 4.145534, z: 1.5444658}
+  m_LocalPosition: {x: -43.98, y: 5.065534, z: -23.615536}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -71672,7 +71688,7 @@ Transform:
   m_GameObject: {fileID: 2064911074}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.68, y: 0.61, z: 5.08}
+  m_LocalPosition: {x: -43.98, y: 1.53, z: -20.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

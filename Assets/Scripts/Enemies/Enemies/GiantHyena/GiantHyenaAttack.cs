@@ -2,44 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GiantHyenaAttack : MonoBehaviour
 {
-    [SerializeField] private float distanceAttack;
+    // Вызов метода ShootOff из ShipShooter,
+    // который отключает стрельбу корабля на время
+    [SerializeField] private UnityEvent OnHowl;
 
+
+    [Header("Attack settings")]
+    [SerializeField] private float distanceToAttack;
     [SerializeField] private float retreatDistance;
     [SerializeField] private float retreatTime;
     [SerializeField] private float attackDistance;
     [SerializeField] private float attackDuration;
 
-    [SerializeField] private GameObject ship;
 
-    public bool isAttack;
+    [Header("Components")]
+    [SerializeField] private GameObject ship;
+    private EnemyHealth health;
+    private bool isAttack;
+    public bool isHowl;
+    public bool isBlocked;
     private float distance;
-    private Vector3 direction;
-    private Rigidbody rb;
-    
+
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        health = GetComponent<EnemyHealth>();
     }
 
     private void Update()
     {   
         distance = Vector3.Distance(transform.position, ship.transform.position);
-        direction = (ship.transform.position - transform.position).normalized;
 
         Attack();
+        HowlAttack();
     }
 
+    // Метод обычной атаки гиены
     private void Attack()
     {
-        if (distance <= distanceAttack && isAttack == false)
+        if (distance <= distanceToAttack && isAttack == false)
         {
             StartCoroutine(AttackRoutine());
         }
     }
 
+    // Описание рутины обычной атаки гиены
     private IEnumerator AttackRoutine()
     {
         isAttack = true;
@@ -63,6 +73,17 @@ public class GiantHyenaAttack : MonoBehaviour
         }
 
         isAttack = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
+    }
+
+    // Метод суперспостобности ВОЙ, который
+    // отключает стрельбу корабля на время
+    private void HowlAttack()
+    {
+        if (health.GetHealth() <= 350 && !isHowl)
+        {
+            isHowl = true;
+            OnHowl.Invoke();
+        }
     }
 }

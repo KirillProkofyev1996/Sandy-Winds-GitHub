@@ -29,4 +29,9 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
         CheckIsAlive();
     }
+
+    public float GetHealth()
+    {
+        return currentHealth;
+    }
 }
