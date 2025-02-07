@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class BoatMarauderContact : MonoBehaviour
 {
+    [SerializeField] private PlayableDirector cameraShakeTimeline;
     [SerializeField] private float damage;
     private bool isContact;
 
@@ -11,6 +13,8 @@ public class BoatMarauderContact : MonoBehaviour
     {
         if (other.CompareTag("Ship"))
         {
+            cameraShakeTimeline.Play();
+
             isContact = true;
 
             other.GetComponent<ShipHealth>().TakeDamage(damage);
