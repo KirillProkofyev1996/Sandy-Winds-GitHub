@@ -3956,6 +3956,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131074037}
   m_CullTransparentMesh: 1
+--- !u!1 &132665767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 132665768}
+  - component: {fileID: 132665769}
+  m_Layer: 0
+  m_Name: GiantHyenaCameraShake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &132665768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132665767}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1636291436}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &132665769
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132665767}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 772a360bb51c14896a2998c529f362f6, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 8365210409101988706, guid: f22d92b0be8e34873a699519b1fd48e1, type: 2}
+    value: {fileID: 295413860}
+  - key: {fileID: 4271057790301055450, guid: f22d92b0be8e34873a699519b1fd48e1, type: 2}
+    value: {fileID: 1678028294}
+  - key: {fileID: -8275110910897988089, guid: 772a360bb51c14896a2998c529f362f6, type: 2}
+    value: {fileID: 295413860}
+  - key: {fileID: -5163715043432723980, guid: 772a360bb51c14896a2998c529f362f6, type: 2}
+    value: {fileID: 1678028294}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &133741559
 GameObject:
   m_ObjectHideFlags: 0
@@ -10668,7 +10725,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -902729914
   m_Radius: 0.5
-  m_Speed: 3.3
+  m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 160
@@ -10735,14 +10792,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  cameraShakeTimeline: {fileID: 132665769}
   distanceToAttack: 2.25
   retreatDistance: 1.5
-  retreatTime: 1.5
-  attackDistance: 5
+  retreatTime: 2
+  attackDistance: 6
   attackDuration: 2.5
   ship: {fileID: 2064911074}
-  isHowl: 0
-  isBlocked: 0
 --- !u!54 &291452596
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -39671,7 +39727,7 @@ GameObject:
   - component: {fileID: 1168949575}
   - component: {fileID: 1168949576}
   m_Layer: 0
-  m_Name: CameraShake
+  m_Name: BoatMarauderCameraShake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56675,6 +56731,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1168949575}
+  - {fileID: 132665768}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1638115512

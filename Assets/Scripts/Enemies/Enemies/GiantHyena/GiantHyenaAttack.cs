@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Playables;
 
 public class GiantHyenaAttack : MonoBehaviour
 {
     // Вызов метода ShootOff из ShipShooter,
     // который отключает стрельбу корабля на время
     [SerializeField] private UnityEvent OnHowl;
+    [SerializeField] private PlayableDirector cameraShakeTimeline;
 
 
     [Header("Attack settings")]
@@ -23,8 +25,7 @@ public class GiantHyenaAttack : MonoBehaviour
     [SerializeField] private GameObject ship;
     private EnemyHealth health;
     private bool isAttack;
-    public bool isHowl;
-    public bool isBlocked;
+    private bool isHowl;
     private float distance;
 
     private void Start()
@@ -84,6 +85,7 @@ public class GiantHyenaAttack : MonoBehaviour
         {
             isHowl = true;
             OnHowl.Invoke();
+            cameraShakeTimeline.Play();
         }
     }
 }
