@@ -16,9 +16,11 @@ public class GiantHyenaAttack : MonoBehaviour
     [Header("Attack settings")]
     [SerializeField] private float distanceToAttack;
     [SerializeField] private float retreatDistance;
-    [SerializeField] private float retreatTime;
+    [SerializeField] private float retreatDuration;
     [SerializeField] private float attackDistance;
     [SerializeField] private float attackDuration;
+    [SerializeField] private float biteDistance;
+    [SerializeField] private float biteDuration;
 
 
     [Header("Components")]
@@ -26,6 +28,7 @@ public class GiantHyenaAttack : MonoBehaviour
     private EnemyHealth health;
     private bool isAttack;
     private bool isHowl;
+    private bool isBite;
     private float distance;
 
     private void Start()
@@ -36,17 +39,27 @@ public class GiantHyenaAttack : MonoBehaviour
     private void Update()
     {   
         distance = Vector3.Distance(transform.position, ship.transform.position);
-
         Attack();
         HowlAttack();
+        BiteCheck();
     }
 
-    // Метод обычной атаки гиены
+    // Метод обычной атаки в обычном состоянии и в состоянии УКУС
     private void Attack()
     {
-        if (distance <= distanceToAttack && isAttack == false)
+        if (!isBite)
         {
-            StartCoroutine(AttackRoutine());
+            if (distance <= distanceToAttack && isAttack == false)
+            {
+                StartCoroutine(AttackRoutine());
+            }
+        }
+        if (isBite)
+        {
+            if (distance <= distanceToAttack && isAttack == false)
+            {
+                StartCoroutine(BiteRoutine());
+            }
         }
     }
 
@@ -57,9 +70,9 @@ public class GiantHyenaAttack : MonoBehaviour
 
         Vector3 retreatPosition = transform.position - transform.forward * retreatDistance;
         float retreatStartTime = Time.time;
-        while (Time.time < retreatStartTime + retreatTime)
+        while (Time.time < retreatStartTime + retreatDuration)
         {
-            transform.position = Vector3.Lerp(transform.position, retreatPosition, (Time.time - retreatStartTime) / retreatTime);
+            transform.position = Vector3.Lerp(transform.position, retreatPosition, (Time.time - retreatStartTime) / retreatDuration);
             yield return null;
         }
 
@@ -74,7 +87,35 @@ public class GiantHyenaAttack : MonoBehaviour
         }
 
         isAttack = false;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+    }
+
+    // Описание рутины суперспособности УКУС
+    private IEnumerator BiteRoutine()
+    {
+        isAttack = true;
+
+        Vector3 retreatPosition = transform.position - transform.forward * retreatDistance;
+        float retreatStartTime = Time.time;
+        while (Time.time < retreatStartTime + retreatDuration)
+        {
+            transform.position = Vector3.Lerp(transform.position, retreatPosition, (Time.time - retreatStartTime) / retreatDuration);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        Vector3 attackTarget = transform.position + transform.forward * biteDistance;
+        float attackStartTime = Time.time;
+        while (Time.time < attackStartTime + biteDuration)
+        {
+            transform.position = Vector3.Lerp(transform.position, attackTarget, (Time.time - attackStartTime) / biteDuration);
+            yield return null;
+        }
+
+        isAttack = false;
+        isBite = false;
+        yield return new WaitForSeconds(1f);
     }
 
     // Метод суперспостобности ВОЙ, который
@@ -87,5 +128,21 @@ public class GiantHyenaAttack : MonoBehaviour
             OnHowl.Invoke();
             cameraShakeTimeline.Play();
         }
+    }
+
+    // Метод активации суперспособности УКУС
+    private void BiteCheck()
+    {
+        if (health.GetHealth() <= 150 && !isBite)
+        {
+            isBite = true;
+        }
+    }
+
+    // Метод получения isBite для передачи в GiantHyenaContact, 
+    // чтобы установить нужный урон при действии способности
+    public bool GetIsBite()
+    {
+        return isBite;
     }
 }

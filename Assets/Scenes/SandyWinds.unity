@@ -10795,9 +10795,11 @@ MonoBehaviour:
   cameraShakeTimeline: {fileID: 132665769}
   distanceToAttack: 2.25
   retreatDistance: 1.5
-  retreatTime: 2
+  retreatDuration: 1.5
   attackDistance: 6
-  attackDuration: 2.5
+  attackDuration: 1.5
+  biteDistance: 7
+  biteDuration: 1.5
   ship: {fileID: 2064911074}
 --- !u!54 &291452596
 Rigidbody:
@@ -42675,6 +42677,8 @@ MonoBehaviour:
   firstPawDamage: 40
   secondPawDamage: 20
   headDamage: 30
+  biteDamage: 100
+  giantHyenaAttack: {fileID: 291452595}
 --- !u!135 &1265707225
 SphereCollider:
   m_ObjectHideFlags: 0
