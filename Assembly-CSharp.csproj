@@ -76,19 +76,18 @@
     <Compile Include="Assets/Scripts/Ship/ShipHealth.cs" />
     <Compile Include="Assets/Scripts/Enemies/Enemies/SloopMarauder/SloopMarauderAttack.cs" />
     <Compile Include="Assets/Scripts/Enemies/SurfaceVolume/AgentActivator.cs" />
-    <Compile Include="Assets/Scripts/Old/Aim2D.cs" />
     <Compile Include="Assets/Scripts/Ship/ShipInput.cs" />
     <Compile Include="Assets/Scripts/Enemies/Enemies/GiantHyena/GiantHyenaAttack.cs" />
     <Compile Include="Assets/Scripts/Enemies/EnemyHealth.cs" />
     <Compile Include="Assets/Scripts/Enemies/Enemies/BalloonMarauder/BalloonMarauderAttack.cs" />
     <Compile Include="Assets/Scripts/Ship/ShipBullet.cs" />
     <Compile Include="Assets/Scripts/Enemies/Bullets/EnemyBullet.cs" />
+    <Compile Include="Assets/Scripts/Ship/CrossbowAttract.cs" />
     <Compile Include="Assets/Scripts/Enemies/Enemies/BoatMarauder/BoatMarauderContact.cs" />
     <Compile Include="Assets/Scripts/Ship/Improvements/AttackImprovement.cs" />
     <Compile Include="Assets/Scripts/Enemies/Enemies/BalloonMarauder/BalloonMarauderHealthChecker.cs" />
     <Compile Include="Assets/Scripts/Enemies/Enemies/BoatMarauder/BoatMarauderAttack.cs" />
     <Compile Include="Assets/Scripts/HealthShowText.cs" />
-    <Compile Include="Assets/Scripts/Old/CameraTarget.cs" />
     <Compile Include="Assets/Scripts/Ship/Aim.cs" />
   </ItemGroup>
   <ItemGroup>

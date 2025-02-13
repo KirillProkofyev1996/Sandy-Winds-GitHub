@@ -201,4 +201,14 @@ public class ShipMovement : MonoBehaviour
             tr.rotation = Quaternion.Slerp(tr.rotation, targetRotation, Time.deltaTime * stabilizationPower);
         }
     }
+
+    public float GetSpeed()
+    {
+        return moveSpeed;
+    }
+
+    public float GetTurbo()
+    {
+        return boostSpeed;
+    }
 }

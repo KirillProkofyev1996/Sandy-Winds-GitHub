@@ -5,8 +5,9 @@ using UnityEngine;
 public class ShipHealth : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
-    [SerializeField] private float timeToDestroy;
     [SerializeField] public float currentHealth;
+    [SerializeField] private float strength;
+    [SerializeField] private float timeToDestroy;
 
     // Корабль жив, если здоровье больше нуля
     private bool IsAlive => currentHealth > 0;
@@ -37,5 +38,15 @@ public class ShipHealth : MonoBehaviour
     {
         maxHealth += health;
         currentHealth = maxHealth;
+    }
+
+    public float GetHealth()
+    {
+        return currentHealth;
+    }
+
+    public float GetStrength()
+    {
+        return strength;
     }
 }

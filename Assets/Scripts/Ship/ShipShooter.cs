@@ -50,10 +50,11 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private int resolution;
     [SerializeField] private float correctionFactor; // При угле = 50, множителе 1.5, фактор = -0.28
     private Vector3 launchDirection;
-    private float gravitationalAcceleration;
+    private float gravityAcceleration;
 
 
     [Header("Settings")]
+    [SerializeField] private float currentDamage;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float aimOffsetY;
     private bool isCanShoot;
@@ -74,6 +75,7 @@ public class ShipShooter : MonoBehaviour
     {
         shipInput = GetComponent<ShipInput>();
         isCanShoot = true;
+        currentDamage = 0;
     }
 
     private void Update()
@@ -81,7 +83,6 @@ public class ShipShooter : MonoBehaviour
         AimPosition();
         Direction();
         Distance();
-        ShootPointsRotation();
 
         SwitchWeapon();
         Shoot();
@@ -103,16 +104,6 @@ public class ShipShooter : MonoBehaviour
         distance = Vector3.Distance(aimPosition, shootPoint.position);
     }
 
-    private void ShootPointsRotation()
-    {
-        shootPoint.LookAt(direction);
-        cannonShootPoint.LookAt(direction);
-        crossbowFrontShootPoint.LookAt(direction);
-        crossbowBackShootPoint.LookAt(direction);
-        machinegunShootPoint.LookAt(direction);
-        gunShootPoint.LookAt(direction);
-    }
-
     // Метод стрельбы из разных видов оружия
     private void Shoot()
     {
@@ -129,6 +120,7 @@ public class ShipShooter : MonoBehaviour
                     Rigidbody currentCannon = Instantiate(cannon, cannonShootPoint.position, cannonShootPoint.rotation);
                     currentCannon.velocity = launchDirection * cannonSpeed;
                     currentCannon.transform.LookAt(currentCannon.transform.position + currentCannon.velocity);
+                    currentDamage = currentCannon.GetComponent<ShipBullet>().GetDamage();
                     currentRate = Time.time + cannonRate;
                 }
             }
@@ -149,6 +141,8 @@ public class ShipShooter : MonoBehaviour
                     currentBackCrossbow.velocity = direction * crossbowSpeed;
                     currentBackCrossbow.transform.LookAt(currentBackCrossbow.transform.position + currentBackCrossbow.velocity);
 
+                    currentDamage = currentFrontCrossbow.GetComponent<ShipBullet>().GetDamage();
+
                     currentRate = Time.time + crossbowRate;
                 }
             }
@@ -166,6 +160,7 @@ public class ShipShooter : MonoBehaviour
                         Quaternion machinegunRotation = Quaternion.Euler(0, angle, 0);
                         Rigidbody currentMachinegun = Instantiate(machinegun, machinegunShootPoint.position, machinegunShootPoint.rotation);
                         currentMachinegun.velocity = machinegunRotation * direction * machinegunSpeed;
+                        currentDamage = currentMachinegun.GetComponent<ShipBullet>().GetDamage();
                     }
 
                     currentRate = Time.time + machinegunRate;
@@ -178,6 +173,7 @@ public class ShipShooter : MonoBehaviour
                     Rigidbody currentGun = Instantiate(gun, gunShootPoint.position, gunShootPoint.rotation);
                     currentGun.velocity = direction * gunSpeed;
                     currentGun.transform.LookAt(currentGun.transform.position + currentGun.velocity);
+                    currentDamage = currentGun.GetComponent<ShipBullet>().GetDamage();
                     currentRate = Time.time + gunRate;
                 }
             }
@@ -221,10 +217,10 @@ public class ShipShooter : MonoBehaviour
         float angleRad = cannonShootAngle * Mathf.Deg2Rad;
 
         // Рассчитываем необходимую скорость
-        gravitationalAcceleration = Physics.gravity.y; // Гравитация
+        gravityAcceleration = Physics.gravity.y; // Гравитация
         float verticalSpeed = cannonSpeed * Mathf.Sin(angleRad);
         // Проверяем, может ли снаряд достичь цели с заданной launchSpeed
-        float requiredLaunchSpeed = Mathf.Sqrt(horizontalDistance * gravitationalAcceleration /
+        float requiredLaunchSpeed = Mathf.Sqrt(horizontalDistance * gravityAcceleration /
                                         (horizontalDistance * Mathf.Tan(angleRad) - heightDifference));
 
         // Если launchSpeed меньше необходимой скорости, то используем необходимую
@@ -245,7 +241,7 @@ public class ShipShooter : MonoBehaviour
         {
             float t = i / (float)resolution;
             float x = launchDirection.x * cannonSpeed * t;
-            float y = launchDirection.y * t - (correctionFactor * gravitationalAcceleration * t * t);
+            float y = launchDirection.y * t - (correctionFactor * gravityAcceleration * t * t);
             float z = launchDirection.z * cannonSpeed * t;
 
             if (i < lineRenderer.positionCount)
@@ -277,5 +273,10 @@ public class ShipShooter : MonoBehaviour
         isCanShoot = false;
 
         Invoke("CanShoot", time);
+    }
+
+    public float GetDamage()
+    {
+        return currentDamage;
     }
 }
