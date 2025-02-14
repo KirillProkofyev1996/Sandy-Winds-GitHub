@@ -28,15 +28,11 @@ public class CrossbowAttract : MonoBehaviour
             {
                 float distance = Vector3.Distance(transform.position, otherBolt.transform.position);
 
-                // Если снаряды достаточно близко, применяем силу притяжения
-                if (distance < 5f) // Например, 5 единиц
-                {
-                    Vector3 directionToOther = (otherBolt.transform.position - transform.position).normalized;
-                    Vector3 force = directionToOther * attractionForce * Time.fixedDeltaTime;
+                Vector3 directionToOther = (otherBolt.transform.position - transform.position).normalized;
+                Vector3 force = directionToOther * attractionForce * Time.fixedDeltaTime;
 
-                    // Применяем силу притяжения
-                    rb.AddForce(force);
-                }
+                // Применяем силу притяжения
+                rb.AddForce(force);
             }
         }
     }

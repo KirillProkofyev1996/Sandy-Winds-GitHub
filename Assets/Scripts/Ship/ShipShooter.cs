@@ -6,6 +6,7 @@ using UnityEngine;
 public class ShipShooter : MonoBehaviour
 {
     [Header("Cannon settings")]
+    [SerializeField] private float cannonDamage;
     [SerializeField] private Rigidbody cannon;
     [SerializeField] private Transform cannonShootPoint;
     [SerializeField] private float cannonSpeed;
@@ -17,6 +18,7 @@ public class ShipShooter : MonoBehaviour
 
 
     [Header("Crossbow settings")]
+    [SerializeField] private float crossbowDamage;
     [SerializeField] private Rigidbody crossbow;
     [SerializeField] private Transform crossbowFrontShootPoint;
     [SerializeField] private Transform crossbowBackShootPoint;
@@ -27,6 +29,7 @@ public class ShipShooter : MonoBehaviour
 
 
     [Header("Machinegun settings")]
+    [SerializeField] private float machinegunDamage;
     [SerializeField] private Rigidbody machinegun;
     [SerializeField] private Transform machinegunShootPoint;
     [SerializeField] private float machinegunSpeed;
@@ -38,6 +41,7 @@ public class ShipShooter : MonoBehaviour
 
 
     [Header("Gun settings")]
+    [SerializeField] private float gunDamage;
     [SerializeField] private Rigidbody gun;
     [SerializeField] private Transform gunShootPoint;
     [SerializeField] private float gunSpeed;
@@ -120,7 +124,11 @@ public class ShipShooter : MonoBehaviour
                     Rigidbody currentCannon = Instantiate(cannon, cannonShootPoint.position, cannonShootPoint.rotation);
                     currentCannon.velocity = launchDirection * cannonSpeed;
                     currentCannon.transform.LookAt(currentCannon.transform.position + currentCannon.velocity);
-                    currentDamage = currentCannon.GetComponent<ShipBullet>().GetDamage();
+
+                    ShipBullet bullet = currentCannon.GetComponent<ShipBullet>();
+                    bullet.damage = cannonDamage;
+
+                    currentDamage = cannonDamage;
                     currentRate = Time.time + cannonRate;
                 }
             }
@@ -141,8 +149,13 @@ public class ShipShooter : MonoBehaviour
                     currentBackCrossbow.velocity = direction * crossbowSpeed;
                     currentBackCrossbow.transform.LookAt(currentBackCrossbow.transform.position + currentBackCrossbow.velocity);
 
-                    currentDamage = currentFrontCrossbow.GetComponent<ShipBullet>().GetDamage();
+                    ShipBullet bullet1 = currentFrontCrossbow.GetComponent<ShipBullet>();
+                    bullet1.damage = crossbowDamage;
 
+                    ShipBullet bullet2 = currentBackCrossbow.GetComponent<ShipBullet>();
+                    bullet2.damage = crossbowDamage;
+
+                    currentDamage = crossbowDamage;
                     currentRate = Time.time + crossbowRate;
                 }
             }
@@ -160,9 +173,12 @@ public class ShipShooter : MonoBehaviour
                         Quaternion machinegunRotation = Quaternion.Euler(0, angle, 0);
                         Rigidbody currentMachinegun = Instantiate(machinegun, machinegunShootPoint.position, machinegunShootPoint.rotation);
                         currentMachinegun.velocity = machinegunRotation * direction * machinegunSpeed;
-                        currentDamage = currentMachinegun.GetComponent<ShipBullet>().GetDamage();
+
+                        ShipBullet bullet = currentMachinegun.GetComponent<ShipBullet>();
+                        bullet.damage = machinegunDamage;
                     }
 
+                    currentDamage = machinegunDamage;
                     currentRate = Time.time + machinegunRate;
                 }
             }
@@ -173,7 +189,11 @@ public class ShipShooter : MonoBehaviour
                     Rigidbody currentGun = Instantiate(gun, gunShootPoint.position, gunShootPoint.rotation);
                     currentGun.velocity = direction * gunSpeed;
                     currentGun.transform.LookAt(currentGun.transform.position + currentGun.velocity);
-                    currentDamage = currentGun.GetComponent<ShipBullet>().GetDamage();
+
+                    ShipBullet bullet = currentGun.GetComponent<ShipBullet>();
+                    bullet.damage = gunDamage;
+
+                    currentDamage = gunDamage;
                     currentRate = Time.time + gunRate;
                 }
             }
@@ -271,10 +291,10 @@ public class ShipShooter : MonoBehaviour
     public void ShootOff(float time)
     {
         isCanShoot = false;
-
         Invoke("CanShoot", time);
     }
 
+    // Публичный метод получения урона текущим оружием
     public float GetDamage()
     {
         return currentDamage;

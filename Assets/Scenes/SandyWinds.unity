@@ -7980,6 +7980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e07a4e4f6cd64b48ac3923586b0649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cannonDamage: 10
   cannon: {fileID: 8682693522825396822, guid: 6011d36f11a6845398a83e298228a924, type: 3}
   cannonShootPoint: {fileID: 998924258}
   cannonSpeed: 2
@@ -7987,12 +7988,14 @@ MonoBehaviour:
   cannonDistance: 6
   cannonShootAngle: 50
   cannonAngleMultiplier: 1.5
+  crossbowDamage: 3
   crossbow: {fileID: 8682693522825396822, guid: 99527daade7e04a928da8a7e07714550, type: 3}
   crossbowFrontShootPoint: {fileID: 1598428730}
   crossbowBackShootPoint: {fileID: 1901632566}
   crossbowSpeed: 14
   crossbowRate: 0.8
   crossbowDistance: 10
+  machinegunDamage: 1
   machinegun: {fileID: 8682693522825396822, guid: bd9f2f425c9684cd78b17bc7b407e193, type: 3}
   machinegunShootPoint: {fileID: 998924258}
   machinegunSpeed: 20
@@ -8000,6 +8003,7 @@ MonoBehaviour:
   machinegunDistance: 5
   machinegunCounts: 6
   machinegunAngle: 15
+  gunDamage: 5
   gun: {fileID: 42459099261647579, guid: eab78247a9eab4f9b91b4fe1acef9aca, type: 3}
   gunShootPoint: {fileID: 998924258}
   gunSpeed: 20
@@ -55315,7 +55319,7 @@ Transform:
   m_GameObject: {fileID: 1598428729}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.152, z: 0.255}
+  m_LocalPosition: {x: 0, y: 0.152, z: 0.101}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66735,7 +66739,7 @@ Transform:
   m_GameObject: {fileID: 1901632565}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.152, z: -0.708}
+  m_LocalPosition: {x: 0, y: 0.152, z: -0.545}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
