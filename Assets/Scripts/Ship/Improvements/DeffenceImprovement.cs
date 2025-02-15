@@ -18,6 +18,8 @@ public class DeffenceImprovement : MonoBehaviour
     [Header("Yellow")]
     // Чертеж 1 (желтый)
     [SerializeField] private InputField yellow1_value1;
+    // Чертеж 2 (желтый)
+    [SerializeField] private InputField yellow2_value1;
 
     /*[Header("Blue")]
     [SerializeField] private InputField blue1_value1;
@@ -56,5 +58,10 @@ public class DeffenceImprovement : MonoBehaviour
     public void Yellow_1()
     {
         shipHealth.ImproveHealth(float.Parse(yellow1_value1.text));
+    }
+    // Метод для чертежа 2 (желтый)
+    public void Yellow_2()
+    {
+        shipHealth.ImproveStrength(float.Parse(yellow2_value1.text));
     }
 }

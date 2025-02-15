@@ -7969,6 +7969,7 @@ MonoBehaviour:
   crew: {fileID: 713265780}
   reload: {fileID: 1466559216}
   yellow1_value1: {fileID: 1086554067}
+  yellow2_value1: {fileID: 1535735539}
   shipHealth: {fileID: 2064911090}
 --- !u!114 &231027510
 MonoBehaviour:
@@ -14645,11 +14646,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 50
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -29456,6 +29457,7 @@ GameObject:
   - component: {fileID: 880023813}
   - component: {fileID: 880023812}
   - component: {fileID: 880023811}
+  - component: {fileID: 880023814}
   m_Layer: 5
   m_Name: 02
   m_TagString: Untagged
@@ -29529,8 +29531,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 231027509}
-        m_TargetAssemblyTypeName: BodyImprovement, Assembly-CSharp
-        m_MethodName: Setmode02
+        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+        m_MethodName: Yellow_2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 880023814}
+        m_TargetAssemblyTypeName: ButtonDisabler, Assembly-CSharp
+        m_MethodName: DisableButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -29578,6 +29592,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880023809}
   m_CullTransparentMesh: 1
+--- !u!114 &880023814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880023809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b047ad975964ab6bfd7bf6fcbe1baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &883445954
 GameObject:
   m_ObjectHideFlags: 0
@@ -72019,7 +72045,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 100
-  strength: 100
+  strength: 0
+  maxStrength: 100
   armor: 0
   timeToDestroy: 0
 --- !u!1 &2068169063

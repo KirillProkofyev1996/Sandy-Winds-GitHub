@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShipHealth : MonoBehaviour
 {
     [SerializeField] public float health, maxHealth;
-    [SerializeField] private float strength;
+    [SerializeField] private float strength, maxStrength;
     [SerializeField] private float armor;
     [SerializeField] private float timeToDestroy;
 
@@ -15,6 +15,7 @@ public class ShipHealth : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
+        strength = maxStrength;
     }
 
     // Проверка на то, мертв ли корабль
@@ -38,6 +39,12 @@ public class ShipHealth : MonoBehaviour
     {
         maxHealth += value;
         health = maxHealth;
+    }
+
+    public void ImproveStrength(float value)
+    {
+        maxStrength += maxStrength / 100 * value;
+        strength = maxStrength;
     }
 
     public float GetHealth()
