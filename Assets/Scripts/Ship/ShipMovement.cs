@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class ShipMovement : MonoBehaviour
@@ -210,5 +209,10 @@ public class ShipMovement : MonoBehaviour
     public float GetTurbo()
     {
         return boostSpeed;
+    }
+
+    public void ImproveSpeed(float value)
+    {
+        moveSpeed += moveSpeed / 100 * value;
     }
 }

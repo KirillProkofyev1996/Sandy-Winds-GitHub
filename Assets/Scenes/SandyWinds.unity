@@ -7970,6 +7970,7 @@ MonoBehaviour:
   reload: {fileID: 1466559216}
   yellow1_value1: {fileID: 1086554067}
   yellow2_value1: {fileID: 1535735539}
+  yellow3_value1: {fileID: 270933470}
   shipHealth: {fileID: 2064911090}
 --- !u!114 &231027510
 MonoBehaviour:
@@ -22765,6 +22766,7 @@ GameObject:
   - component: {fileID: 648439480}
   - component: {fileID: 648439479}
   - component: {fileID: 648439478}
+  - component: {fileID: 648439481}
   m_Layer: 5
   m_Name: 03
   m_TagString: Untagged
@@ -22838,8 +22840,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 231027509}
-        m_TargetAssemblyTypeName: BodyImprovement, Assembly-CSharp
-        m_MethodName: Setmode03
+        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+        m_MethodName: Yellow_3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 648439481}
+        m_TargetAssemblyTypeName: ButtonDisabler, Assembly-CSharp
+        m_MethodName: DisableButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22887,6 +22901,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648439476}
   m_CullTransparentMesh: 1
+--- !u!114 &648439481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648439476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b047ad975964ab6bfd7bf6fcbe1baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &657056983
 GameObject:
   m_ObjectHideFlags: 0

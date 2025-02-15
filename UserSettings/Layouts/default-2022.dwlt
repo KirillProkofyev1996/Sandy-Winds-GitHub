@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 192
-    y: 84
+    x: 471
+    y: 258
     width: 1845
     height: 1063
   m_ShowMode: 4
@@ -218,8 +218,8 @@ MonoBehaviour:
     y: 0
     width: 1111
     height: 723
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -373,8 +373,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 459
-    y: 114
+    x: 268
+    y: 19
     width: 1109
     height: 702
   m_SerializedDataModeController:
@@ -419,7 +419,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMin: 1
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
-    m_HSlider: 1
+    m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
@@ -433,7 +433,7 @@ MonoBehaviour:
       y: 21
       width: 1109
       height: 681
-    m_Scale: {x: 0.43320316, y: 0.43320316}
+    m_Scale: {x: 0.43320313, y: 0.43320316}
     m_Translation: {x: 554.5, y: 340.5}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -441,9 +441,9 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1279.9999
+      x: -1280
       y: -786.0054
-      width: 2559.9998
+      width: 2560
       height: 1572.0107
     m_MinimalGUI: 1
   m_defaultScale: 0.43320313
@@ -474,8 +474,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 192
-    y: 114
+    x: 471
+    y: 288
     width: 266
     height: 702
   m_SerializedDataModeController:
@@ -493,7 +493,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 10fbffff025c0000b05e000026610000e8690000086d0000
+      m_ExpandedIDs: 10fbffff025c00003c660000ea6900000a6d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1076,8 +1076,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 192
-    y: 837
+    x: 0
+    y: 742
     width: 1377
     height: 269
   m_SerializedDataModeController:
@@ -1101,7 +1101,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/UI
+    - Assets/Scripts/Ship
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1109,16 +1109,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 72
   m_LastFolders:
-  - Assets/Scripts/UI
+  - Assets/Scripts/Ship
   m_LastFoldersGridSize: 72
   m_LastProjectPath: /Users/kirillprokofev/Desktop/Unity/GitHub/Sandy Winds GitHub
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 55}
-    m_SelectedIDs: a2770000
-    m_LastClickedID: 30626
-    m_ExpandedIDs: 000000007e770000927700009c77000000ca9a3b
+    m_SelectedIDs: a0770000
+    m_LastClickedID: 30624
+    m_ExpandedIDs: 000000008077000094770000a077000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1146,7 +1146,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007e770000
+    m_ExpandedIDs: 0000000080770000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1406,8 +1406,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1570
-    y: 114
+    x: 1379
+    y: 19
     width: 466
     height: 992
   m_SerializedDataModeController:
@@ -1427,7 +1427,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 351
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
