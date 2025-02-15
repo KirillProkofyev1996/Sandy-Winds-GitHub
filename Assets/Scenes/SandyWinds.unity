@@ -3570,9 +3570,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7cd4960d8c54f37874e331f067b148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   maxHealth: 5
   timeToDestroy: 0
-  currentHealth: 0
 --- !u!1 &116138074
 GameObject:
   m_ObjectHideFlags: 0
@@ -7968,6 +7968,7 @@ MonoBehaviour:
   damage: {fileID: 1744763286}
   crew: {fileID: 713265780}
   reload: {fileID: 1466559216}
+  yellow1_value1: {fileID: 1086554067}
   shipHealth: {fileID: 2064911090}
 --- !u!114 &231027510
 MonoBehaviour:
@@ -10766,9 +10767,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7cd4960d8c54f37874e331f067b148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   maxHealth: 450
   timeToDestroy: 0
-  currentHealth: 0
 --- !u!114 &291452594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14110,9 +14111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7cd4960d8c54f37874e331f067b148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   maxHealth: 20
   timeToDestroy: 0
-  currentHealth: 0
 --- !u!114 &370193437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21229,9 +21230,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7cd4960d8c54f37874e331f067b148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   maxHealth: 40
   timeToDestroy: 0
-  currentHealth: 0
 --- !u!114 &599754016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25859,9 +25860,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7cd4960d8c54f37874e331f067b148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  health: 0
+  maxHealth: 10
   timeToDestroy: 0
-  currentHealth: 0
 --- !u!1 &741295633
 GameObject:
   m_ObjectHideFlags: 0
@@ -28608,7 +28609,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &844831258
 RectTransform:
   m_ObjectHideFlags: 0
@@ -52968,9 +52969,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7cd4960d8c54f37874e331f067b148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  health: 0
+  maxHealth: 10
   timeToDestroy: 0
-  currentHealth: 0
 --- !u!1 &1544357151
 GameObject:
   m_ObjectHideFlags: 0
@@ -55159,9 +55160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7cd4960d8c54f37874e331f067b148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  health: 0
+  maxHealth: 10
   timeToDestroy: 0
-  currentHealth: 0
 --- !u!1 &1592496241
 GameObject:
   m_ObjectHideFlags: 0
@@ -72016,9 +72017,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e06a160fa2246b58358563946816f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   maxHealth: 100
-  currentHealth: 0
   strength: 100
+  armor: 0
   timeToDestroy: 0
 --- !u!1 &2068169063
 GameObject:
@@ -72032,6 +72034,7 @@ GameObject:
   - component: {fileID: 2068169067}
   - component: {fileID: 2068169066}
   - component: {fileID: 2068169065}
+  - component: {fileID: 2068169068}
   m_Layer: 5
   m_Name: 01
   m_TagString: Untagged
@@ -72105,8 +72108,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 231027509}
-        m_TargetAssemblyTypeName: BodyImprovement, Assembly-CSharp
-        m_MethodName: Setmode01
+        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+        m_MethodName: Yellow_1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2068169068}
+        m_TargetAssemblyTypeName: ButtonDisabler, Assembly-CSharp
+        m_MethodName: DisableButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -72154,6 +72169,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068169063}
   m_CullTransparentMesh: 1
+--- !u!114 &2068169068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068169063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b047ad975964ab6bfd7bf6fcbe1baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2068322891
 GameObject:
   m_ObjectHideFlags: 0
@@ -74170,9 +74197,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7cd4960d8c54f37874e331f067b148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  health: 0
+  maxHealth: 10
   timeToDestroy: 0
-  currentHealth: 0
 --- !u!1 &2137995281
 GameObject:
   m_ObjectHideFlags: 0

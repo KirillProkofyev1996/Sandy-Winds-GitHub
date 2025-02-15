@@ -15,10 +15,11 @@ public class DeffenceImprovement : MonoBehaviour
     [SerializeField] private Text crew;
     [SerializeField] private Text reload;
     
-    /*[Header("Yellow")]
+    [Header("Yellow")]
+    // Чертеж 1 (желтый)
     [SerializeField] private InputField yellow1_value1;
 
-    [Header("Blue")]
+    /*[Header("Blue")]
     [SerializeField] private InputField blue1_value1;
 
     [Header("Orange")]
@@ -51,8 +52,9 @@ public class DeffenceImprovement : MonoBehaviour
         crew.text = shipCrew.GetCrew().ToString();
     }
 
-    /*public void Yellow_1()
+    // Метод для чертежа 1 (желтый)
+    public void Yellow_1()
     {
         shipHealth.ImproveHealth(float.Parse(yellow1_value1.text));
-    }*/
+    }
 }

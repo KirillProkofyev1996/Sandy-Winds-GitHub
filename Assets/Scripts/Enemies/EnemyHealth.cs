@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private float maxHealth;
+    [SerializeField] private float health, maxHealth;
     [SerializeField] private float timeToDestroy;
-    [SerializeField] private float currentHealth;
-
-    // Противник жив, если здоровье больше нуля
-    private bool IsAlive => currentHealth > 0;
 
     private void Start()
     {
-        currentHealth = maxHealth;
+        health = maxHealth;
     }
+
+    // Противник жив, если здоровье больше нуля
+    private bool IsAlive => health > 0;
 
     private void CheckIsAlive()
     {
@@ -26,12 +25,12 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        health -= damage;
         CheckIsAlive();
     }
 
     public float GetHealth()
     {
-        return currentHealth;
+        return health;
     }
 }

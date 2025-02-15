@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class ShipHealth : MonoBehaviour
 {
-    [SerializeField] private float maxHealth;
-    [SerializeField] public float currentHealth;
+    [SerializeField] public float health, maxHealth;
     [SerializeField] private float strength;
+    [SerializeField] private float armor;
     [SerializeField] private float timeToDestroy;
 
     // Корабль жив, если здоровье больше нуля
-    private bool IsAlive => currentHealth > 0;
+    private bool IsAlive => health > 0;
 
     private void Start()
     {
-        currentHealth = maxHealth;
+        health = maxHealth;
     }
 
     // Проверка на то, мертв ли корабль
@@ -29,20 +29,20 @@ public class ShipHealth : MonoBehaviour
     // Публичный метод для нанесения урона кораблю
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        health -= damage;
         CheckIsAlive();
     }
 
     // Публичный метод увеличения здоровья для чертежей 
-    public void ImproveHealth(float health)
+    public void ImproveHealth(float value)
     {
-        maxHealth += health;
-        currentHealth = maxHealth;
+        maxHealth += value;
+        health = maxHealth;
     }
 
     public float GetHealth()
     {
-        return currentHealth;
+        return health;
     }
 
     public float GetStrength()
