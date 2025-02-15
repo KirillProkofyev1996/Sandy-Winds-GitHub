@@ -31,11 +31,13 @@ public class DeffenceImprovement : MonoBehaviour
     [SerializeField] private ShipHealth shipHealth;
     private ShipMovement shipMovement;
     private ShipShooter shipShooter;
+    private ShipCrew shipCrew;
 
     private void Start()
     {
         shipMovement = GetComponent<ShipMovement>();
         shipShooter = GetComponent<ShipShooter>();
+        shipCrew = GetComponent<ShipCrew>();
     }
 
     private void Update()
@@ -45,6 +47,8 @@ public class DeffenceImprovement : MonoBehaviour
         speed.text = shipMovement.GetSpeed().ToString();
         turbo.text = shipMovement.GetTurbo().ToString();
         damage.text = shipShooter.GetDamage().ToString();
+        reload.text = shipShooter.GetReload().ToString();
+        crew.text = shipCrew.GetCrew().ToString();
     }
 
     /*public void Yellow_1()

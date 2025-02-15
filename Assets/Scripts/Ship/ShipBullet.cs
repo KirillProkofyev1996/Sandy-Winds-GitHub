@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipBullet : MonoBehaviour
@@ -7,7 +5,7 @@ public class ShipBullet : MonoBehaviour
     // Значение урона берется из ShipShooter,
     // чтобы можно было его увеличивать или уменьшать
     // не затрагивая префаб
-    public float damage; 
+    private float damage; 
 
     private void OnCollisionEnter(Collision other)
     {
@@ -22,5 +20,10 @@ public class ShipBullet : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    public void SetDamage(float value)
+    {
+        damage = value;
     }
 }

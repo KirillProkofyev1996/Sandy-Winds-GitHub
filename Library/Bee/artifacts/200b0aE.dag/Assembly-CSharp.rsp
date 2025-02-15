@@ -383,6 +383,7 @@
 "Assets/Scripts/Ship/Improvements/DeffenceImprovement.cs"
 "Assets/Scripts/Ship/Improvements/WeaponImprovement.cs"
 "Assets/Scripts/Ship/ShipBullet.cs"
+"Assets/Scripts/Ship/ShipCrew.cs"
 "Assets/Scripts/Ship/ShipHealth.cs"
 "Assets/Scripts/Ship/ShipInput.cs"
 "Assets/Scripts/Ship/ShipMovement.cs"

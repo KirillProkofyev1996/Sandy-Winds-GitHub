@@ -70,6 +70,7 @@
     <Compile Include="Assets/Scripts/Camera/ShipCamera.cs" />
     <Compile Include="Assets/Scripts/Ship/Improvements/WeaponImprovement.cs" />
     <Compile Include="Assets/Scripts/Camera/CameraController.cs" />
+    <Compile Include="Assets/Scripts/Ship/ShipCrew.cs" />
     <Compile Include="Assets/Scripts/Ship/ShipMovement.cs" />
     <Compile Include="Assets/Scripts/Enemies/EnemyMovement.cs" />
     <Compile Include="Assets/Scripts/Enemies/Enemies/GiantHyena/GiantHyenaContact.cs" />

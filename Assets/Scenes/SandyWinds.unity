@@ -7909,6 +7909,7 @@ GameObject:
   - component: {fileID: 231027506}
   - component: {fileID: 231027511}
   - component: {fileID: 231027510}
+  - component: {fileID: 231027514}
   - component: {fileID: 231027509}
   - component: {fileID: 231027513}
   - component: {fileID: 231027512}
@@ -7984,7 +7985,7 @@ MonoBehaviour:
   cannon: {fileID: 8682693522825396822, guid: 6011d36f11a6845398a83e298228a924, type: 3}
   cannonShootPoint: {fileID: 998924258}
   cannonSpeed: 2
-  cannonRate: 1
+  cannonReload: 1
   cannonDistance: 6
   cannonShootAngle: 50
   cannonAngleMultiplier: 1.5
@@ -7993,21 +7994,21 @@ MonoBehaviour:
   crossbowFrontShootPoint: {fileID: 1598428730}
   crossbowBackShootPoint: {fileID: 1901632566}
   crossbowSpeed: 14
-  crossbowRate: 0.8
+  crossbowReload: 0.5
   crossbowDistance: 10
   machinegunDamage: 1
   machinegun: {fileID: 8682693522825396822, guid: bd9f2f425c9684cd78b17bc7b407e193, type: 3}
   machinegunShootPoint: {fileID: 998924258}
   machinegunSpeed: 20
-  machinegunRate: 0.2
+  machinegunReload: 0.25
   machinegunDistance: 5
   machinegunCounts: 6
-  machinegunAngle: 15
+  machinegunAngle: 20
   gunDamage: 5
   gun: {fileID: 42459099261647579, guid: eab78247a9eab4f9b91b4fe1acef9aca, type: 3}
   gunShootPoint: {fileID: 998924258}
   gunSpeed: 20
-  gunRate: 1
+  gunReload: 0.5
   gunDistance: 12
   resolution: 18
   correctionFactor: -0.28
@@ -8087,6 +8088,19 @@ MonoBehaviour:
   blue1_value1: {fileID: 0}
   orange1_value1: {fileID: 0}
   red1_value1: {fileID: 0}
+--- !u!114 &231027514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231027503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d54b4a65afd4f32a8051af165d0f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crew: 10
 --- !u!1 &231334432
 GameObject:
   m_ObjectHideFlags: 0
@@ -72004,7 +72018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  strength: 0
+  strength: 100
   timeToDestroy: 0
 --- !u!1 &2068169063
 GameObject:
@@ -74536,5 +74550,5 @@ SceneRoots:
   - {fileID: 884035518}
   - {fileID: 1932318608}
   - {fileID: 397569046}
-  - {fileID: 1026668699}
   - {fileID: 1636291436}
+  - {fileID: 1026668699}
