@@ -309,4 +309,13 @@ public class ShipShooter : MonoBehaviour
     {
         return currentReload;
     }
+
+    // Публичный метод для чертежей прокачки урона оружия
+    public void ImproveDamage(float value)
+    {
+        cannonDamage += cannonDamage / 100 * value;
+        crossbowDamage += crossbowDamage / 100 * value;
+        machinegunDamage += machinegunDamage / 100 * value;
+        gunDamage += gunDamage / 100 * value;
+    }
 }

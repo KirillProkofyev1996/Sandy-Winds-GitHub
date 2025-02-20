@@ -25,6 +25,29 @@ public class DeffenceImprovement : MonoBehaviour
     // Чертеж 3 (желтый)
     [SerializeField] private InputField yellow3_value1;
 
+    // Чертеж 4 (желтый)
+    [SerializeField] private InputField yellow4_value1;
+
+    // Чертеж 5 (желтый)
+    [SerializeField] private InputField yellow5_value1;
+
+    // Чертеж 6 (желтый)
+    [SerializeField] private InputField yellow6_value1;
+
+    // Чертеж 7 (желтый)
+    [SerializeField] private InputField yellow7_value1;
+    [SerializeField] private InputField yellow7_value2;
+
+    // Чертеж 8 (желтый)
+    [SerializeField] private InputField yellow8_value1;
+
+    // Чертеж 10 (желтый)
+    [SerializeField] private InputField yellow10_value1;
+    [SerializeField] private InputField yellow10_value2;
+
+    // Чертеж 11 (желтый)
+    [SerializeField] private InputField yellow11_value1;
+
     /*[Header("Blue")]
     [SerializeField] private InputField blue1_value1;
 
@@ -74,5 +97,51 @@ public class DeffenceImprovement : MonoBehaviour
     public void Yellow_3()
     {
         shipMovement.ImproveSpeed(float.Parse(yellow3_value1.text));
+    }
+
+    // Метод для чертежа 3 (желтый)
+    public void Yellow_4()
+    {
+        shipHealth.ImproveHealth(float.Parse(yellow4_value1.text));
+    }
+
+    // Метод для чертежа 3 (желтый)
+    public void Yellow_5()
+    {
+        shipHealth.ImproveHealth(float.Parse(yellow5_value1.text));
+    }
+
+    // Метод для чертежа 3 (желтый)
+    public void Yellow_6()
+    {
+        shipHealth.ImproveHealth(float.Parse(yellow6_value1.text));
+    }
+
+    public void Yellow_7()
+    {
+        shipShooter.ImproveDamage(float.Parse(yellow7_value1.text));
+        shipMovement.ImproveSpeed(float.Parse(yellow7_value2.text));
+    }
+
+    public void Yellow_8()
+    {
+        // Защита от ракет противника
+        shipMovement.ImproveSpeed(float.Parse(yellow8_value1.text));
+    }
+
+    public void Yellow_9()
+    {
+        // ПВО на корабле
+    }
+
+    public void Yellow_10()
+    {
+        shipHealth.ImproveStrength(float.Parse(yellow10_value1.text));
+        shipMovement.ImproveSpeed(float.Parse(yellow10_value2.text));
+    }
+
+    public void Yellow_11()
+    {
+        shipHealth.ImproveHealth(float.Parse(yellow11_value1.text));
     }
 }
