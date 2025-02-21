@@ -12371,10 +12371,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -12543,7 +12543,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u041F\u0435\u0440\u0435\u0434\u0435\u043B \u043A\u043E\u0440\u0430\u0431\u043B\u044F
-    \u0432 \u043A\u0430\u0442\u0435\u0440\n       HP \u043A\n\u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0435\n+     
+    \u0432 \u043A\u0430\u0442\u0435\u0440\n       % \u043A\n\u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0435\n+     
     % \u043A \n\u0441\u043A\u043E\u0440\u043E\u0441\u0442\u0438 \u043F\u0435\u0440\u0435\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F"
 --- !u!222 &322162751
 CanvasRenderer:
@@ -16569,6 +16569,7 @@ GameObject:
   - component: {fileID: 474363208}
   - component: {fileID: 474363207}
   - component: {fileID: 474363206}
+  - component: {fileID: 474363209}
   m_Layer: 5
   m_Name: 04
   m_TagString: Untagged
@@ -16641,7 +16642,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 474363207}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2064911093}
+        m_TargetAssemblyTypeName: DefenceImprovement, Assembly-CSharp
+        m_MethodName: Blue_4
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 474363209}
+        m_TargetAssemblyTypeName: ButtonDisabler, Assembly-CSharp
+        m_MethodName: DisableButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &474363207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16680,6 +16705,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 474363204}
   m_CullTransparentMesh: 1
+--- !u!114 &474363209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474363204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b047ad975964ab6bfd7bf6fcbe1baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &475866796
 GameObject:
   m_ObjectHideFlags: 0
@@ -25703,7 +25740,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0412\u0435\u043D\u0442\u0438\u043B\u044F\u0442\u043E\u0440\u044B\n+   
+  m_Text: "\u0412\u0435\u043D\u0442\u0438\u043B\u044F\u0442\u043E\u0440\u044B\n+  
     % \u043A \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u0438"
 --- !u!222 &736815687
 CanvasRenderer:
@@ -49972,8 +50009,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9.7, y: 0.3}
-  m_SizeDelta: {x: 22.3, y: 19.1}
+  m_AnchoredPosition: {x: -9.18, y: 1.02}
+  m_SizeDelta: {x: 25.2, y: 20.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1471853798
 MonoBehaviour:
@@ -51024,6 +51061,7 @@ GameObject:
   - component: {fileID: 1502940494}
   - component: {fileID: 1502940493}
   - component: {fileID: 1502940492}
+  - component: {fileID: 1502940495}
   m_Layer: 5
   m_Name: 03
   m_TagString: Untagged
@@ -51094,7 +51132,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1502940493}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1502940495}
+        m_TargetAssemblyTypeName: ButtonDisabler, Assembly-CSharp
+        m_MethodName: DisableButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1502940493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51133,6 +51183,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502940490}
   m_CullTransparentMesh: 1
+--- !u!114 &1502940495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502940490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b047ad975964ab6bfd7bf6fcbe1baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1505115890
 GameObject:
   m_ObjectHideFlags: 0
@@ -65970,7 +66032,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15.4, y: 18.1}
+  m_AnchoredPosition: {x: -10.4, y: 18.1}
   m_SizeDelta: {x: 23.9, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1880545267
@@ -72332,7 +72394,9 @@ MonoBehaviour:
   yellow11_value1: {fileID: 1004080141}
   blue1_value1: {fileID: 752468864}
   blue1_value2: {fileID: 133741561}
-  shipHealth: {fileID: 2064911090}
+  blue2_value1: {fileID: 1471853798}
+  blue4_value1: {fileID: 1880545267}
+  blue4_value2: {fileID: 1037813325}
 --- !u!114 &2064911094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74441,6 +74505,7 @@ GameObject:
   - component: {fileID: 2129741995}
   - component: {fileID: 2129741994}
   - component: {fileID: 2129741993}
+  - component: {fileID: 2129741996}
   m_Layer: 5
   m_Name: 02
   m_TagString: Untagged
@@ -74512,7 +74577,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2129741994}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2064911093}
+        m_TargetAssemblyTypeName: DefenceImprovement, Assembly-CSharp
+        m_MethodName: Blue_2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2129741996}
+        m_TargetAssemblyTypeName: ButtonDisabler, Assembly-CSharp
+        m_MethodName: DisableButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2129741994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74551,6 +74640,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129741991}
   m_CullTransparentMesh: 1
+--- !u!114 &2129741996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129741991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b047ad975964ab6bfd7bf6fcbe1baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2137253233
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class DefenceImprovement : MonoBehaviour
     [SerializeField] private Text reload;
     
     [Header("Yellow")]
+
     // Чертеж 1 (желтый)
     [SerializeField] private InputField yellow1_value1;
 
@@ -49,8 +50,17 @@ public class DefenceImprovement : MonoBehaviour
     [SerializeField] private InputField yellow11_value1;
 
     [Header("Blue")]
+
+    // Чертеж 1 (синий)
     [SerializeField] private InputField blue1_value1;
     [SerializeField] private InputField blue1_value2;
+
+    // Чертеж 2 (синий)
+    [SerializeField] private InputField blue2_value1;
+
+    // Чертеж 4 (синий)
+    [SerializeField] private InputField blue4_value1;
+    [SerializeField] private InputField blue4_value2;
 
     /*[Header("Orange")]
     [SerializeField] private InputField orange1_value1;
@@ -59,13 +69,14 @@ public class DefenceImprovement : MonoBehaviour
     [SerializeField] private InputField red1_value1;*/
 
     [Header("Components")]
-    [SerializeField] private ShipHealth shipHealth;
+    private ShipHealth shipHealth;
     private ShipMovement shipMovement;
     private ShipShooter shipShooter;
     private ShipCrew shipCrew;
 
     private void Start()
     {
+        shipHealth = GetComponent<ShipHealth>();
         shipMovement = GetComponent<ShipMovement>();
         shipShooter = GetComponent<ShipShooter>();
         shipCrew = GetComponent<ShipCrew>();
@@ -120,7 +131,7 @@ public class DefenceImprovement : MonoBehaviour
 
     public void Yellow_7()
     {
-        shipShooter.ImproveDamage(float.Parse(yellow7_value1.text));
+        shipShooter.ImproveProcentDamage(float.Parse(yellow7_value1.text));
         shipMovement.ImproveProcentSpeed(float.Parse(yellow7_value2.text));
     }
 
@@ -150,5 +161,21 @@ public class DefenceImprovement : MonoBehaviour
     {
         shipHealth.ImproveProcentHealth(float.Parse(blue1_value1.text));
         shipMovement.ImproveProcentSpeed(float.Parse(blue1_value2.text));
+    }
+
+    public void Blue_2()
+    {
+        shipMovement.ImproveProcentSpeed(float.Parse(blue2_value1.text));
+    }
+
+    public void Blue_3()
+    {
+        // Возможность планировать. Боковые крылья.
+    }
+
+    public void Blue_4()
+    {
+        shipShooter.ImproveProcentReload(float.Parse(blue4_value1.text));
+        shipMovement.ImproveProcentSpeed(float.Parse(blue4_value2.text));
     }
 }
