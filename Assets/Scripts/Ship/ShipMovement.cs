@@ -37,8 +37,8 @@ public class ShipMovement : MonoBehaviour
     
 
     [Header("Components")]
-    [SerializeField] Transform tr;
-    [SerializeField] Rigidbody rb;
+    private Transform tr;
+    private Rigidbody rb;
     private ShipInput shipInput;
 
     // Дополнительные переменные для просчета скорости и поворота корабля
@@ -48,6 +48,8 @@ public class ShipMovement : MonoBehaviour
     private void Start()
     {
         shipInput = GetComponent<ShipInput>();
+        tr = GetComponent<Transform>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
