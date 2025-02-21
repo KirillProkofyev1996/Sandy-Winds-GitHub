@@ -33,10 +33,17 @@ public class ShipHealth : MonoBehaviour
         CheckIsAlive();
     }
 
-    // Публичный метод увеличения здоровья для чертежей 
-    public void ImproveHealth(float value)
+    // Публичный метод увеличения максимального здоровья для чертежей 
+    public void ImproveMaxHealth(float value)
     {
         maxHealth += value;
+        health = maxHealth;
+    }
+
+    // Публичный метод увеличения максимального здоровья в процентах для чертежей
+    public void ImproveProcentHealth(float value)
+    {
+        maxHealth += maxHealth / 100 * value;
         health = maxHealth;
     }
 

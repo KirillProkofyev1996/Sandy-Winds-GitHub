@@ -2379,10 +2379,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -4050,7 +4050,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.4, y: -10.1}
+  m_AnchoredPosition: {x: -29, y: -10.1}
   m_SizeDelta: {x: 23.3, y: 17.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &133741561
@@ -8016,6 +8016,8 @@ MonoBehaviour:
   yellow10_value1: {fileID: 14056869}
   yellow10_value2: {fileID: 959402071}
   yellow11_value1: {fileID: 1004080141}
+  blue1_value1: {fileID: 0}
+  blue1_value2: {fileID: 0}
   shipHealth: {fileID: 2064911090}
 --- !u!114 &231027510
 MonoBehaviour:
@@ -11370,10 +11372,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -26264,7 +26266,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40.8, y: 9.3}
+  m_AnchoredPosition: {x: -40.8, y: 10.3}
   m_SizeDelta: {x: 24.7, y: 17.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &752468864
@@ -27464,6 +27466,7 @@ GameObject:
   - component: {fileID: 799886602}
   - component: {fileID: 799886601}
   - component: {fileID: 799886600}
+  - component: {fileID: 799886603}
   m_Layer: 5
   m_Name: 01
   m_TagString: Untagged
@@ -27536,7 +27539,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 799886601}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 231027509}
+        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+        m_MethodName: Blue_1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 799886603}
+        m_TargetAssemblyTypeName: ButtonDisabler, Assembly-CSharp
+        m_MethodName: DisableButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &799886601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27575,6 +27602,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799886598}
   m_CullTransparentMesh: 1
+--- !u!114 &799886603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799886598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b047ad975964ab6bfd7bf6fcbe1baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &802282480
 GameObject:
   m_ObjectHideFlags: 0
@@ -28776,12 +28815,12 @@ GameObject:
   - component: {fileID: 844831260}
   - component: {fileID: 844831259}
   m_Layer: 5
-  m_Name: Deffence Panel
+  m_Name: Defence Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &844831258
 RectTransform:
   m_ObjectHideFlags: 0
@@ -53197,7 +53236,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435 \u0434\u0432\u0438\u0433\u0430\u0442\u0435\u043B\u044F
-    \n+     % \n\u043A \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u0438"
+    \n+    % \n\u043A \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u0438"
 --- !u!222 &1542468540
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -54704,7 +54743,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u041F\u0443\u0441\u0442\u043E\u0439 \u041A\u043E\u0440\u043F\u0443\u0441\n      
-    % \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F\n+      \u043A \u043C\u0430\u043A\u0441
+    % \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F\n+    % \u043A \u043C\u0430\u043A\u0441
     \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u0438 "
 --- !u!222 &1579414744
 CanvasRenderer:

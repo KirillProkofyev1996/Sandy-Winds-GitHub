@@ -211,7 +211,8 @@ public class ShipMovement : MonoBehaviour
         return boostSpeed;
     }
 
-    public void ImproveSpeed(float value)
+    // Публичный метод увеличения скорости в процентах для чертежей 
+    public void ImproveProcentSpeed(float value)
     {
         moveSpeed += moveSpeed / 100 * value;
     }

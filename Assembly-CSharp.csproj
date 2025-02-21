@@ -67,7 +67,6 @@
     <Compile Include="Assets/Scripts/Ship/Bullets/ShipBullet.cs" />
     <Compile Include="Assets/Scripts/Ship/ShipShooter.cs" />
     <Compile Include="Assets/Scripts/Enemies/Enemies/WhiteCrab/WhiteCrabAttack.cs" />
-    <Compile Include="Assets/Scripts/Ship/Improvements/DeffenceImprovement.cs" />
     <Compile Include="Assets/Scripts/Camera/ShipCamera.cs" />
     <Compile Include="Assets/Scripts/Ship/Improvements/WeaponImprovement.cs" />
     <Compile Include="Assets/Scripts/Camera/CameraController.cs" />
@@ -82,6 +81,7 @@
     <Compile Include="Assets/Scripts/Enemies/Enemies/GiantHyena/GiantHyenaAttack.cs" />
     <Compile Include="Assets/Scripts/Enemies/EnemyHealth.cs" />
     <Compile Include="Assets/Scripts/Enemies/Enemies/BalloonMarauder/BalloonMarauderAttack.cs" />
+    <Compile Include="Assets/Scripts/Ship/Improvements/DefenceImprovement.cs" />
     <Compile Include="Assets/Scripts/Enemies/Bullets/EnemyBullet.cs" />
     <Compile Include="Assets/Scripts/UI/ButtonDisabler.cs" />
     <Compile Include="Assets/Scripts/Enemies/Enemies/BoatMarauder/BoatMarauderContact.cs" />
