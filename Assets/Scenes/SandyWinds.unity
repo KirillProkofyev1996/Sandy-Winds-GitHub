@@ -6522,8 +6522,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+      - m_Target: {fileID: 2064911093}
+        m_TargetAssemblyTypeName: DefenceImprovement, Assembly-CSharp
         m_MethodName: Yellow_5
         m_Mode: 1
         m_Arguments:
@@ -22731,8 +22731,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+      - m_Target: {fileID: 2064911093}
+        m_TargetAssemblyTypeName: DefenceImprovement, Assembly-CSharp
         m_MethodName: Yellow_3
         m_Mode: 1
         m_Arguments:
@@ -27322,8 +27322,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+      - m_Target: {fileID: 2064911093}
+        m_TargetAssemblyTypeName: DefenceImprovement, Assembly-CSharp
         m_MethodName: Blue_1
         m_Mode: 1
         m_Arguments:
@@ -27564,8 +27564,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+      - m_Target: {fileID: 2064911093}
+        m_TargetAssemblyTypeName: DefenceImprovement, Assembly-CSharp
         m_MethodName: Yellow_9
         m_Mode: 1
         m_Arguments:
@@ -29522,8 +29522,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+      - m_Target: {fileID: 2064911093}
+        m_TargetAssemblyTypeName: DefenceImprovement, Assembly-CSharp
         m_MethodName: Yellow_2
         m_Mode: 1
         m_Arguments:
@@ -31503,8 +31503,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+      - m_Target: {fileID: 2064911093}
+        m_TargetAssemblyTypeName: DefenceImprovement, Assembly-CSharp
         m_MethodName: Yellow_7
         m_Mode: 1
         m_Arguments:
@@ -32764,8 +32764,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+      - m_Target: {fileID: 2064911093}
+        m_TargetAssemblyTypeName: DefenceImprovement, Assembly-CSharp
         m_MethodName: Yellow_11
         m_Mode: 1
         m_Arguments:
@@ -40590,8 +40590,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+      - m_Target: {fileID: 2064911093}
+        m_TargetAssemblyTypeName: DefenceImprovement, Assembly-CSharp
         m_MethodName: Yellow_10
         m_Mode: 1
         m_Arguments:
@@ -44898,8 +44898,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+      - m_Target: {fileID: 2064911093}
+        m_TargetAssemblyTypeName: DefenceImprovement, Assembly-CSharp
         m_MethodName: Yellow_8
         m_Mode: 1
         m_Arguments:
@@ -49350,8 +49350,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+      - m_Target: {fileID: 2064911093}
+        m_TargetAssemblyTypeName: DefenceImprovement, Assembly-CSharp
         m_MethodName: Yellow_4
         m_Mode: 1
         m_Arguments:
@@ -59542,8 +59542,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+      - m_Target: {fileID: 2064911093}
+        m_TargetAssemblyTypeName: DefenceImprovement, Assembly-CSharp
         m_MethodName: Yellow_6
         m_Mode: 1
         m_Arguments:
@@ -63803,8 +63803,8 @@ MonoBehaviour:
   aimCamera: {fileID: 1678028291}
   shipCamera: {fileID: 295413859}
   aim: {fileID: 302249321}
-  shipInput: {fileID: 0}
-  shipShooter: {fileID: 0}
+  shipInput: {fileID: 2064911097}
+  shipShooter: {fileID: 2064911095}
 --- !u!1 &1826802342
 GameObject:
   m_ObjectHideFlags: 0
@@ -72330,8 +72330,8 @@ MonoBehaviour:
   yellow10_value1: {fileID: 14056869}
   yellow10_value2: {fileID: 959402071}
   yellow11_value1: {fileID: 1004080141}
-  blue1_value1: {fileID: 0}
-  blue1_value2: {fileID: 0}
+  blue1_value1: {fileID: 752468864}
+  blue1_value2: {fileID: 133741561}
   shipHealth: {fileID: 2064911090}
 --- !u!114 &2064911094
 MonoBehaviour:
@@ -72527,8 +72527,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeffenceImprovement, Assembly-CSharp
+      - m_Target: {fileID: 2064911093}
+        m_TargetAssemblyTypeName: DefenceImprovement, Assembly-CSharp
         m_MethodName: Yellow_1
         m_Mode: 1
         m_Arguments:
