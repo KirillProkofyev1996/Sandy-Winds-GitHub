@@ -73322,6 +73322,7 @@ MonoBehaviour:
   currentDamage: 0
   shootPoint: {fileID: 998924258}
   aimOffsetY: 0.1
+  maxWeaponCount: 4
   aim: {fileID: 302249321}
   lineRenderer: {fileID: 998924259}
 --- !u!114 &2064911096

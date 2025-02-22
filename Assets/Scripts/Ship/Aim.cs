@@ -50,6 +50,12 @@ public class Aim : MonoBehaviour
         }
     }
 
+    // Метод для красного прицела, если невозможно стрелять
+    public void ShowRedAim()
+    {
+        redAim.SetActive(true);
+    }
+
     public Vector3 GetAimPosition()
     {
         return transform.position;

@@ -116,6 +116,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Weapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""e4e67def-9423-43fb-9cfb-b24358d4b682"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -468,6 +477,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2b906c3-ac72-4b8e-a064-e5ae90685b26"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""854d0484-0d8f-42ff-9550-66e612ae23df"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Weapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1032,6 +1063,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Ship_Interact = m_Ship.FindAction("Interact", throwIfNotFound: true);
         m_Ship_Boost = m_Ship.FindAction("Boost", throwIfNotFound: true);
         m_Ship_Zoom = m_Ship.FindAction("Zoom", throwIfNotFound: true);
+        m_Ship_Weapon = m_Ship.FindAction("Weapon", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1121,6 +1153,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Ship_Interact;
     private readonly InputAction m_Ship_Boost;
     private readonly InputAction m_Ship_Zoom;
+    private readonly InputAction m_Ship_Weapon;
     public struct ShipActions
     {
         private @InputActions m_Wrapper;
@@ -1135,6 +1168,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Ship_Interact;
         public InputAction @Boost => m_Wrapper.m_Ship_Boost;
         public InputAction @Zoom => m_Wrapper.m_Ship_Zoom;
+        public InputAction @Weapon => m_Wrapper.m_Ship_Weapon;
         public InputActionMap Get() { return m_Wrapper.m_Ship; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1174,6 +1208,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Zoom.started += instance.OnZoom;
             @Zoom.performed += instance.OnZoom;
             @Zoom.canceled += instance.OnZoom;
+            @Weapon.started += instance.OnWeapon;
+            @Weapon.performed += instance.OnWeapon;
+            @Weapon.canceled += instance.OnWeapon;
         }
 
         private void UnregisterCallbacks(IShipActions instance)
@@ -1208,6 +1245,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Zoom.started -= instance.OnZoom;
             @Zoom.performed -= instance.OnZoom;
             @Zoom.canceled -= instance.OnZoom;
+            @Weapon.started -= instance.OnWeapon;
+            @Weapon.performed -= instance.OnWeapon;
+            @Weapon.canceled -= instance.OnWeapon;
         }
 
         public void RemoveCallbacks(IShipActions instance)
@@ -1373,6 +1413,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnBoost(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnWeapon(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
