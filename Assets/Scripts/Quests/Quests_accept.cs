@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Quests_accept : MonoBehaviour
 {
+    public ShipInput input;
     public GameObject dialog;
     public dialog M_dialog;
-    public GameObject pressE;
+    public GameObject accept_notify;
     void OnCollisionStay(Collision collision) {
         // Debug.Log(collision.gameObject.name);
         if (collision.gameObject.tag == "Ship") {
-            pressE.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.E)) {
-                pressE.SetActive(false);
+            accept_notify.SetActive(true);
+            if (input.GetInteractButton()) {
+                accept_notify.SetActive(false);
                 dialog.SetActive(true);
                 M_dialog.say();
                 Destroy(this.gameObject);
@@ -22,7 +23,7 @@ public class Quests_accept : MonoBehaviour
 
     void OnCollisionExit(Collision collision) {
         if (collision.gameObject.tag == "Ship") {
-            pressE.SetActive(false);
+            accept_notify.SetActive(false);
         }
     }
 }
