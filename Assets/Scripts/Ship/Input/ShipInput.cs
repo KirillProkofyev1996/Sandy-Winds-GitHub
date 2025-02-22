@@ -3,37 +3,68 @@ using UnityEngine;
 public class ShipInput : MonoBehaviour
 {
     [Header("Variables")]
-    private float horizontalDirection, verticalDirection;
-    private bool isShootButton, isAimButton, isJumpButton, isBoostButton, isRecoveryButton;
+    private bool isShootButton, isCameraButton, isJumpButton, isBoostButton, isInteractButton;
+    private Vector2 horizontalDirection, verticalDirection, lookDirection, zoom;
+    private Vector3 aimPosition;
+
+    [Header("Components")]
+    private InputActions inputActions;
+
+    private void Awake()
+    {
+        inputActions = new InputActions();
+    }
+
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
 
     private void Update()
     {
-        horizontalDirection = Input.GetAxis("Horizontal");
-        verticalDirection = Input.GetAxis("Vertical");
-        isShootButton = Input.GetButton("Fire1");
-        isAimButton = Input.GetMouseButtonDown(1);
-        isJumpButton = Input.GetButton("Jump");
-        isBoostButton = Input.GetKey(KeyCode.LeftShift);
-        isRecoveryButton = Input.GetKey(KeyCode.R);
+        verticalDirection = inputActions.Ship.Move.ReadValue<Vector2>();
+        horizontalDirection = inputActions.Ship.Rotate.ReadValue<Vector2>();
+        lookDirection = inputActions.Ship.Look.ReadValue<Vector2>();
+        aimPosition = inputActions.Ship.Aim.ReadValue<Vector2>();
+        zoom = inputActions.Ship.Zoom.ReadValue<Vector2>();
+
+        isCameraButton = inputActions.Ship.Camera.triggered;
+        isInteractButton = inputActions.Ship.Interact.triggered;
+        isBoostButton = inputActions.Ship.Boost.IsInProgress();
+        isShootButton = inputActions.Ship.Shoot.IsPressed();
+        isJumpButton = inputActions.Ship.Jump.IsPressed();
     }
 
     // Публичные методы получения переменных для
     // управления кораблем, стрельбой и прицеливанием
-    public float GetHorizontalDirection()
+    public Vector2 GetHorizontalDirection()
     {
         return horizontalDirection;
     }
-    public float GetVerticalDirection()
+    public Vector2 GetVerticalDirection()
     {
         return verticalDirection;
+    }
+    public Vector2 GetLookDirection()
+    {
+        return lookDirection;
+    }
+    public Vector3 GetAimPosition()
+    {
+        return aimPosition;
     }
     public bool GetShootButton()
     {
         return isShootButton;
     }
-    public bool GetAimButton()
+    public bool GetCameraButton()
     {
-        return isAimButton;
+        return isCameraButton;
     }
     public bool GetJumpButton()
     {
@@ -43,8 +74,12 @@ public class ShipInput : MonoBehaviour
     {
         return isBoostButton;
     }
-    public bool GetRecoveryButton()
+    public bool GetInteractButton()
     {
-        return isRecoveryButton;
+        return isInteractButton;
+    }
+    public Vector2 GetZoom()
+    {
+        return zoom;
     }
 }

@@ -54,7 +54,7 @@ public class ShipMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Jump();
+        //Jump(); // Пригодится в дальнейшем
     }
 
     private void Update()
@@ -85,7 +85,7 @@ public class ShipMovement : MonoBehaviour
     {
         if (isGrounded)
         {
-            if (shipInput.GetVerticalDirection() > 0)
+            if (shipInput.GetVerticalDirection().y > 0)
             {
                 if (shipInput.GetBoostButton())
                 {
@@ -96,11 +96,11 @@ public class ShipMovement : MonoBehaviour
                     newCurrentMoveSpeed = Mathf.Lerp(newCurrentMoveSpeed, speed, Time.deltaTime / currentStartMovePower);
                 }
             }
-            if (shipInput.GetVerticalDirection() < 0)
+            if (shipInput.GetVerticalDirection().y < 0)
             {
                 newCurrentMoveSpeed = Mathf.Lerp(newCurrentMoveSpeed, -speed, Time.deltaTime / currentStartMovePower);
             }
-            if (shipInput.GetVerticalDirection() == 0)
+            if (shipInput.GetVerticalDirection().y == 0)
             {
                 newCurrentMoveSpeed = Mathf.Lerp(newCurrentMoveSpeed, 0, Time.deltaTime / currentBreakMovePower);
             }
@@ -114,30 +114,30 @@ public class ShipMovement : MonoBehaviour
     {
         if (isGrounded)
         {
-            if (shipInput.GetHorizontalDirection() > 0)
+            if (shipInput.GetHorizontalDirection().x > 0)
             {
                 newCurrentRotationSpeed = Mathf.Lerp(newCurrentRotationSpeed, rotationSpeed, Time.deltaTime / currentStartMovePower);
             }
-            if (shipInput.GetHorizontalDirection() < 0)
+            if (shipInput.GetHorizontalDirection().x < 0)
             {
                 newCurrentRotationSpeed = Mathf.Lerp(newCurrentRotationSpeed, -rotationSpeed, Time.deltaTime / currentStartMovePower);
             }
-            if (shipInput.GetHorizontalDirection() == 0)
+            if (shipInput.GetHorizontalDirection().x == 0)
             {
                 newCurrentRotationSpeed = Mathf.Lerp(newCurrentRotationSpeed, 0, Time.deltaTime / currentBreakMovePower);
             }
         }
         if (!isGrounded)
         {
-            if (shipInput.GetHorizontalDirection() > 0)
+            if (shipInput.GetHorizontalDirection().x > 0)
             {
                 newCurrentRotationSpeed = Mathf.Lerp(newCurrentRotationSpeed, rotationSpeedInAir, Time.deltaTime / currentDelayPowerInAir);
             }
-            if (shipInput.GetHorizontalDirection() < 0)
+            if (shipInput.GetHorizontalDirection().x < 0)
             {
                 newCurrentRotationSpeed = Mathf.Lerp(newCurrentRotationSpeed, -rotationSpeedInAir, Time.deltaTime / currentDelayPowerInAir);
             }
-            if (shipInput.GetHorizontalDirection() == 0)
+            if (shipInput.GetHorizontalDirection().x == 0)
             {
                 newCurrentRotationSpeed = Mathf.Lerp(newCurrentRotationSpeed, 0, Time.deltaTime / currentDelayPowerInAir);
             }

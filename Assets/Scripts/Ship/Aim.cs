@@ -5,6 +5,7 @@ public class Aim : MonoBehaviour
 {
     [SerializeField] private GameObject greenAim, redAim;
     [SerializeField] private LayerMask ground;
+    [SerializeField] private ShipInput shipInput;
 
     private void Update()
     { 
@@ -14,7 +15,7 @@ public class Aim : MonoBehaviour
     // Метод отслеживания прицела лучем на слой поверхности
     private void TrackAimPosition()
     {
-        Vector3 mousePosition = Input.mousePosition;
+        Vector3 mousePosition = shipInput.GetAimPosition();
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         RaycastHit hit;
 
