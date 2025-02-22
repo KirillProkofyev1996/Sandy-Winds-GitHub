@@ -51,7 +51,6 @@ public class ShipInput : MonoBehaviour
     }
     public bool GetInteractButton()
     {
-        Debug.Log(isInteractButton);
         return isInteractButton;
     }
 }
