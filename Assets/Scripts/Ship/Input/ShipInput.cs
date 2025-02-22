@@ -1,10 +1,11 @@
+using UnityEditor;
 using UnityEngine;
 
 public class ShipInput : MonoBehaviour
 {
     [Header("Variables")]
     private float horizontalDirection, verticalDirection;
-    private bool isShootButton, isAimButton, isJumpButton, isBoostButton, isRecoveryButton;
+    private bool isShootButton, isAimButton, isJumpButton, isBoostButton, isRecoveryButton, isInteractButton;
 
     private void Update()
     {
@@ -15,6 +16,7 @@ public class ShipInput : MonoBehaviour
         isJumpButton = Input.GetButton("Jump");
         isBoostButton = Input.GetKey(KeyCode.LeftShift);
         isRecoveryButton = Input.GetKey(KeyCode.R);
+        isInteractButton = Input.GetButton("Interact");
     }
 
     // Публичные методы получения переменных для
@@ -46,5 +48,9 @@ public class ShipInput : MonoBehaviour
     public bool GetRecoveryButton()
     {
         return isRecoveryButton;
+    }
+    public bool GetInteractButton()
+    {
+        return isInteractButton;
     }
 }
