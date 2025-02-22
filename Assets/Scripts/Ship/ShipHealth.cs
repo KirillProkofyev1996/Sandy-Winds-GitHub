@@ -47,7 +47,7 @@ public class ShipHealth : MonoBehaviour
         health = maxHealth;
     }
 
-    public void ImproveStrength(float value)
+    public void ImproveProcentStrength(float value)
     {
         maxStrength += maxStrength / 100 * value;
         strength = maxStrength;
