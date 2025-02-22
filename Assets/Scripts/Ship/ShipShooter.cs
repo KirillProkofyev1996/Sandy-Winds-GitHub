@@ -61,6 +61,7 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private float currentDamage;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float aimOffsetY;
+    [SerializeField] private int maxWeaponCount;
     private bool isCanShoot;
     private float weaponDistance;
     private string currentWeapon;
@@ -68,6 +69,7 @@ public class ShipShooter : MonoBehaviour
     private float distance;
     private Vector3 direction;
     private Vector3 aimPosition;
+    private int weaponCount;
 
     
     [Header("Components")]
@@ -203,33 +205,47 @@ public class ShipShooter : MonoBehaviour
     // Метод смены оружия по нажатию цифр от 1 до 4
     private void SwitchWeapon()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (shipInput.GetWeapon())
         {
-            currentWeapon = cannonWeapon;
-            weaponDistance = cannonDistance;
-            currentDamage = cannonDamage;
-            currentReload = cannonReload;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            currentWeapon = crossbowWeapon;
-            weaponDistance = crossbowDistance;
-            currentDamage = crossbowDamage;
-            currentReload = crossbowReload;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            currentWeapon = machinegunWeapon;
-            weaponDistance = machinegunDistance;
-            currentDamage = machinegunDamage;
-            currentReload = machinegunReload;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            currentWeapon = gunWeapon;
-            weaponDistance = gunDistance;
-            currentDamage = gunDamage;
-            currentReload = gunReload;
+            weaponCount ++;
+
+            if (weaponCount == 1)
+            {
+                currentWeapon = cannonWeapon;
+                weaponDistance = cannonDistance;
+                currentDamage = cannonDamage;
+                currentReload = cannonReload;
+                isCanShoot = true;
+            }
+            if (weaponCount == 2)
+            {
+                currentWeapon = crossbowWeapon;
+                weaponDistance = crossbowDistance;
+                currentDamage = crossbowDamage;
+                currentReload = crossbowReload;
+                isCanShoot = true;
+            }
+            if (weaponCount == 3)
+            {
+                currentWeapon = machinegunWeapon;
+                weaponDistance = machinegunDistance;
+                currentDamage = machinegunDamage;
+                currentReload = machinegunReload;
+                isCanShoot = true;
+            }
+            if (weaponCount == 4)
+            {
+                currentWeapon = gunWeapon;
+                weaponDistance = gunDistance;
+                currentDamage = gunDamage;
+                currentReload = gunReload;
+                isCanShoot = true;
+            }
+            if (weaponCount > maxWeaponCount)
+            {
+                weaponCount = 0;
+                isCanShoot = false;
+            }
         }
     }
 
@@ -280,6 +296,11 @@ public class ShipShooter : MonoBehaviour
         isCanShoot = true;
     }
 
+    // Метод получения переменной возможности стрельбы
+    public bool GetCanShoot()
+    {
+        return isCanShoot;
+    }
 
     // Публичные методы получения дистанций
     public float GetDistance()

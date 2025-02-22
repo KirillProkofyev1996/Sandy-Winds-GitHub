@@ -16,9 +16,17 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         CameraSwitcher();
-        
-        // Метод появления прицела в пространстве в цвете
-        aim.ShowColoredAim(IsAimButtonPressed, shipShooter.GetDistance(), shipShooter.GetWeaponDistance());
+
+        if (shipShooter.GetCanShoot())
+        {
+            // Метод появления прицела в пространстве в цвете
+            aim.ShowColoredAim(IsAimButtonPressed, shipShooter.GetDistance(), shipShooter.GetWeaponDistance());
+        }
+        if (!shipShooter.GetCanShoot())
+        {
+            // Метод показывает только красный прицел
+            aim.ShowRedAim();
+        }
     }
 
     // Метод переключения основной камеры и камеры
