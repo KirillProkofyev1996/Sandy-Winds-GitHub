@@ -382,6 +382,8 @@
 "Assets/Scripts/Enemies/EnemyHealth.cs"
 "Assets/Scripts/Enemies/EnemyMovement.cs"
 "Assets/Scripts/Enemies/SurfaceVolume/AgentActivator.cs"
+"Assets/Scripts/Quests/Dialog.cs"
+"Assets/Scripts/Quests/Quests_accept.cs"
 "Assets/Scripts/Ship/Aim.cs"
 "Assets/Scripts/Ship/Bullets/CrossbowAttract.cs"
 "Assets/Scripts/Ship/Bullets/ShipBullet.cs"
