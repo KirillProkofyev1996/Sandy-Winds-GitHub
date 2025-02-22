@@ -34,8 +34,8 @@ public class ShipInput : MonoBehaviour
         zoom = inputActions.Ship.Zoom.ReadValue<Vector2>();
 
         isCameraButton = inputActions.Ship.Camera.triggered;
-        isInteractButton = inputActions.Ship.Interact.triggered;
         isWeaponButton = inputActions.Ship.Weapon.triggered;
+        isInteractButton = inputActions.Ship.Interact.IsInProgress();
         isBoostButton = inputActions.Ship.Boost.IsInProgress();
         isShootButton = inputActions.Ship.Shoot.IsPressed();
         isJumpButton = inputActions.Ship.Jump.IsPressed();

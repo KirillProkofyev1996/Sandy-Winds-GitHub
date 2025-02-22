@@ -10,20 +10,24 @@ public class Quests_accept : MonoBehaviour
     [SerializeField] private GameObject accept_notify;
     void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Ship") {
+        if (collision.gameObject.tag == "Ship") 
+        {
             accept_notify.SetActive(true);
 
-            if (input.GetInteractButton()) {
+            if (input.GetInteractButton()) 
+            {
                 accept_notify.SetActive(false);
                 dialog.SetActive(true);
                 M_dialog.say();
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
         }   
     }
 
-    void OnCollisionExit(Collision collision) {
-        if (collision.gameObject.tag == "Ship") {
+    void OnCollisionExit(Collision collision) 
+    {
+        if (collision.gameObject.tag == "Ship") 
+        {
             accept_notify.SetActive(false);
         }
     }

@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthShowText : MonoBehaviour
 {
-    [SerializeField] private Text healthText;
+    [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private float health;
     [SerializeField] private ShipHealth shipHealth;
 
