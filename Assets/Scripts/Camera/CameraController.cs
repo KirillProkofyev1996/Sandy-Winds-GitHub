@@ -25,10 +25,11 @@ public class CameraController : MonoBehaviour
     // для прицеливания по нажатию правой кнопки мыши
     private void CameraSwitcher()
     {
-        if (shipInput.GetAimButton())
+        if (shipInput.GetCameraButton() == true)
         {
             IsAimButtonPressed =! IsAimButtonPressed;
         }
+
         if (IsAimButtonPressed == true)
         {
             shipCamera.gameObject.SetActive(false);

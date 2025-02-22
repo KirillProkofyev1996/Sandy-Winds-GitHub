@@ -16,6 +16,7 @@ public class DefenceImprovement : MonoBehaviour
     [SerializeField] private Text reload;
     
     [Header("Yellow")]
+
     // Чертеж 1 (желтый)
     [SerializeField] private InputField yellow1_value1;
 
@@ -49,8 +50,27 @@ public class DefenceImprovement : MonoBehaviour
     [SerializeField] private InputField yellow11_value1;
 
     [Header("Blue")]
+
+    // Чертеж 1 (синий)
     [SerializeField] private InputField blue1_value1;
     [SerializeField] private InputField blue1_value2;
+
+    // Чертеж 2 (синий)
+    [SerializeField] private InputField blue2_value1;
+
+    // Чертеж 4 (синий)
+    [SerializeField] private InputField blue4_value1;
+    [SerializeField] private InputField blue4_value2;
+
+    // Чертеж 5 (синий)
+    [SerializeField] private InputField blue5_value1;
+
+    // Чертеж 6 (синий)
+    [SerializeField] private InputField blue6_value1;
+
+    // Чертеж 7 (синий)
+    [SerializeField] private InputField blue7_value1;
+    [SerializeField] private InputField blue7_value2;
 
     /*[Header("Orange")]
     [SerializeField] private InputField orange1_value1;
@@ -59,13 +79,14 @@ public class DefenceImprovement : MonoBehaviour
     [SerializeField] private InputField red1_value1;*/
 
     [Header("Components")]
-    [SerializeField] private ShipHealth shipHealth;
+    private ShipHealth shipHealth;
     private ShipMovement shipMovement;
     private ShipShooter shipShooter;
     private ShipCrew shipCrew;
 
     private void Start()
     {
+        shipHealth = GetComponent<ShipHealth>();
         shipMovement = GetComponent<ShipMovement>();
         shipShooter = GetComponent<ShipShooter>();
         shipCrew = GetComponent<ShipCrew>();
@@ -91,7 +112,7 @@ public class DefenceImprovement : MonoBehaviour
     // Метод для чертежа 2 (желтый)
     public void Yellow_2()
     {
-        shipHealth.ImproveStrength(float.Parse(yellow2_value1.text));
+        shipHealth.ImproveProcentStrength(float.Parse(yellow2_value1.text));
     }
 
     // Метод для чертежа 3 (желтый)
@@ -100,55 +121,111 @@ public class DefenceImprovement : MonoBehaviour
         shipMovement.ImproveProcentSpeed(float.Parse(yellow3_value1.text));
     }
 
-    // Метод для чертежа 3 (желтый)
+    // Метод для чертежа 4 (желтый)
     public void Yellow_4()
     {
         shipHealth.ImproveMaxHealth(float.Parse(yellow4_value1.text));
     }
 
-    // Метод для чертежа 3 (желтый)
+    // Метод для чертежа 5 (желтый)
     public void Yellow_5()
     {
         shipHealth.ImproveMaxHealth(float.Parse(yellow5_value1.text));
     }
 
-    // Метод для чертежа 3 (желтый)
+    // Метод для чертежа 6 (желтый)
     public void Yellow_6()
     {
         shipHealth.ImproveMaxHealth(float.Parse(yellow6_value1.text));
     }
 
+    // Метод для чертежа 7 (желтый)
     public void Yellow_7()
     {
-        shipShooter.ImproveDamage(float.Parse(yellow7_value1.text));
+        shipShooter.ImproveProcentDamage(float.Parse(yellow7_value1.text));
         shipMovement.ImproveProcentSpeed(float.Parse(yellow7_value2.text));
     }
 
+    // Метод для чертежа 8 (желтый)
     public void Yellow_8()
     {
         // Защита от ракет противника
         shipMovement.ImproveProcentSpeed(float.Parse(yellow8_value1.text));
     }
 
+    // Метод для чертежа 9 (желтый)
     public void Yellow_9()
     {
         // ПВО на корабле
     }
 
+    // Метод для чертежа 10 (желтый)
     public void Yellow_10()
     {
-        shipHealth.ImproveStrength(float.Parse(yellow10_value1.text));
+        shipHealth.ImproveProcentStrength(float.Parse(yellow10_value1.text));
         shipMovement.ImproveProcentSpeed(float.Parse(yellow10_value2.text));
     }
 
+    // Метод для чертежа 11 (желтый)
     public void Yellow_11()
     {
         shipHealth.ImproveMaxHealth(float.Parse(yellow11_value1.text));
     }
 
+    // Метод для чертежа 1 (синий)
     public void Blue_1()
     {
         shipHealth.ImproveProcentHealth(float.Parse(blue1_value1.text));
         shipMovement.ImproveProcentSpeed(float.Parse(blue1_value2.text));
+    }
+
+    // Метод для чертежа 2 (синий)
+    public void Blue_2()
+    {
+        shipMovement.ImproveProcentSpeed(float.Parse(blue2_value1.text));
+    }
+
+    // Метод для чертежа 3 (синий)
+    public void Blue_3()
+    {
+        // Возможность планировать. Боковые крылья.
+    }
+
+    // Метод для чертежа 4 (синий)
+    public void Blue_4()
+    {
+        shipShooter.ImproveProcentReload(float.Parse(blue4_value1.text));
+        shipMovement.ImproveProcentSpeed(float.Parse(blue4_value2.text));
+    }
+
+    // Метод для чертежа 5 (синий)
+    public void Blue_5()
+    {
+        shipHealth.ImproveProcentStrength(float.Parse(blue5_value1.text));
+    }
+
+    // Метод для чертежа 6 (синий)
+    public void Blue_6()
+    {
+        shipMovement.ImproveProcentSpeed(float.Parse(blue6_value1.text));
+    }
+
+    // Метод для чертежа 7 (синий)
+    public void Blue_7()
+    {
+        shipHealth.ImproveMaxHealth(float.Parse(blue7_value1.text));
+        shipMovement.ImproveProcentSpeed(float.Parse(blue7_value2.text));
+    }
+
+    // Метод для чертежа 8 (синий)
+    public void Blue_8()
+    {
+        // ...
+    }
+
+    // Метод для чертежа 9 (синий)
+    public void Blue_9()
+    {
+        // Воздушные шары. Недолгий полет катера.
     }
 }

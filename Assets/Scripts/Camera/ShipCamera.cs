@@ -12,6 +12,7 @@ public class ShipCamera : MonoBehaviour
     private float initialDistance;
 
     [Header("Components")]
+    [SerializeField] ShipInput shipInput;
     private CinemachineVirtualCamera vm;
     private CinemachineFramingTransposer transposer;
     
@@ -31,11 +32,11 @@ public class ShipCamera : MonoBehaviour
 
     private void CameraRotation()
     {
-        if (Input.GetKey(KeyCode.Q))
+        if (shipInput.GetLookDirection().x < 0)
         {
             transform.RotateAround(ship.position, Vector3.up, rotationSpeed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.E))
+        if (shipInput.GetLookDirection().x > 0)
         {
             transform.RotateAround(ship.position, Vector3.up, -rotationSpeed * Time.deltaTime);
         }
@@ -43,7 +44,7 @@ public class ShipCamera : MonoBehaviour
 
     private void CameraZoom()
     {
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        float scroll = shipInput.GetZoom().y / 100;
 
         if (scroll != 0f)
         {
