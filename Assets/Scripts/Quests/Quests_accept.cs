@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class Quests_accept : MonoBehaviour
 {
+    [SerializeField] private GameObject dialogText;
+    [SerializeField] private GameObject acceptNotify;
+    
     [SerializeField] private ShipInput input;
-    [SerializeField] private GameObject dialog;
-    [SerializeField] private dialog M_dialog;
-    [SerializeField] private GameObject accept_notify;
+    [SerializeField] private Dialog dialog;
+    
     void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "Ship") 
         {
-            accept_notify.SetActive(true);
+            acceptNotify.SetActive(true);
 
             if (input.GetInteractButton()) 
             {
-                accept_notify.SetActive(false);
-                dialog.SetActive(true);
-                M_dialog.say();
+                acceptNotify.SetActive(false);
+                dialogText.SetActive(true);
+                dialog.Say();
                 Destroy(gameObject);
             }
         }   
@@ -28,7 +30,7 @@ public class Quests_accept : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ship") 
         {
-            accept_notify.SetActive(false);
+            acceptNotify.SetActive(false);
         }
     }
 }

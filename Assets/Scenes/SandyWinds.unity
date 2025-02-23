@@ -28263,7 +28263,7 @@ GameObject:
   - component: {fileID: 805914073}
   - component: {fileID: 805914074}
   m_Layer: 5
-  m_Name: dialog
+  m_Name: DialogPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28303,7 +28303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d68cd7240154fcb48da882d34221004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog_text: {fileID: 399780334}
+  dialogText: {fileID: 399780334}
   phrases:
   - hello1
   - hello2
@@ -30659,9 +30659,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 2064911097}
-  dialog: {fileID: 805914072}
-  M_dialog: {fileID: 805914074}
-  accept_notify: {fileID: 1491474025}
+  dialogText: {fileID: 805914072}
+  acceptNotify: {fileID: 1491474025}
+  dialog: {fileID: 805914074}
 --- !u!136 &910145419
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -51637,7 +51637,7 @@ GameObject:
   - component: {fileID: 1491474027}
   - component: {fileID: 1491474026}
   m_Layer: 5
-  m_Name: accept_notify
+  m_Name: AcceptNotifyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

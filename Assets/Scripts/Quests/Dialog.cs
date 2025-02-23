@@ -6,20 +6,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class dialog : MonoBehaviour{
-    [SerializeField] private GameObject dialog_text;
+public class Dialog : MonoBehaviour
+{
+    [SerializeField] private GameObject dialogText;
     [SerializeField] private string[] phrases = {"hello", "hello", "test1", "test2"};
     int phrase = 0;
-    public void say() 
+
+    public void Say() 
     {
-        if (phrase >= phrases.Length) {
+        if (phrase >= phrases.Length) 
+        {
             gameObject.SetActive(false);
             return;
         }
 
         Debug.Log(phrases[phrase]);
-        dialog_text.GetComponent<TMP_Text>().SetText(phrases[phrase]);
+        dialogText.GetComponent<TMP_Text>().SetText(phrases[phrase]);
         ++phrase;
-        Invoke("say", 1f);
+
+        Invoke("Say", 1f);
     }
 }
