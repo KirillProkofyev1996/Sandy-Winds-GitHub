@@ -72,10 +72,20 @@ public class DefenceImprovement : MonoBehaviour
     [SerializeField] private InputField blue7_value1;
     [SerializeField] private InputField blue7_value2;
 
-    /*[Header("Orange")]
-    [SerializeField] private InputField orange1_value1;
+    [Header("Orange")]
 
-    [Header("Red")]
+    // Чертеж 1 (оранжевый)
+    [SerializeField] private InputField orange1_value1;
+    [SerializeField] private InputField orange1_value2;
+
+    // Чертеж 2 (оранжевый)
+    [SerializeField] private InputField orange2_value1;
+    [SerializeField] private InputField orange2_value2;
+
+    // Чертеж 3 (оранжевый)
+    [SerializeField] private InputField orange3_value1;
+
+    /*[Header("Red")]
     [SerializeField] private InputField red1_value1;*/
 
     [Header("Components")]
@@ -227,5 +237,25 @@ public class DefenceImprovement : MonoBehaviour
     public void Blue_9()
     {
         // Воздушные шары. Недолгий полет катера.
+    }
+
+    // Метод для чертежа 1 (оранжевый)
+    public void Orange_1()
+    {
+        shipHealth.ImproveMaxHealth(float.Parse(orange1_value1.text));
+        shipMovement.ImproveProcentSpeed(float.Parse(orange1_value2.text));
+    }
+
+    // Метод для чертежа 2 (оранжевый)
+    public void Orange_2()
+    {
+        shipHealth.ImproveMaxHealth(float.Parse(orange2_value1.text));
+        shipMovement.ImproveProcentSpeed(float.Parse(orange2_value2.text));
+    }
+
+    // Метод для чертежа 3 (оранжевый)
+    public void Orange_3()
+    {
+        shipHealth.ImproveMaxHealth(float.Parse(orange3_value1.text));
     }
 }

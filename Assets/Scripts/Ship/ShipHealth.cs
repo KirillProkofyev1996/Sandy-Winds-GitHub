@@ -47,6 +47,7 @@ public class ShipHealth : MonoBehaviour
         health = maxHealth;
     }
 
+    // Публичный метод увеличения максимальной стойкости в процентах для чертежей
     public void ImproveProcentStrength(float value)
     {
         maxStrength += maxStrength / 100 * value;
