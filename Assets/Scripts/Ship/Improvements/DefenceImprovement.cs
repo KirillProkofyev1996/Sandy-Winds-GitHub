@@ -85,6 +85,14 @@ public class DefenceImprovement : MonoBehaviour
     // Чертеж 3 (оранжевый)
     [SerializeField] private InputField orange3_value1;
 
+    // Чертеж 6 (оранжевый)
+    [SerializeField] private InputField orange6_value1;
+    [SerializeField] private InputField orange6_value2;
+    [SerializeField] private InputField orange6_value3;
+
+    // Чертеж 7 (оранжевый)
+    [SerializeField] private InputField orange7_value1;
+
     /*[Header("Red")]
     [SerializeField] private InputField red1_value1;*/
 
@@ -257,5 +265,45 @@ public class DefenceImprovement : MonoBehaviour
     public void Orange_3()
     {
         shipHealth.ImproveMaxHealth(float.Parse(orange3_value1.text));
+    }
+
+    // Метод для чертежа 4 (оранжевый)
+    public void Orange_4()
+    {
+        // Дополнительный ряд гусениц
+        // Возможность проходить зыбучие пески
+    }
+
+    // Метод для чертежа 5 (оранжевый)
+    public void Orange_5()
+    {
+        // Возможность установить таран,
+        // игнорируя другое оружие
+    }
+
+    // Метод для чертежа 6 (оранжевый)
+    public void Orange_6()
+    {
+        shipCrew.ImproveCrew(int.Parse(orange6_value1.text));
+        shipShooter.ImproveProcentReload(float.Parse(orange6_value2.text));
+        shipMovement.ImproveProcentSpeed(float.Parse(orange6_value3.text));
+    }
+
+    // Метод для чертежа 7 (оранжевый)
+    public void Orange_7()
+    {
+        shipHealth.ImproveMaxHealth(float.Parse(orange7_value1.text));
+    }
+
+    // Метод для чертежа 8 (оранжевый)
+    public void Orange_8()
+    {
+        // ...
+    }
+
+    // Метод для чертежа 9 (оранжевый)
+    public void Orange_9()
+    {
+        // ...
     }
 }
