@@ -35,10 +35,10 @@ public class ShipInput : MonoBehaviour
 
         isCameraButton = inputActions.Ship.Camera.triggered;
         isWeaponButton = inputActions.Ship.Weapon.triggered;
+        isJumpButton = inputActions.Ship.Jump.IsInProgress();
         isInteractButton = inputActions.Ship.Interact.IsInProgress();
         isBoostButton = inputActions.Ship.Boost.IsInProgress();
         isShootButton = inputActions.Ship.Shoot.IsPressed();
-        isJumpButton = inputActions.Ship.Jump.IsPressed();
     }
 
     // Публичные методы получения переменных для

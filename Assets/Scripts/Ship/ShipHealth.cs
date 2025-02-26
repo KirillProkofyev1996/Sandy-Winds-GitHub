@@ -7,6 +7,7 @@ public class ShipHealth : MonoBehaviour
     [SerializeField] public float health, maxHealth;
     [SerializeField] private float strength, maxStrength;
     [SerializeField] private float timeToDestroy;
+    private bool isBerserker;
 
     // Корабль жив, если здоровье больше нуля
     private bool IsAlive => health > 0;
@@ -29,8 +30,30 @@ public class ShipHealth : MonoBehaviour
     // Публичный метод для нанесения урона кораблю
     public void TakeDamage(float damage)
     {
-        health -= damage;
-        CheckIsAlive();
+        if (!isBerserker)
+        {
+            health -= damage;
+            CheckIsAlive();
+        }
+        if (isBerserker)
+        {
+            if (health < health/100 * 35)
+            {
+                health -= damage/1.5f;
+                CheckIsAlive();
+            }
+            else
+            {
+                health -= damage;
+                CheckIsAlive();
+            }
+        }
+    }
+
+    // Публичный метод включения возможности БЕРСЕРКЕР для чертежа
+    public void EnableBerserker()
+    {
+        isBerserker = true;
     }
 
     // Публичный метод увеличения максимального здоровья для чертежей 

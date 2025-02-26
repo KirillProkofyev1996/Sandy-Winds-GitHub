@@ -109,9 +109,6 @@ public class DefenceImprovement : MonoBehaviour
     // Чертеж 10 (красный)
     [SerializeField] private InputField red10_value1;
 
-    // Чертеж 13 (красный)
-    [SerializeField] private InputField red13_value1;
-
     [Header("Components")]
     private ShipHealth shipHealth;
     private ShipMovement shipMovement;
@@ -400,6 +397,6 @@ public class DefenceImprovement : MonoBehaviour
     // Метод для чертежа 13 (красный)
     public void Red_13()
     {
-        // меньше урона
+        shipHealth.EnableBerserker();
     }
 }
