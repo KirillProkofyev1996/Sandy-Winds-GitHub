@@ -93,8 +93,24 @@ public class DefenceImprovement : MonoBehaviour
     // Чертеж 7 (оранжевый)
     [SerializeField] private InputField orange7_value1;
 
-    /*[Header("Red")]
-    [SerializeField] private InputField red1_value1;*/
+    [Header("Red")]
+
+    // Чертеж 1 (красный)
+    [SerializeField] private InputField red1_value1;
+    [SerializeField] private InputField red1_value2;
+
+    // Чертеж 2 (красный)
+    [SerializeField] private InputField red2_value1;
+
+    // Чертеж 3 (красный)
+    [SerializeField] private InputField red3_value1;
+    [SerializeField] private InputField red3_value2;
+
+    // Чертеж 10 (красный)
+    [SerializeField] private InputField red10_value1;
+
+    // Чертеж 13 (красный)
+    [SerializeField] private InputField red13_value1;
 
     [Header("Components")]
     private ShipHealth shipHealth;
@@ -305,5 +321,85 @@ public class DefenceImprovement : MonoBehaviour
     public void Orange_9()
     {
         // ...
+    }
+
+    // Метод для чертежа 1 (красный)
+    public void Red_1()
+    {
+        shipHealth.ImproveMaxHealth(float.Parse(red1_value1.text));
+        shipMovement.ImproveProcentSpeed(float.Parse(red1_value2.text));
+    }
+
+    // Метод для чертежа 2 (красный)
+    public void Red_2()
+    {
+        shipHealth.ImproveMaxHealth(float.Parse(red2_value1.text));
+    }
+
+    // Метод для чертежа 3 (красный)
+    public void Red_3()
+    {
+        shipMovement.ImproveProcentSpeed(float.Parse(red3_value1.text));
+        shipHealth.ImproveMaxHealth(float.Parse(red3_value2.text));
+    }
+
+    // Метод для чертежа 4 (красный)
+    public void Red_4()
+    {
+        // ...
+    }
+
+    // Метод для чертежа 5 (красный)
+    public void Red_5()
+    {
+        shipMovement.ImproveJumpForce();
+    }
+
+    // Метод для чертежа 6 (красный)
+    public void Red_6()
+    {
+        // ...
+    }
+
+    // Метод для чертежа 7 (красный)
+    public void Red_7()
+    {
+        // Защита от легкого автоматического оружия
+    }
+
+    // Метод для чертежа 8 (красный)
+    public void Red_8()
+    {
+        // ...
+    }
+
+    // Метод для чертежа 8 (красный)
+    public void Red_9()
+    {
+        // ...
+    }
+
+    // Метод для чертежа 10 (красный)
+    public void Red_10()
+    {
+        shipHealth.ImproveMaxHealth(float.Parse(red10_value1.text));
+    }
+
+    // Метод для чертежа 11 (красный)
+    public void Red_11()
+    {
+        // ...
+    }
+
+    // Метод для чертежа 12 (красный)
+    public void Red_12()
+    {
+        // ...
+    }
+
+    // Метод для чертежа 13 (красный)
+    public void Red_13()
+    {
+        // меньше урона
     }
 }

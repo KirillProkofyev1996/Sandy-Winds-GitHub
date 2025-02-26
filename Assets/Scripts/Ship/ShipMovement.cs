@@ -28,6 +28,7 @@ public class ShipMovement : MonoBehaviour
 
     [Header("Jump settings")]
     [SerializeField] private float jumpForce;
+    [SerializeField] private float improvedJumpForce;
     [SerializeField] private float gravityMultiplier;
     [SerializeField] private Transform groundChecker;
     [SerializeField] private LayerMask groundMask;
@@ -54,7 +55,7 @@ public class ShipMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Jump(); // Пригодится в дальнейшем
+        Jump();
     }
 
     private void Update()
@@ -217,5 +218,11 @@ public class ShipMovement : MonoBehaviour
     public void ImproveProcentSpeed(float value)
     {
         moveSpeed += moveSpeed / 100 * value;
+    }
+
+    // Публичный метод увеличения силы прыжка для чертежа (планирование)
+    public void ImproveJumpForce()
+    {
+        jumpForce = improvedJumpForce;
     }
 }
