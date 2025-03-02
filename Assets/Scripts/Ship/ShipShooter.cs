@@ -246,6 +246,7 @@ public class ShipShooter : MonoBehaviour
                 weaponCount = 0;
                 currentWeapon = "None";
                 currentDamage = 0;
+                currentReload = 0;
                 isCanShoot = false;
             }
         }

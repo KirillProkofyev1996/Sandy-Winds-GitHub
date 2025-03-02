@@ -125,6 +125,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ExtraWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d602550-f3e8-40c3-9cf0-856fcca2bb61"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -499,6 +508,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b04a2530-2695-4c4a-a3b8-61a9e023ee74"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""ExtraWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66617097-f7f1-4541-be50-4c6594b0922a"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ExtraWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1064,6 +1095,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Ship_Boost = m_Ship.FindAction("Boost", throwIfNotFound: true);
         m_Ship_Zoom = m_Ship.FindAction("Zoom", throwIfNotFound: true);
         m_Ship_Weapon = m_Ship.FindAction("Weapon", throwIfNotFound: true);
+        m_Ship_ExtraWeapon = m_Ship.FindAction("ExtraWeapon", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1154,6 +1186,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Ship_Boost;
     private readonly InputAction m_Ship_Zoom;
     private readonly InputAction m_Ship_Weapon;
+    private readonly InputAction m_Ship_ExtraWeapon;
     public struct ShipActions
     {
         private @InputActions m_Wrapper;
@@ -1169,6 +1202,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Boost => m_Wrapper.m_Ship_Boost;
         public InputAction @Zoom => m_Wrapper.m_Ship_Zoom;
         public InputAction @Weapon => m_Wrapper.m_Ship_Weapon;
+        public InputAction @ExtraWeapon => m_Wrapper.m_Ship_ExtraWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Ship; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1211,6 +1245,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Weapon.started += instance.OnWeapon;
             @Weapon.performed += instance.OnWeapon;
             @Weapon.canceled += instance.OnWeapon;
+            @ExtraWeapon.started += instance.OnExtraWeapon;
+            @ExtraWeapon.performed += instance.OnExtraWeapon;
+            @ExtraWeapon.canceled += instance.OnExtraWeapon;
         }
 
         private void UnregisterCallbacks(IShipActions instance)
@@ -1248,6 +1285,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Weapon.started -= instance.OnWeapon;
             @Weapon.performed -= instance.OnWeapon;
             @Weapon.canceled -= instance.OnWeapon;
+            @ExtraWeapon.started -= instance.OnExtraWeapon;
+            @ExtraWeapon.performed -= instance.OnExtraWeapon;
+            @ExtraWeapon.canceled -= instance.OnExtraWeapon;
         }
 
         public void RemoveCallbacks(IShipActions instance)
@@ -1414,6 +1454,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnBoost(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
         void OnWeapon(InputAction.CallbackContext context);
+        void OnExtraWeapon(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

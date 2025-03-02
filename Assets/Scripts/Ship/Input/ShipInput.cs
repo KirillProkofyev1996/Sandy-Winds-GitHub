@@ -3,7 +3,14 @@ using UnityEngine;
 public class ShipInput : MonoBehaviour
 {
     [Header("Variables")]
-    private bool isShootButton, isCameraButton, isJumpButton, isBoostButton, isInteractButton, isWeaponButton;
+    private bool isShootButton;
+    private bool isCameraButton;
+    private bool isJumpButton;
+    private bool isBoostButton;
+    private bool isInteractButton;
+    private bool isWeaponButton;
+    private bool isExtraWeaponButton;
+
     private Vector2 horizontalDirection, verticalDirection, lookDirection, zoom;
     private Vector3 aimPosition;
 
@@ -35,6 +42,7 @@ public class ShipInput : MonoBehaviour
 
         isCameraButton = inputActions.Ship.Camera.triggered;
         isWeaponButton = inputActions.Ship.Weapon.triggered;
+        isExtraWeaponButton = inputActions.Ship.ExtraWeapon.triggered;
         isJumpButton = inputActions.Ship.Jump.IsInProgress();
         isInteractButton = inputActions.Ship.Interact.IsInProgress();
         isBoostButton = inputActions.Ship.Boost.IsInProgress();
