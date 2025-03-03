@@ -6,11 +6,10 @@ using UnityEngine.UI;
 public class AttackImprovement : MonoBehaviour
 {
     [Header("Statistic")]
-    [SerializeField] private Text health;
-    [SerializeField] private Text strength;
-    [SerializeField] private Text speed;
-    [SerializeField] private Text turbo;
-    [SerializeField] private Text damage;
+    [SerializeField] private Text cannon;
+    [SerializeField] private Text crossbow;
+    [SerializeField] private Text machinegun;
+    [SerializeField] private Text gun;
     
     [Header("Yellow")]
     [SerializeField] private InputField yellow1_value1;
@@ -31,22 +30,20 @@ public class AttackImprovement : MonoBehaviour
 
     private void Start()
     {
-        shipHealth = GetComponent<ShipHealth>();
         shipMovement = GetComponent<ShipMovement>();
         shipShooter = GetComponent<ShipShooter>();
     }
 
     private void Update()
     {
-        health.text = shipHealth.GetHealth().ToString();
-        strength.text = shipHealth.GetStrength().ToString();
-        speed.text = shipMovement.GetSpeed().ToString();
-        turbo.text = shipMovement.GetTurbo().ToString();
-        damage.text = shipShooter.GetDamage().ToString();
+        cannon.text = shipShooter.GetCannonDamage().ToString();
+        crossbow.text = shipShooter.GetCrossbowDamage().ToString();
+        machinegun.text = shipShooter.GetMachinegunDamage().ToString();
+        gun.text = shipShooter.GetGunDamage().ToString();
     }
 
     public void Yellow_1()
     {
-        
+        shipShooter.ImproveCannonWeapon(float.Parse(yellow1_value1.text));
     }
 }

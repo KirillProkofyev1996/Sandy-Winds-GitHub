@@ -80,6 +80,7 @@ public class ShipShooter : MonoBehaviour
     private void Start()
     {
         shipInput = GetComponent<ShipInput>();
+        currentWeapon = "None";
         isCanShoot = true;
     }
 
@@ -328,10 +329,36 @@ public class ShipShooter : MonoBehaviour
         return currentDamage;
     }
 
+    public float GetCannonDamage()
+    {
+        return cannonDamage;
+    }
+
+    public float GetCrossbowDamage()
+    {
+        return crossbowDamage;
+    }
+
+    public float GetMachinegunDamage()
+    {
+        return machinegunDamage;
+    }
+
+    public float GetGunDamage()
+    {
+        return gunDamage;
+    }
+
     // Публичный метод получения времени перезарядки
     public float GetReload()
     {
         return currentReload;
+    }
+
+    // Публичный метод получения выбранного оружия
+    public string GetWeapon()
+    {
+        return currentWeapon;
     }
 
     // Публичный метод для чертежей прокачки урона оружия
@@ -350,5 +377,11 @@ public class ShipShooter : MonoBehaviour
         crossbowReload += crossbowReload / 100 * value;
         machinegunReload += machinegunReload / 100 * value;
         gunReload += gunReload / 100 * value;
+    }
+
+    // Публичный метод прокачки пушки для чертежей
+    public void ImproveCannonWeapon(float value)
+    {
+        cannonDamage = value;
     }
 }
