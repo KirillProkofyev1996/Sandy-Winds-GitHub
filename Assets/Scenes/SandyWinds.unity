@@ -27433,7 +27433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &780246784
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28723,6 +28723,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1198379458}
+        m_TargetAssemblyTypeName: InputSchemeSwitcher, Assembly-CSharp
+        m_MethodName: SetShipInput
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -42141,6 +42153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputActions: {fileID: -944628639613478452, guid: 5a4fe44a6ae024fdcaa825e0b5076838, type: 3}
+  isStartLevelMainMenu: 0
 --- !u!4 &1198379459
 Transform:
   m_ObjectHideFlags: 0
@@ -74084,6 +74097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputActions: {fileID: -944628639613478452, guid: 5a4fe44a6ae024fdcaa825e0b5076838, type: 3}
+  inputSchemeSwitcher: {fileID: 1198379458}
 --- !u!114 &2064911098
 MonoBehaviour:
   m_ObjectHideFlags: 0

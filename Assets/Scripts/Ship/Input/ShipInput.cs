@@ -11,29 +11,20 @@ public class ShipInput : MonoBehaviour
     private bool isInteractButton;
     private bool isWeaponButton;
     private bool isExtraWeaponButton;
+    private bool isEnterUIButton;
 
     private Vector2 horizontalDirection, verticalDirection, lookDirection, zoom;
     private Vector3 aimPosition;
 
+
     [Header("Components")]
-    //private InputActions inputActions; 1
     [SerializeField] private InputActionAsset inputActions;
+    [SerializeField] private InputSchemeSwitcher inputSchemeSwitcher;
     private InputActionMap shipInputMap;
 
     private void Awake()
     {
-        //inputActions = new InputActions(); 1
         shipInputMap = inputActions.FindActionMap("Ship");
-    }
-
-    private void OnEnable()
-    {
-        //inputActions.Enable(); 1
-    }
-
-    private void OnDisable()
-    {
-        //inputActions.Disable(); 1
     }
 
     private void Update()
@@ -47,24 +38,22 @@ public class ShipInput : MonoBehaviour
         isCameraButton = shipInputMap.FindAction("Camera").triggered;
         isWeaponButton = shipInputMap.FindAction("Weapon").triggered;
         isExtraWeaponButton = shipInputMap.FindAction("ExtraWeapon").triggered;
+        isEnterUIButton = shipInputMap.FindAction("EnterUI").triggered;
+        
         isJumpButton = shipInputMap.FindAction("Jump").IsInProgress();
         isInteractButton = shipInputMap.FindAction("Interact").IsInProgress();
         isBoostButton = shipInputMap.FindAction("Boost").IsInProgress();
         isShootButton = shipInputMap.FindAction("Shoot").IsPressed();
 
-        /*verticalDirection = inputActions.Ship.Move.ReadValue<Vector2>();
-        horizontalDirection = inputActions.Ship.Rotate.ReadValue<Vector2>();
-        lookDirection = inputActions.Ship.Look.ReadValue<Vector2>();
-        aimPosition = inputActions.Ship.Aim.ReadValue<Vector2>();
-        zoom = inputActions.Ship.Zoom.ReadValue<Vector2>();
+        SwitchToUI();
+    }
 
-        isCameraButton = inputActions.Ship.Camera.triggered;
-        isWeaponButton = inputActions.Ship.Weapon.triggered;
-        isExtraWeaponButton = inputActions.Ship.ExtraWeapon.triggered;
-        isJumpButton = inputActions.Ship.Jump.IsInProgress();
-        isInteractButton = inputActions.Ship.Interact.IsInProgress();
-        isBoostButton = inputActions.Ship.Boost.IsInProgress();
-        isShootButton = inputActions.Ship.Shoot.IsPressed();*/
+    private void SwitchToUI()
+    {
+        if (isEnterUIButton)
+        {
+            inputSchemeSwitcher.SetUiInput();
+        }
     }
 
     // Публичные методы получения переменных для
@@ -112,5 +101,13 @@ public class ShipInput : MonoBehaviour
     public bool GetWeapon()
     {
         return isWeaponButton;
+    }
+    public bool GetExtraWeapon()
+    {
+        return isExtraWeaponButton;
+    }
+    public bool GetEnterUIButton()
+    {
+        return isEnterUIButton;
     }
 }

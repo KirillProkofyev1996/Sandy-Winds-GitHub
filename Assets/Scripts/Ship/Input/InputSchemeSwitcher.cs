@@ -5,6 +5,9 @@ public class InputSchemeSwitcher : MonoBehaviour
 {
     [SerializeField] private InputActionAsset inputActions;
 
+    // В главном меню включить переменную  
+    [SerializeField] private bool isStartLevelMainMenu; 
+
     private InputActionMap shipInputMap;
     private InputActionMap uiInputMap;
 
@@ -12,8 +15,18 @@ public class InputSchemeSwitcher : MonoBehaviour
     {
         shipInputMap = inputActions.FindActionMap("Ship");
         uiInputMap = inputActions.FindActionMap("UI");
+    }
 
-        SetShipInput();
+    private void Start()
+    {
+        if (isStartLevelMainMenu)
+        {
+            SetUiInput();
+        }
+        if (!isStartLevelMainMenu)
+        {
+            SetShipInput();
+        }
     }
 
     public void SetShipInput()

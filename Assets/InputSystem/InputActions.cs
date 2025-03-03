@@ -134,6 +134,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EnterUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""e52dcdf1-57be-4735-b6af-e926e1e0a1dc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -576,6 +585,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""ExtraWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a80ff94-a6b5-42f7-8a77-fe03917ac2fb"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""EnterUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db3d2696-2aa4-4b07-bc80-287d80725d8c"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EnterUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1001,6 +1032,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Ship_Zoom = m_Ship.FindAction("Zoom", throwIfNotFound: true);
         m_Ship_Weapon = m_Ship.FindAction("Weapon", throwIfNotFound: true);
         m_Ship_ExtraWeapon = m_Ship.FindAction("ExtraWeapon", throwIfNotFound: true);
+        m_Ship_EnterUI = m_Ship.FindAction("EnterUI", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1090,6 +1122,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Ship_Zoom;
     private readonly InputAction m_Ship_Weapon;
     private readonly InputAction m_Ship_ExtraWeapon;
+    private readonly InputAction m_Ship_EnterUI;
     public struct ShipActions
     {
         private @InputActions m_Wrapper;
@@ -1106,6 +1139,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Zoom => m_Wrapper.m_Ship_Zoom;
         public InputAction @Weapon => m_Wrapper.m_Ship_Weapon;
         public InputAction @ExtraWeapon => m_Wrapper.m_Ship_ExtraWeapon;
+        public InputAction @EnterUI => m_Wrapper.m_Ship_EnterUI;
         public InputActionMap Get() { return m_Wrapper.m_Ship; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1151,6 +1185,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ExtraWeapon.started += instance.OnExtraWeapon;
             @ExtraWeapon.performed += instance.OnExtraWeapon;
             @ExtraWeapon.canceled += instance.OnExtraWeapon;
+            @EnterUI.started += instance.OnEnterUI;
+            @EnterUI.performed += instance.OnEnterUI;
+            @EnterUI.canceled += instance.OnEnterUI;
         }
 
         private void UnregisterCallbacks(IShipActions instance)
@@ -1191,6 +1228,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ExtraWeapon.started -= instance.OnExtraWeapon;
             @ExtraWeapon.performed -= instance.OnExtraWeapon;
             @ExtraWeapon.canceled -= instance.OnExtraWeapon;
+            @EnterUI.started -= instance.OnEnterUI;
+            @EnterUI.performed -= instance.OnEnterUI;
+            @EnterUI.canceled -= instance.OnEnterUI;
         }
 
         public void RemoveCallbacks(IShipActions instance)
@@ -1342,6 +1382,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnZoom(InputAction.CallbackContext context);
         void OnWeapon(InputAction.CallbackContext context);
         void OnExtraWeapon(InputAction.CallbackContext context);
+        void OnEnterUI(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
