@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class InputSchemeSwitcher : MonoBehaviour
 {
     [SerializeField] private InputActionAsset inputActions;
+
     private InputActionMap shipInputMap;
     private InputActionMap uiInputMap;
 
