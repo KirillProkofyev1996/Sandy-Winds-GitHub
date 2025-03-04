@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 3b37b993245d4084f851850f7655a43f
+  - enabled: 1
     path: Assets/Scenes/SandyWinds.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Captions.unity
+    guid: cd685bb771b8c7b4e8afa1041dc9b2ca
   m_configObjects: {}
