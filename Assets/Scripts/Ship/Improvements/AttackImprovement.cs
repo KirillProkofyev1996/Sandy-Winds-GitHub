@@ -13,9 +13,11 @@ public class AttackImprovement : MonoBehaviour
     
     [Header("Yellow")]
     [SerializeField] private InputField yellow1_value1;
+    [SerializeField] private InputField yellow2_value1;
 
     [Header("Blue")]
     [SerializeField] private InputField blue1_value1;
+    [SerializeField] private InputField blue2_value1;
 
     [Header("Orange")]
     [SerializeField] private InputField orange1_value1;
@@ -44,15 +46,29 @@ public class AttackImprovement : MonoBehaviour
         shipShooter.ImproveCannonWeapon(float.Parse(yellow1_value1.text));
     }
 
+    public void Yellow_2()
+    {
+        shipShooter.ImproveCannonWeapon(float.Parse(yellow2_value1.text));
+    }
+
+
     public void Blue_1()
     {
         shipShooter.ImproveCrossbowWeapon(float.Parse(blue1_value1.text));
     }
 
+    public void Blue_2()
+    {
+        shipShooter.ImproveCrossbowWeapon(float.Parse(blue2_value1.text));
+        shipShooter.SetSlowdownEnemyByCrossbow();
+    }
+
+
     public void Orange_1()
     {
         shipShooter.ImproveMachinegunWeapon(float.Parse(orange1_value1.text));
     }
+    
 
     public void Red_1()
     {

@@ -25,6 +25,7 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private float crossbowSpeed;
     [SerializeField] private float crossbowReload;
     [SerializeField] private float crossbowDistance;
+    [SerializeField] private bool isCanSlowdownEnemy;
     private string crossbowWeapon = "Crossbow";
 
 
@@ -154,9 +155,11 @@ public class ShipShooter : MonoBehaviour
 
                     ShipBullet bullet1 = currentFrontCrossbow.GetComponent<ShipBullet>();
                     bullet1.SetDamage(crossbowDamage);
+                    bullet1.CanSlowdownEnemy(isCanSlowdownEnemy); // Замедление врага по чертежу
 
                     ShipBullet bullet2 = currentBackCrossbow.GetComponent<ShipBullet>();
                     bullet2.SetDamage(crossbowDamage);
+                    bullet2.CanSlowdownEnemy(isCanSlowdownEnemy); // Замедление врага по чертежу
 
                     currentReload = Time.time + crossbowReload;
                 }
@@ -401,5 +404,12 @@ public class ShipShooter : MonoBehaviour
     public void ImproveGunWeapon(float value)
     {
         gunDamage = value;
+    }
+
+    // Метод включения замедления врагов выстрелом
+    // из арбалета для чертежей 
+    public void SetSlowdownEnemyByCrossbow()
+    {
+        isCanSlowdownEnemy = true;
     }
 }
