@@ -14,23 +14,20 @@ public class AttackImprovement : MonoBehaviour
     [Header("Yellow")]
     [SerializeField] private InputField yellow1_value1;
 
-    /*[Header("Blue")]
+    [Header("Blue")]
     [SerializeField] private InputField blue1_value1;
 
     [Header("Orange")]
     [SerializeField] private InputField orange1_value1;
 
     [Header("Red")]
-    [SerializeField] private InputField red1_value1;*/
+    [SerializeField] private InputField red1_value1;
 
     [Header("Components")]
-    private ShipHealth shipHealth;
-    private ShipMovement shipMovement;
     private ShipShooter shipShooter;
 
     private void Start()
     {
-        shipMovement = GetComponent<ShipMovement>();
         shipShooter = GetComponent<ShipShooter>();
     }
 
@@ -45,5 +42,20 @@ public class AttackImprovement : MonoBehaviour
     public void Yellow_1()
     {
         shipShooter.ImproveCannonWeapon(float.Parse(yellow1_value1.text));
+    }
+
+    public void Blue_1()
+    {
+        shipShooter.ImproveCrossbowWeapon(float.Parse(blue1_value1.text));
+    }
+
+    public void Orange_1()
+    {
+        shipShooter.ImproveMachinegunWeapon(float.Parse(orange1_value1.text));
+    }
+
+    public void Red_1()
+    {
+        shipShooter.ImproveGunWeapon(float.Parse(red1_value1.text));
     }
 }

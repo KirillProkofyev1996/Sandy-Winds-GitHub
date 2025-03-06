@@ -384,4 +384,22 @@ public class ShipShooter : MonoBehaviour
     {
         cannonDamage = value;
     }
+
+    // Публичный метод прокачки арбалета для чертежей
+    public void ImproveCrossbowWeapon(float value)
+    {
+        crossbowDamage = value;
+    }
+
+    // Публичный метод прокачки пулемета для чертежей
+    public void ImproveMachinegunWeapon(float value)
+    {
+        machinegunDamage = value;
+    }
+
+    // Публичный метод прокачки автомата для чертежей
+    public void ImproveGunWeapon(float value)
+    {
+        gunDamage = value;
+    }
 }
