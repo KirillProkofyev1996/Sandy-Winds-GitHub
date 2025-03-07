@@ -7,7 +7,11 @@ public class ShipHealth : MonoBehaviour
     [SerializeField] public float health, maxHealth;
     [SerializeField] private float strength, maxStrength;
     [SerializeField] private float timeToDestroy;
-    private bool isBerserker;
+
+    [Header("Berserk mechanics")]
+    [SerializeField] private float healthProcentLimit;
+    [SerializeField] private float lessDamageMultiplier;
+    [SerializeField] private bool isBerserker;
 
     // Корабль жив, если здоровье больше нуля
     private bool IsAlive => health > 0;
@@ -37,9 +41,9 @@ public class ShipHealth : MonoBehaviour
         }
         if (isBerserker)
         {
-            if (health < health/100 * 35)
+            if (health < health/100 * healthProcentLimit)
             {
-                health -= damage/1.5f;
+                health -= damage/lessDamageMultiplier;
                 CheckIsAlive();
             }
             else

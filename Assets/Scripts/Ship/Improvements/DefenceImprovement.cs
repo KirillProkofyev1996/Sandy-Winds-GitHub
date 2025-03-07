@@ -11,7 +11,6 @@ public class DefenceImprovement : MonoBehaviour
     [SerializeField] private Text strength;
     [SerializeField] private Text speed;
     [SerializeField] private Text turbo;
-    [SerializeField] private Text damage;
     [SerializeField] private Text crew;
     [SerializeField] private Text reload;
     
@@ -36,7 +35,6 @@ public class DefenceImprovement : MonoBehaviour
     [SerializeField] private InputField yellow6_value1;
 
     // Чертеж 7 (желтый)
-    [SerializeField] private InputField yellow7_value1;
     [SerializeField] private InputField yellow7_value2;
 
     // Чертеж 8 (желтый)
@@ -129,7 +127,6 @@ public class DefenceImprovement : MonoBehaviour
         strength.text = shipHealth.GetStrength().ToString();
         speed.text = shipMovement.GetSpeed().ToString();
         turbo.text = shipMovement.GetTurbo().ToString();
-        damage.text = shipShooter.GetDamage().ToString();
         reload.text = shipShooter.GetReload().ToString();
         crew.text = shipCrew.GetCrew().ToString();
     }
@@ -173,7 +170,7 @@ public class DefenceImprovement : MonoBehaviour
     // Метод для чертежа 7 (желтый)
     public void Yellow_7()
     {
-        shipShooter.ImproveProcentDamage(float.Parse(yellow7_value1.text));
+        shipShooter.ImproveAllDamage();
         shipMovement.ImproveProcentSpeed(float.Parse(yellow7_value2.text));
     }
 

@@ -6,8 +6,9 @@ public class ShipBullet : MonoBehaviour
     // Значение урона берется из ShipShooter,
     // чтобы можно было его увеличивать или уменьшать
     // не затрагивая префаб
-    private float damage;
-    private bool isCanSlowdownEnemy; 
+    [SerializeField] private float damage;
+    [SerializeField] private bool isCanSlowdownEnemy;
+    [SerializeField] private float damageImprovement = 50f; // Используется для улучшения всего оружия в процентах 
 
     private void OnCollisionEnter(Collision other)
     {
@@ -29,13 +30,9 @@ public class ShipBullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SetDamage(float value)
+    // Публичный метод для чертежей прокачки урона оружия (желтый 7)
+    public void ImproveProcentDamage()
     {
-        damage = value;
-    }
-
-    public void CanSlowdownEnemy(bool value)
-    {
-        isCanSlowdownEnemy = value;
+        damage += damage / 100 * damageImprovement;
     }
 }

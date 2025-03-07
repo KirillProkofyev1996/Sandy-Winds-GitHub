@@ -6,8 +6,8 @@ using UnityEngine;
 public class ShipShooter : MonoBehaviour
 {
     [Header("Cannon settings")]
-    [SerializeField] private float cannonDamage;
     [SerializeField] private Rigidbody cannon;
+    [SerializeField] private Rigidbody bigCannon;
     [SerializeField] private Transform cannonShootPoint;
     [SerializeField] private float cannonSpeed;
     [SerializeField] private float cannonReload;
@@ -18,19 +18,17 @@ public class ShipShooter : MonoBehaviour
 
 
     [Header("Crossbow settings")]
-    [SerializeField] private float crossbowDamage;
     [SerializeField] private Rigidbody crossbow;
+    [SerializeField] private Rigidbody slowCrossbow;
     [SerializeField] private Transform crossbowFrontShootPoint;
     [SerializeField] private Transform crossbowBackShootPoint;
     [SerializeField] private float crossbowSpeed;
     [SerializeField] private float crossbowReload;
     [SerializeField] private float crossbowDistance;
-    [SerializeField] private bool isCanSlowdownEnemy;
     private string crossbowWeapon = "Crossbow";
 
 
     [Header("Machinegun settings")]
-    [SerializeField] private float machinegunDamage;
     [SerializeField] private Rigidbody machinegun;
     [SerializeField] private Transform machinegunShootPoint;
     [SerializeField] private float machinegunSpeed;
@@ -42,7 +40,6 @@ public class ShipShooter : MonoBehaviour
 
 
     [Header("Gun settings")]
-    [SerializeField] private float gunDamage;
     [SerializeField] private Rigidbody gun;
     [SerializeField] private Transform gunShootPoint;
     [SerializeField] private float gunSpeed;
@@ -63,6 +60,7 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float aimOffsetY;
     [SerializeField] private int maxWeaponCount;
+    [SerializeField] private bool isImprovedAllDamage; // Улучшает урон всех оружий
     private bool isCanShoot;
     private float weaponDistance;
     private string currentWeapon;
@@ -130,7 +128,10 @@ public class ShipShooter : MonoBehaviour
                     currentCannon.transform.LookAt(currentCannon.transform.position + currentCannon.velocity);
 
                     ShipBullet bullet = currentCannon.GetComponent<ShipBullet>();
-                    bullet.SetDamage(cannonDamage);
+                    if (isImprovedAllDamage)
+                    {
+                        bullet.ImproveProcentDamage();
+                    }
 
                     currentReload = Time.time + cannonReload;
                 }
@@ -153,14 +154,6 @@ public class ShipShooter : MonoBehaviour
                     currentBackCrossbow.velocity = direction * crossbowSpeed;
                     currentBackCrossbow.transform.LookAt(currentBackCrossbow.transform.position + currentBackCrossbow.velocity);
 
-                    ShipBullet bullet1 = currentFrontCrossbow.GetComponent<ShipBullet>();
-                    bullet1.SetDamage(crossbowDamage);
-                    bullet1.CanSlowdownEnemy(isCanSlowdownEnemy); // Замедление врага по чертежу
-
-                    ShipBullet bullet2 = currentBackCrossbow.GetComponent<ShipBullet>();
-                    bullet2.SetDamage(crossbowDamage);
-                    bullet2.CanSlowdownEnemy(isCanSlowdownEnemy); // Замедление врага по чертежу
-
                     currentReload = Time.time + crossbowReload;
                 }
             }
@@ -179,9 +172,6 @@ public class ShipShooter : MonoBehaviour
                         Quaternion machinegunRotation = Quaternion.Euler(0, angle, 0);
                         Rigidbody currentMachinegun = Instantiate(machinegun, machinegunShootPoint.position, machinegunShootPoint.rotation);
                         currentMachinegun.velocity = machinegunRotation * direction * machinegunSpeed;
-
-                        ShipBullet bullet = currentMachinegun.GetComponent<ShipBullet>();
-                        bullet.SetDamage(machinegunDamage);
                     }
 
                     currentReload = Time.time + machinegunReload;
@@ -196,9 +186,6 @@ public class ShipShooter : MonoBehaviour
                     Rigidbody currentGun = Instantiate(gun, gunShootPoint.position, gunShootPoint.rotation);
                     currentGun.velocity = direction * gunSpeed;
                     currentGun.transform.LookAt(currentGun.transform.position + currentGun.velocity);
-
-                    ShipBullet bullet = currentGun.GetComponent<ShipBullet>();
-                    bullet.SetDamage(gunDamage);
 
                     currentReload = Time.time + gunReload;
                 }
@@ -217,7 +204,6 @@ public class ShipShooter : MonoBehaviour
             {
                 currentWeapon = cannonWeapon;
                 weaponDistance = cannonDistance;
-                currentDamage = cannonDamage;
                 currentReload = cannonReload;
                 isCanShoot = true;
             }
@@ -225,7 +211,6 @@ public class ShipShooter : MonoBehaviour
             {
                 currentWeapon = crossbowWeapon;
                 weaponDistance = crossbowDistance;
-                currentDamage = crossbowDamage;
                 currentReload = crossbowReload;
                 isCanShoot = true;
             }
@@ -233,7 +218,6 @@ public class ShipShooter : MonoBehaviour
             {
                 currentWeapon = machinegunWeapon;
                 weaponDistance = machinegunDistance;
-                currentDamage = machinegunDamage;
                 currentReload = machinegunReload;
                 isCanShoot = true;
             }
@@ -241,7 +225,6 @@ public class ShipShooter : MonoBehaviour
             {
                 currentWeapon = gunWeapon;
                 weaponDistance = gunDistance;
-                currentDamage = gunDamage;
                 currentReload = gunReload;
                 isCanShoot = true;
             }
@@ -332,26 +315,6 @@ public class ShipShooter : MonoBehaviour
         return currentDamage;
     }
 
-    public float GetCannonDamage()
-    {
-        return cannonDamage;
-    }
-
-    public float GetCrossbowDamage()
-    {
-        return crossbowDamage;
-    }
-
-    public float GetMachinegunDamage()
-    {
-        return machinegunDamage;
-    }
-
-    public float GetGunDamage()
-    {
-        return gunDamage;
-    }
-
     // Публичный метод получения времени перезарядки
     public float GetReload()
     {
@@ -364,15 +327,6 @@ public class ShipShooter : MonoBehaviour
         return currentWeapon;
     }
 
-    // Публичный метод для чертежей прокачки урона оружия
-    public void ImproveProcentDamage(float value)
-    {
-        cannonDamage += cannonDamage / 100 * value;
-        crossbowDamage += crossbowDamage / 100 * value;
-        machinegunDamage += machinegunDamage / 100 * value;
-        gunDamage += gunDamage / 100 * value;
-    }
-
     // Публичный метод для чертежей прокачки времени перезарядки
     public void ImproveProcentReload(float value)
     {
@@ -382,34 +336,9 @@ public class ShipShooter : MonoBehaviour
         gunReload += gunReload / 100 * value;
     }
 
-    // Публичный метод прокачки пушки для чертежей
-    public void ImproveCannonWeapon(float value)
+    // Публичный метод для чертежа (желтый 7)
+    public void ImproveAllDamage()
     {
-        cannonDamage = value;
-    }
-
-    // Публичный метод прокачки арбалета для чертежей
-    public void ImproveCrossbowWeapon(float value)
-    {
-        crossbowDamage = value;
-    }
-
-    // Публичный метод прокачки пулемета для чертежей
-    public void ImproveMachinegunWeapon(float value)
-    {
-        machinegunDamage = value;
-    }
-
-    // Публичный метод прокачки автомата для чертежей
-    public void ImproveGunWeapon(float value)
-    {
-        gunDamage = value;
-    }
-
-    // Метод включения замедления врагов выстрелом
-    // из арбалета для чертежей 
-    public void SetSlowdownEnemyByCrossbow()
-    {
-        isCanSlowdownEnemy = true;
+        isImprovedAllDamage = true;
     }
 }

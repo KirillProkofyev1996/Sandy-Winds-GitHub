@@ -4,6 +4,10 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private Transform ship;
+
+    [Header("Slowdown mechanics")]
+    [SerializeField] private float slowdownProcent = 20f;
+    [SerializeField] private float slowdownDuration = 10f;
     private NavMeshAgent agent;
 
     private void Start()
@@ -19,7 +23,7 @@ public class EnemyMovement : MonoBehaviour
     // Для чертежа арбалета
     private void SetSlowerSpeed()
     {
-        agent.speed -= agent.speed / 100 * 20;
+        agent.speed -= agent.speed / 100 * slowdownProcent;
     }
 
     // Для чертежа арбалета
@@ -33,6 +37,6 @@ public class EnemyMovement : MonoBehaviour
     public void SlowdownByCrossbow()
     {
         SetSlowerSpeed();
-        Invoke("SetNormalSpeed", 10f);
+        Invoke("SetNormalSpeed", slowdownDuration);
     }
 }
