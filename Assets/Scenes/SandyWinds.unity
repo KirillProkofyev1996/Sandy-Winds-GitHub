@@ -14471,55 +14471,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427506472}
   m_CullTransparentMesh: 1
---- !u!1 &431326771
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 431326772}
-  - component: {fileID: 431326773}
-  m_Layer: 0
-  m_Name: ShipTracksTimeline
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &431326772
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431326771}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.98, y: -1.53, z: 20.08}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2064911075}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!320 &431326773
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431326771}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 90c58e3a64bf546b288fa466252f39da, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings: []
-  m_ExposedReferences:
-    m_References: []
 --- !u!1 &436843783
 GameObject:
   m_ObjectHideFlags: 0
@@ -66034,7 +65985,6 @@ GameObject:
   - component: {fileID: 2064911094}
   - component: {fileID: 2064911093}
   - component: {fileID: 2064911092}
-  - component: {fileID: 2064911099}
   m_Layer: 12
   m_Name: Ship
   m_TagString: Ship
@@ -66059,7 +66009,6 @@ Transform:
   - {fileID: 830997222}
   - {fileID: 1845385383}
   - {fileID: 685505865}
-  - {fileID: 431326772}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2064911082
@@ -66338,18 +66287,6 @@ MonoBehaviour:
   m_DefaultActionMap: Ship
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &2064911099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2064911074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8757045b2eab44cc5baff6d7b748261f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2068169063
 GameObject:
   m_ObjectHideFlags: 0
@@ -68856,6 +68793,7 @@ GameObject:
   - component: {fileID: 4178448756955611227}
   - component: {fileID: 2168520914899301521}
   - component: {fileID: 4178448756955611228}
+  - component: {fileID: 4178448756955611229}
   m_Layer: 12
   m_Name: Body
   m_TagString: Untagged
@@ -68949,6 +68887,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4178448756955611229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367287703109915972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8757045b2eab44cc5baff6d7b748261f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
