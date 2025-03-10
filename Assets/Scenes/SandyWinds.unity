@@ -26406,6 +26406,8 @@ Transform:
   - {fileID: 1598428730}
   - {fileID: 998924258}
   - {fileID: 1901632566}
+  - {fileID: 891954031}
+  - {fileID: 1318378453}
   m_Father: {fileID: 2064911075}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &841950513
@@ -27902,6 +27904,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888044830}
   m_CullTransparentMesh: 1
+--- !u!1 &891954030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 891954031}
+  m_Layer: 12
+  m_Name: Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &891954031
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891954030}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.2, y: -0.06, z: 0.46}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 830997222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &896674126
 GameObject:
   m_ObjectHideFlags: 0
@@ -41083,6 +41116,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311099064}
   m_CullTransparentMesh: 1
+--- !u!1 &1318378452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1318378453}
+  m_Layer: 12
+  m_Name: Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1318378453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318378452}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.2, y: -0.06, z: 0.46}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 830997222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1319664734
 GameObject:
   m_ObjectHideFlags: 0
@@ -43092,6 +43156,7 @@ GameObject:
   - component: {fileID: 1376415644}
   - component: {fileID: 1376415643}
   - component: {fileID: 1376415642}
+  - component: {fileID: 1376415645}
   m_Layer: 5
   m_Name: 02
   m_TagString: Untagged
@@ -43162,7 +43227,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1376415643}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2064911092}
+        m_TargetAssemblyTypeName: AttackImprovement, Assembly-CSharp
+        m_MethodName: Orange_2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1376415645}
+        m_TargetAssemblyTypeName: ButtonDisabler, Assembly-CSharp
+        m_MethodName: DisableButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1376415643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43201,6 +43290,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376415640}
   m_CullTransparentMesh: 1
+--- !u!114 &1376415645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376415640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b047ad975964ab6bfd7bf6fcbe1baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1380798245
 GameObject:
   m_ObjectHideFlags: 0
@@ -66222,8 +66323,9 @@ MonoBehaviour:
   crossbowReload: 0.5
   crossbowDistance: 10
   machinegun: {fileID: 8682693522825396822, guid: bd9f2f425c9684cd78b17bc7b407e193, type: 3}
+  leadMachinegun: {fileID: 8682693522825396822, guid: d11c98e7361b244bbac58ad6786659ff, type: 3}
   machinegunShootPoint: {fileID: 998924258}
-  machinegunSpeed: 20
+  machinegunSpeed: 15
   machinegunReload: 0.25
   machinegunDistance: 5
   machinegunCounts: 6
@@ -66235,10 +66337,9 @@ MonoBehaviour:
   gunDistance: 12
   resolution: 18
   correctionFactor: -0.28
-  currentDamage: 0
   shootPoint: {fileID: 998924258}
-  aimOffsetY: 0.1
-  maxWeaponCount: 1
+  aimOffsetY: 0.15
+  maxWeaponCount: 4
   isImprovedAllDamage: 0
   aim: {fileID: 302249321}
   lineRenderer: {fileID: 998924259}

@@ -35,11 +35,11 @@ public class AttackImprovement : MonoBehaviour
 
     public void Yellow_1()
     {
-        
+        shipShooter.SetCannonAvailable();
     }
     public void Yellow_2()
     {
-        
+        shipShooter.SetBigCannonAvailable();
     }
     public void Yellow_3()
     {
@@ -73,11 +73,11 @@ public class AttackImprovement : MonoBehaviour
 
     public void Blue_1()
     {
-        
+        shipShooter.SetCrossbowAvailable();
     }
     public void Blue_2()
     {
-        
+        shipShooter.SetSlowCrossbowAvailable();
     }
     public void Blue_3()
     {
@@ -86,12 +86,16 @@ public class AttackImprovement : MonoBehaviour
 
     public void Orange_1()
     {
-        
+        shipShooter.SetMachinegunAvailable();
+    }
+    public void Orange_2()
+    {
+        shipShooter.SetLeadMachinegunAvailable();
     }
     
 
     public void Red_1()
     {
-        
+        shipShooter.SetGunAvailable();
     }
 }

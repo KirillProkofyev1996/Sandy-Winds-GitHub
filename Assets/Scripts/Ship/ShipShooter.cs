@@ -15,6 +15,8 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private float cannonShootAngle; // Если угол = 50
     [SerializeField] private float cannonAngleMultiplier; // То множитель = 1.5
     private string cannonWeapon = "Cannon";
+    private bool isCannonAvailable = true;
+    private bool isBigCannonAvailable; // Для открытия улучшения BigCannon
 
 
     [Header("Crossbow settings")]
@@ -26,10 +28,13 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private float crossbowReload;
     [SerializeField] private float crossbowDistance;
     private string crossbowWeapon = "Crossbow";
+    private bool isCrossbowAvailable;
+    private bool isSlowCrossbowAvailable; // Для открытия улучшения SlowCrossbow
 
 
     [Header("Machinegun settings")]
     [SerializeField] private Rigidbody machinegun;
+    [SerializeField] private Rigidbody leadMachinegun;
     [SerializeField] private Transform machinegunShootPoint;
     [SerializeField] private float machinegunSpeed;
     [SerializeField] private float machinegunReload;
@@ -37,6 +42,8 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private int machinegunCounts;
     [SerializeField] private float machinegunAngle;
     private string machinegunWeapon = "Machinegun";
+    private bool isMachinegunAvailable;
+    private bool isLeadMachinegunAvailable; // Для открытия улучшения LeadMachinegun
 
 
     [Header("Gun settings")]
@@ -46,6 +53,7 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private float gunReload;
     [SerializeField] private float gunDistance;
     private string gunWeapon = "Gun";
+    private bool isGunAvailable;
 
 
     [Header("Cannon draw trajectory")]
@@ -56,15 +64,15 @@ public class ShipShooter : MonoBehaviour
 
 
     [Header("Settings")]
-    [SerializeField] private float currentDamage;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float aimOffsetY;
-    [SerializeField] private int maxWeaponCount;
+    [SerializeField] private int maxWeaponCount; // Для открытия остальный оружий (изначально 1)
     [SerializeField] private bool isImprovedAllDamage; // Улучшает урон всех оружий
     private bool isCanShoot;
     private float weaponDistance;
     private string currentWeapon;
     private float currentReload;
+    private float currentDamage;
     private float distance;
     private Vector3 direction;
     private Vector3 aimPosition;
@@ -123,17 +131,34 @@ public class ShipShooter : MonoBehaviour
 
                 if (shipInput.GetShootButton() && Time.time >= currentReload && distance <= cannonDistance)
                 {
-                    Rigidbody currentCannon = Instantiate(cannon, cannonShootPoint.position, cannonShootPoint.rotation);
-                    currentCannon.velocity = launchDirection * cannonSpeed;
-                    currentCannon.transform.LookAt(currentCannon.transform.position + currentCannon.velocity);
-
-                    ShipBullet bullet = currentCannon.GetComponent<ShipBullet>();
-                    if (isImprovedAllDamage)
+                    if (isBigCannonAvailable == false)
                     {
-                        bullet.ImproveProcentDamage();
-                    }
+                        Rigidbody currentCannon = Instantiate(cannon, cannonShootPoint.position, cannonShootPoint.rotation);
+                        currentCannon.velocity = launchDirection * cannonSpeed;
+                        currentCannon.transform.LookAt(currentCannon.transform.position + currentCannon.velocity);
 
-                    currentReload = Time.time + cannonReload;
+                        ShipBullet bullet = currentCannon.GetComponent<ShipBullet>();
+                        if (isImprovedAllDamage)
+                        {
+                            bullet.ImproveProcentDamage();
+                        }
+
+                        currentReload = Time.time + cannonReload;
+                    }
+                    if (isBigCannonAvailable == true)
+                    {
+                        Rigidbody currentCannon = Instantiate(bigCannon, cannonShootPoint.position, cannonShootPoint.rotation);
+                        currentCannon.velocity = launchDirection * cannonSpeed;
+                        currentCannon.transform.LookAt(currentCannon.transform.position + currentCannon.velocity);
+
+                        ShipBullet bullet = currentCannon.GetComponent<ShipBullet>();
+                        if (isImprovedAllDamage)
+                        {
+                            bullet.ImproveProcentDamage();
+                        }
+
+                        currentReload = Time.time + cannonReload;
+                    }
                 }
             }
             else
@@ -144,37 +169,76 @@ public class ShipShooter : MonoBehaviour
             // Стрельба из арбалета
             if (currentWeapon == crossbowWeapon)
             {
-                if (shipInput.GetShootButton() && Time.time >= currentReload && distance <= crossbowDistance)
+                if (isSlowCrossbowAvailable == false)
                 {
-                    Rigidbody currentFrontCrossbow = Instantiate(crossbow, crossbowFrontShootPoint.position, crossbowFrontShootPoint.rotation);
-                    currentFrontCrossbow.velocity = direction * crossbowSpeed;
-                    currentFrontCrossbow.transform.LookAt(currentFrontCrossbow.transform.position + currentFrontCrossbow.velocity);
+                    if (shipInput.GetShootButton() && Time.time >= currentReload && distance <= crossbowDistance)
+                    {
+                        Rigidbody currentFrontCrossbow = Instantiate(crossbow, crossbowFrontShootPoint.position, crossbowFrontShootPoint.rotation);
+                        currentFrontCrossbow.velocity = direction * crossbowSpeed;
+                        currentFrontCrossbow.transform.LookAt(currentFrontCrossbow.transform.position + currentFrontCrossbow.velocity);
 
-                    Rigidbody currentBackCrossbow = Instantiate(crossbow, crossbowBackShootPoint.position, crossbowBackShootPoint.rotation);
-                    currentBackCrossbow.velocity = direction * crossbowSpeed;
-                    currentBackCrossbow.transform.LookAt(currentBackCrossbow.transform.position + currentBackCrossbow.velocity);
+                        Rigidbody currentBackCrossbow = Instantiate(crossbow, crossbowBackShootPoint.position, crossbowBackShootPoint.rotation);
+                        currentBackCrossbow.velocity = direction * crossbowSpeed;
+                        currentBackCrossbow.transform.LookAt(currentBackCrossbow.transform.position + currentBackCrossbow.velocity);
 
-                    currentReload = Time.time + crossbowReload;
+                        currentReload = Time.time + crossbowReload;
+                    }
+                }
+                if (isSlowCrossbowAvailable == true)
+                {
+                    if (shipInput.GetShootButton() && Time.time >= currentReload && distance <= crossbowDistance)
+                    {
+                        Rigidbody currentFrontCrossbow = Instantiate(slowCrossbow, crossbowFrontShootPoint.position, crossbowFrontShootPoint.rotation);
+                        currentFrontCrossbow.velocity = direction * crossbowSpeed;
+                        currentFrontCrossbow.transform.LookAt(currentFrontCrossbow.transform.position + currentFrontCrossbow.velocity);
+
+                        Rigidbody currentBackCrossbow = Instantiate(slowCrossbow, crossbowBackShootPoint.position, crossbowBackShootPoint.rotation);
+                        currentBackCrossbow.velocity = direction * crossbowSpeed;
+                        currentBackCrossbow.transform.LookAt(currentBackCrossbow.transform.position + currentBackCrossbow.velocity);
+
+                        currentReload = Time.time + crossbowReload;
+                    }
                 }
             }
 
             // Стрельба из пулемета
             if (currentWeapon == machinegunWeapon)
             {
-                if (shipInput.GetShootButton() && Time.time >= currentReload && distance <= machinegunDistance)
+                if (isLeadMachinegunAvailable == false)
                 {
-                    float halfSpread = machinegunAngle / 2f;
-                    float angleIncrement = machinegunAngle / (machinegunCounts - 1);
-
-                    for (int i = 0; i < machinegunCounts; i++)
+                    if (shipInput.GetShootButton() && Time.time >= currentReload && distance <= machinegunDistance)
                     {
-                        float angle = -halfSpread + i * angleIncrement;
-                        Quaternion machinegunRotation = Quaternion.Euler(0, angle, 0);
-                        Rigidbody currentMachinegun = Instantiate(machinegun, machinegunShootPoint.position, machinegunShootPoint.rotation);
-                        currentMachinegun.velocity = machinegunRotation * direction * machinegunSpeed;
-                    }
+                        float halfSpread = machinegunAngle / 2f;
+                        float angleIncrement = machinegunAngle / (machinegunCounts - 1);
 
-                    currentReload = Time.time + machinegunReload;
+                        for (int i = 0; i < machinegunCounts; i++)
+                        {
+                            float angle = -halfSpread + i * angleIncrement;
+                            Quaternion machinegunRotation = Quaternion.Euler(0, angle, 0);
+                            Rigidbody currentMachinegun = Instantiate(machinegun, machinegunShootPoint.position, machinegunShootPoint.rotation);
+                            currentMachinegun.velocity = machinegunRotation * direction * machinegunSpeed;
+                        }
+
+                        currentReload = Time.time + machinegunReload;
+                    }
+                }
+                if (isLeadMachinegunAvailable == true)
+                {
+                    if (shipInput.GetShootButton() && Time.time >= currentReload && distance <= machinegunDistance)
+                    {
+                        float halfSpread = machinegunAngle / 2f;
+                        float angleIncrement = machinegunAngle / (machinegunCounts - 1);
+
+                        for (int i = 0; i < machinegunCounts; i++)
+                        {
+                            float angle = -halfSpread + i * angleIncrement;
+                            Quaternion machinegunRotation = Quaternion.Euler(0, angle, 0);
+                            Rigidbody currentMachinegun = Instantiate(leadMachinegun, machinegunShootPoint.position, machinegunShootPoint.rotation);
+                            currentMachinegun.velocity = machinegunRotation * direction * machinegunSpeed;
+                        }
+
+                        currentReload = Time.time + machinegunReload;
+                    }
                 }
             }
 
@@ -200,28 +264,28 @@ public class ShipShooter : MonoBehaviour
         {
             weaponCount ++;
 
-            if (weaponCount == 1)
+            if (weaponCount == 1 && isCannonAvailable)
             {
                 currentWeapon = cannonWeapon;
                 weaponDistance = cannonDistance;
                 currentReload = cannonReload;
                 isCanShoot = true;
             }
-            if (weaponCount == 2)
+            if (weaponCount == 2 && isCrossbowAvailable)
             {
                 currentWeapon = crossbowWeapon;
                 weaponDistance = crossbowDistance;
                 currentReload = crossbowReload;
                 isCanShoot = true;
             }
-            if (weaponCount == 3)
+            if (weaponCount == 3 && isMachinegunAvailable)
             {
                 currentWeapon = machinegunWeapon;
                 weaponDistance = machinegunDistance;
                 currentReload = machinegunReload;
                 isCanShoot = true;
             }
-            if (weaponCount == 4)
+            if (weaponCount == 4 && isGunAvailable)
             {
                 currentWeapon = gunWeapon;
                 weaponDistance = gunDistance;
@@ -340,5 +404,35 @@ public class ShipShooter : MonoBehaviour
     public void ImproveAllDamage()
     {
         isImprovedAllDamage = true;
+    }
+
+    // Методы для открытия стандартных оружий
+    public void SetCannonAvailable()
+    {
+        isCannonAvailable = true;
+    }
+    public void SetCrossbowAvailable()
+    {
+        isCrossbowAvailable = true;
+    }
+    public void SetMachinegunAvailable()
+    {
+        isMachinegunAvailable = true;
+    }
+    public void SetGunAvailable()
+    {
+        isGunAvailable = true;
+    }
+    public void SetBigCannonAvailable()
+    {
+        isBigCannonAvailable = true;
+    }
+    public void SetSlowCrossbowAvailable()
+    {
+        isSlowCrossbowAvailable = true;
+    }
+    public void SetLeadMachinegunAvailable()
+    {
+        isLeadMachinegunAvailable = true;
     }
 }
