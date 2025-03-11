@@ -300,7 +300,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!114 &-5658005742204566170
@@ -318,6 +318,8 @@ MonoBehaviour:
   damage: 20
   isCanSlowdownEnemy: 1
   damageImprovement: 50
+  isSelfDestruct: 0
+  selfDestructTime: 0
 --- !u!114 &-8769925121315519831
 MonoBehaviour:
   m_ObjectHideFlags: 0

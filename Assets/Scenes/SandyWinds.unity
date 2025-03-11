@@ -24929,8 +24929,8 @@ RectTransform:
   m_GameObject: {fileID: 780246783}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 976339868}
   - {fileID: 267767901}
@@ -24948,7 +24948,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 60}
   m_SizeDelta: {x: 1471, y: 1125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &780246785
@@ -26516,8 +26516,8 @@ RectTransform:
   m_GameObject: {fileID: 844831257}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.03, y: 1.03, z: 1.03}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1758614760}
   - {fileID: 1191719746}
@@ -26537,7 +26537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 46}
   m_SizeDelta: {x: 1930, y: 1270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &844831259
@@ -40234,6 +40234,7 @@ GameObject:
   - component: {fileID: 1292104094}
   - component: {fileID: 1292104093}
   - component: {fileID: 1292104092}
+  - component: {fileID: 1292104095}
   m_Layer: 5
   m_Name: 02
   m_TagString: Untagged
@@ -40304,7 +40305,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1292104093}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2064911092}
+        m_TargetAssemblyTypeName: AttackImprovement, Assembly-CSharp
+        m_MethodName: Red_2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1292104095}
+        m_TargetAssemblyTypeName: ButtonDisabler, Assembly-CSharp
+        m_MethodName: DisableButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1292104093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40343,6 +40368,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292104090}
   m_CullTransparentMesh: 1
+--- !u!114 &1292104095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292104090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b047ad975964ab6bfd7bf6fcbe1baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1292588586
 GameObject:
   m_ObjectHideFlags: 0
@@ -66331,7 +66368,10 @@ MonoBehaviour:
   machinegunCounts: 6
   machinegunAngle: 20
   gun: {fileID: 42459099261647579, guid: eab78247a9eab4f9b91b4fe1acef9aca, type: 3}
+  sidesGun: {fileID: 42459099261647579, guid: 5e7f55a54f4134c28931ae119905d4c1, type: 3}
   gunShootPoint: {fileID: 998924258}
+  leftGunShootPoint: {fileID: 891954031}
+  rightGunShootPoint: {fileID: 1318378453}
   gunSpeed: 20
   gunReload: 0.5
   gunDistance: 12
@@ -66343,6 +66383,7 @@ MonoBehaviour:
   isImprovedAllDamage: 0
   aim: {fileID: 302249321}
   lineRenderer: {fileID: 998924259}
+  cameraController: {fileID: 1823435926}
 --- !u!114 &2064911096
 MonoBehaviour:
   m_ObjectHideFlags: 0

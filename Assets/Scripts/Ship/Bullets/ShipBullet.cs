@@ -7,8 +7,15 @@ public class ShipBullet : MonoBehaviour
     // чтобы можно было его увеличивать или уменьшать
     // не затрагивая префаб
     [SerializeField] private float damage;
-    [SerializeField] private bool isCanSlowdownEnemy;
-    [SerializeField] private float damageImprovement = 50f; // Используется для улучшения всего оружия в процентах 
+    [SerializeField] private bool isCanSlowdownEnemy; // Для арбалета с возможностью замедлять противника
+    [SerializeField] private float damageImprovement = 50f; // Используется для улучшения всего оружия в процентах
+    [SerializeField] private bool isSelfDestruct; // Для боковых автоматов, которые уничтожаются через определенное время
+    [SerializeField] private float selfDestructTime; // Для боковых автоматов, которые уничтожаются через определенное время
+
+    private void Start()
+    {
+        SelfDestruction();        
+    }
 
     private void OnCollisionEnter(Collision other)
     {
@@ -28,6 +35,14 @@ public class ShipBullet : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    private void SelfDestruction()
+    {
+        if (isSelfDestruct)
+        {
+            Destroy(gameObject, selfDestructTime);
+        }
     }
 
     // Публичный метод для чертежей прокачки урона оружия (желтый 7)

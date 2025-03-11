@@ -98,4 +98,8 @@ public class AttackImprovement : MonoBehaviour
     {
         shipShooter.SetGunAvailable();
     }
+    public void Red_2()
+    {
+        shipShooter.SetSidesGunAvailable();
+    }
 }
