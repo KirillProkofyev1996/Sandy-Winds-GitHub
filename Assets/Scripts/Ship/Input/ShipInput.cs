@@ -6,6 +6,7 @@ public class ShipInput : MonoBehaviour
     [Header("Variables")]
     private float horizontalDirection, verticalDirection;
     private bool isShootButton, isAimButton, isJumpButton, isBoostButton, isRecoveryButton, isInteractButton;
+    
 
     private void Update()
     {
