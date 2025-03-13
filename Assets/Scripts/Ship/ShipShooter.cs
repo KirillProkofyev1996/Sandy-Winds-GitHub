@@ -14,7 +14,7 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private float cannonDistance;
     [SerializeField] private float cannonShootAngle; // Если угол = 50
     [SerializeField] private float cannonAngleMultiplier; // То множитель = 1.5
-    private string cannonWeapon = "Cannon";
+    private string cannonWeapon = "Пушка";
     private bool isCannonAvailable = true;
     private bool isBigCannonAvailable; // Для открытия улучшения BigCannon
 
@@ -27,7 +27,7 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private float crossbowSpeed;
     [SerializeField] private float crossbowReload;
     [SerializeField] private float crossbowDistance;
-    private string crossbowWeapon = "Crossbow";
+    private string crossbowWeapon = "Арбалет";
     private bool isCrossbowAvailable;
     private bool isSlowCrossbowAvailable; // Для открытия улучшения SlowCrossbow
 
@@ -41,7 +41,7 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private float machinegunDistance;
     [SerializeField] private int machinegunCounts;
     [SerializeField] private float machinegunAngle;
-    private string machinegunWeapon = "Machinegun";
+    private string machinegunWeapon = "Пулемет";
     private bool isMachinegunAvailable;
     private bool isLeadMachinegunAvailable; // Для открытия улучшения LeadMachinegun
 
@@ -55,7 +55,7 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private float gunSpeed;
     [SerializeField] private float gunReload;
     [SerializeField] private float gunDistance;
-    private string gunWeapon = "Gun";
+    private string gunWeapon = "Автомат";
     private bool isGunAvailable;
     private bool isSidesGunAvailable; // Для открытия улучшения SidesMachinegun
 
@@ -318,7 +318,7 @@ public class ShipShooter : MonoBehaviour
             if (weaponCount > maxWeaponCount)
             {
                 weaponCount = 0;
-                currentWeapon = "None";
+                currentWeapon = "Без оружия";
                 currentDamage = 0;
                 currentReload = 0;
                 isCanShoot = true;

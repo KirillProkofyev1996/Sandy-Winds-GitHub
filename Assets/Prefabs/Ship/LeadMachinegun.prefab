@@ -148,6 +148,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   isCanSlowdownEnemy: 0
+  isCanDestroyEnemyWeapon: 1
+  destroyEnemyWeaponProcent: 10
   damageImprovement: 50
   isSelfDestruct: 0
   selfDestructTime: 0
