@@ -14763,6 +14763,7 @@ MonoBehaviour:
   superShootBullets: 3
   ship: {fileID: 2064911074}
   shootPoint: {fileID: 252614879}
+  isCanShoot: 1
 --- !u!1 &370517907
 GameObject:
   m_ObjectHideFlags: 0
@@ -26535,6 +26536,7 @@ MonoBehaviour:
   timeToShoot: 1
   ship: {fileID: 2064911074}
   shootPoint: {fileID: 1867984331}
+  isCanShoot: 1
 --- !u!114 &734366237
 MonoBehaviour:
   m_ObjectHideFlags: 0
