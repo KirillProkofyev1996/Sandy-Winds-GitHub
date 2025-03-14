@@ -147,7 +147,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  isCanSlowdownEnemy: 0
+  isCanSlowdownEnemyByCrossbow: 0
+  isCanSlowdownEnemyBySidesGun: 1
+  isCanDestroyEnemyWeapon: 0
+  destroyEnemyWeaponProcent: 0
   damageImprovement: 50
   isSelfDestruct: 1
   selfDestructTime: 0.25

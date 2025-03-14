@@ -7,7 +7,8 @@ public class ShipBullet : MonoBehaviour
     // чтобы можно было его увеличивать или уменьшать
     // не затрагивая префаб
     [SerializeField] private float damage;
-    [SerializeField] private bool isCanSlowdownEnemy; // Для арбалета с возможностью замедлять противника
+    [SerializeField] private bool isCanSlowdownEnemyByCrossbow; // Для арбалета с возможностью замедлять противника
+    [SerializeField] private bool isCanSlowdownEnemyBySidesGun; // Для боковых автоматов с возможностью замедлять противника
     [SerializeField] private bool isCanDestroyEnemyWeapon; // Для дроби пулемета с возможностью уничтожить оружие противника
     [SerializeField] private int destroyEnemyWeaponProcent; // Вероятность уничтожения оружия противника
     [SerializeField] private float damageImprovement = 50f; // Используется для улучшения всего оружия в процентах
@@ -30,9 +31,13 @@ public class ShipBullet : MonoBehaviour
         {
             other.GetComponent<EnemyHealth>().TakeDamage(damage);
 
-            if (isCanSlowdownEnemy)
+            if (isCanSlowdownEnemyByCrossbow)
             {
                 other.GetComponent<EnemyMovement>().SlowdownByCrossbow();
+            }
+            if (isCanSlowdownEnemyBySidesGun)
+            {
+                other.GetComponent<EnemyMovement>().SlowdownBySidesGun();
             }
             if (isCanDestroyEnemyWeapon)
             {
