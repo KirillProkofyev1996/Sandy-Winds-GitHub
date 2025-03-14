@@ -6,44 +6,100 @@ using UnityEngine.UI;
 public class AttackImprovement : MonoBehaviour
 {
     [Header("Statistic")]
-    [SerializeField] private Text cannon;
-    [SerializeField] private Text crossbow;
-    [SerializeField] private Text machinegun;
-    [SerializeField] private Text gun;
+
     
     [Header("Yellow")]
-    [SerializeField] private InputField yellow1_value1;
+    
 
-    /*[Header("Blue")]
-    [SerializeField] private InputField blue1_value1;
+    [Header("Blue")]
+    
 
     [Header("Orange")]
-    [SerializeField] private InputField orange1_value1;
+    
 
     [Header("Red")]
-    [SerializeField] private InputField red1_value1;*/
+    
 
     [Header("Components")]
-    private ShipHealth shipHealth;
-    private ShipMovement shipMovement;
     private ShipShooter shipShooter;
 
     private void Start()
     {
-        shipMovement = GetComponent<ShipMovement>();
         shipShooter = GetComponent<ShipShooter>();
     }
 
     private void Update()
     {
-        cannon.text = shipShooter.GetCannonDamage().ToString();
-        crossbow.text = shipShooter.GetCrossbowDamage().ToString();
-        machinegun.text = shipShooter.GetMachinegunDamage().ToString();
-        gun.text = shipShooter.GetGunDamage().ToString();
+        
     }
 
     public void Yellow_1()
     {
-        shipShooter.ImproveCannonWeapon(float.Parse(yellow1_value1.text));
+        shipShooter.SetCannonAvailable();
+    }
+    public void Yellow_2()
+    {
+        shipShooter.SetBigCannonAvailable();
+    }
+    public void Yellow_3()
+    {
+
+    }
+    public void Yellow_4()
+    {
+
+    }
+    public void Yellow_5()
+    {
+
+    }
+    public void Yellow_6()
+    {
+        // ...
+    }
+    public void Yellow_7()
+    {
+        
+    }
+    public void Yellow_8()
+    {
+
+    }
+    public void Yellow_9()
+    {
+        // ...
+    }
+
+
+    public void Blue_1()
+    {
+        shipShooter.SetCrossbowAvailable();
+    }
+    public void Blue_2()
+    {
+        shipShooter.SetSlowCrossbowAvailable();
+    }
+    public void Blue_3()
+    {
+        // ...
+    }
+
+    public void Orange_1()
+    {
+        shipShooter.SetMachinegunAvailable();
+    }
+    public void Orange_2()
+    {
+        shipShooter.SetLeadMachinegunAvailable();
+    }
+    
+
+    public void Red_1()
+    {
+        shipShooter.SetGunAvailable();
+    }
+    public void Red_2()
+    {
+        shipShooter.SetSidesGunAvailable();
     }
 }

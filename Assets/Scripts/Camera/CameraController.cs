@@ -49,4 +49,9 @@ public class CameraController : MonoBehaviour
             aimCamera.gameObject.SetActive(false);
         }
     }
+
+    public bool GetIsAimButtonPressed()
+    {
+        return IsAimButtonPressed;
+    }
 }

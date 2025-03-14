@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float health, maxHealth;
     [SerializeField] private float timeToDestroy;
+    [SerializeField] private bool isBoss;
 
     private void Start()
     {

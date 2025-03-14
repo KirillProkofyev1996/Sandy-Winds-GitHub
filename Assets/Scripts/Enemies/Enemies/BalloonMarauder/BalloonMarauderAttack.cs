@@ -10,6 +10,7 @@ public class BalloonMarauderAttack : MonoBehaviour
     [SerializeField] private float timeToShoot;
     [SerializeField] private GameObject ship;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private bool isCanShoot = true;
     private float time;
     private float distance;
     private Vector3 direction;
@@ -23,11 +24,24 @@ public class BalloonMarauderAttack : MonoBehaviour
 
     private void Shoot()
     {
-        if (distance <= radius && Time.time >= time)
+        if (isCanShoot)
         {
-            Rigidbody newBullet = Instantiate(bullet, shootPoint.position, Quaternion.identity);
-            newBullet.velocity = direction * speed;
-            time = Time.time + timeToShoot;
+            if (distance <= radius && Time.time >= time)
+            {
+                Rigidbody newBullet = Instantiate(bullet, shootPoint.position, Quaternion.identity);
+                newBullet.velocity = direction * speed;
+                time = Time.time + timeToShoot;
+            }
+        }
+    }
+
+    public void DestroyWeapon(int procent)
+    {
+        int currentProcent = Random.Range(0, 100);
+
+        if (currentProcent <= procent)
+        {
+            isCanShoot = false;
         }
     }
 }
