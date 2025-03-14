@@ -318,7 +318,7 @@ public class ShipShooter : MonoBehaviour
             if (weaponCount > maxWeaponCount)
             {
                 weaponCount = 0;
-                currentWeapon = "Без оружия";
+                currentWeapon = "без оружия";
                 currentDamage = 0;
                 currentReload = 0;
                 isCanShoot = true;
