@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShipBullet : MonoBehaviour
@@ -5,7 +6,18 @@ public class ShipBullet : MonoBehaviour
     // Значение урона берется из ShipShooter,
     // чтобы можно было его увеличивать или уменьшать
     // не затрагивая префаб
-    private float damage; 
+    [SerializeField] private float damage;
+    [SerializeField] private bool isCanSlowdownEnemy; // Для арбалета с возможностью замедлять противника
+    [SerializeField] private bool isCanDestroyEnemyWeapon; // Для дроби пулемета с возможностью уничтожить оружие противника
+    [SerializeField] private int destroyEnemyWeaponProcent; // Вероятность уничтожения оружия противника
+    [SerializeField] private float damageImprovement = 50f; // Используется для улучшения всего оружия в процентах
+    [SerializeField] private bool isSelfDestruct; // Для боковых автоматов, которые уничтожаются через определенное время
+    [SerializeField] private float selfDestructTime; // Для боковых автоматов, которые уничтожаются через определенное время
+
+    private void Start()
+    {
+        SelfDestruction();        
+    }
 
     private void OnCollisionEnter(Collision other)
     {
@@ -17,13 +29,38 @@ public class ShipBullet : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             other.GetComponent<EnemyHealth>().TakeDamage(damage);
+
+            if (isCanSlowdownEnemy)
+            {
+                other.GetComponent<EnemyMovement>().SlowdownByCrossbow();
+            }
+            if (isCanDestroyEnemyWeapon)
+            {
+                if (other.GetComponent<BalloonMarauderAttack>() != null)
+                {
+                    other.GetComponent<BalloonMarauderAttack>().DestroyWeapon(destroyEnemyWeaponProcent);
+                }
+                if (other.GetComponent<SloopMarauderAttack>() != null)
+                {
+                    other.GetComponent<SloopMarauderAttack>().DestroyWeapon(destroyEnemyWeaponProcent);
+                }
+            }
         }
 
         Destroy(gameObject);
     }
 
-    public void SetDamage(float value)
+    private void SelfDestruction()
     {
-        damage = value;
+        if (isSelfDestruct)
+        {
+            Destroy(gameObject, selfDestructTime);
+        }
+    }
+
+    // Публичный метод для чертежей прокачки урона оружия (желтый 7)
+    public void ImproveProcentDamage()
+    {
+        damage += damage / 100 * damageImprovement;
     }
 }
