@@ -29,9 +29,15 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // Для чертежа арбалета
-    private void SetNormalSpeed()
+    private void SetNormalSpeedFromCrossbow()
     {
-        agent.speed += agent.speed / 100 * 20;
+        agent.speed += agent.speed / 100 * slowdownByCrossbowProcent;
+    }
+
+    // Для чертежа автоматов
+    private void SetNormalSpeedFromSidesGun()
+    {
+        agent.speed += agent.speed / 100 * slowdownBySidesGunProcent;
     }
 
     // Метод используется для чертежа арбалета
@@ -39,7 +45,7 @@ public class EnemyMovement : MonoBehaviour
     public void SlowdownByCrossbow()
     {
         SetSlowerSpeed(slowdownByCrossbowProcent);
-        Invoke("SetNormalSpeed", slowdownByCrossbowDuration);
+        Invoke("SetNormalSpeedFromCrossbow", slowdownByCrossbowDuration);
     }
 
     // Метод используется для чертежа автоматов по бокам
@@ -47,6 +53,6 @@ public class EnemyMovement : MonoBehaviour
     public void SlowdownBySidesGun()
     {
         SetSlowerSpeed(slowdownBySidesGunProcent);
-        Invoke("SetNormalSpeed", slowdownBySidesGunDuration);
+        Invoke("SetNormalSpeedFromSidesGun", slowdownBySidesGunDuration);
     }
 }

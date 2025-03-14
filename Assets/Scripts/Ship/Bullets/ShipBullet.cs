@@ -14,6 +14,7 @@ public class ShipBullet : MonoBehaviour
     [SerializeField] private float damageImprovement = 50f; // Используется для улучшения всего оружия в процентах
     [SerializeField] private bool isSelfDestruct; // Для боковых автоматов, которые уничтожаются через определенное время
     [SerializeField] private float selfDestructTime; // Для боковых автоматов, которые уничтожаются через определенное время
+    [SerializeField] private bool isCanSlowdownEnemyAttack; // Для боковых автоматов с возможностью замедлять атаку противника (стреляющего)
 
     private void Start()
     {
@@ -39,6 +40,18 @@ public class ShipBullet : MonoBehaviour
             {
                 other.GetComponent<EnemyMovement>().SlowdownBySidesGun();
             }
+            if (isCanSlowdownEnemyAttack)
+            {
+                if (other.GetComponent<BalloonMarauderAttack>() != null)
+                {
+                    other.GetComponent<BalloonMarauderAttack>().SlowdownAttackBySidesGun();
+                }
+                if (other.GetComponent<SloopMarauderAttack>() != null)
+                {
+                    other.GetComponent<SloopMarauderAttack>().SlowdownAttackBySidesGun();
+                }
+                // + все те противники, которые могут стрелять
+            }
             if (isCanDestroyEnemyWeapon)
             {
                 if (other.GetComponent<BalloonMarauderAttack>() != null)
@@ -49,6 +62,7 @@ public class ShipBullet : MonoBehaviour
                 {
                     other.GetComponent<SloopMarauderAttack>().DestroyWeapon(destroyEnemyWeaponProcent);
                 }
+                // + все те противники, которые могут стрелять
             }
         }
 

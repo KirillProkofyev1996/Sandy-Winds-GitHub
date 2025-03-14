@@ -11,6 +11,8 @@ public class BalloonMarauderAttack : MonoBehaviour
     [SerializeField] private GameObject ship;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private bool isCanShoot = true;
+    [SerializeField] private float slowdownBySidesGunProcent = 30f;
+    [SerializeField] private float slowdownBySidesGunDuration = 10f;
     private float time;
     private float distance;
     private Vector3 direction;
@@ -43,5 +45,24 @@ public class BalloonMarauderAttack : MonoBehaviour
         {
             isCanShoot = false;
         }
+    }
+
+    // Для чертежа автоматов по бокам
+    private void SetNormalAttackSpeedFromSidesGun()
+    {
+        timeToShoot += timeToShoot / 100 * slowdownBySidesGunProcent;
+    }
+
+    // Для чертежа автоматов по бокам
+    private void SetSlowdownAttackSpeedBySidesGun()
+    {
+        timeToShoot -= timeToShoot / 100 * slowdownBySidesGunProcent;
+    }
+
+    // Для чертежа боковых автоматов с замедлением стрельбы противника
+    public void SlowdownAttackBySidesGun()
+    {
+        SetSlowdownAttackSpeedBySidesGun();
+        Invoke("SetNormalAttackSpeedFromSidesGun", slowdownBySidesGunDuration);
     }
 }

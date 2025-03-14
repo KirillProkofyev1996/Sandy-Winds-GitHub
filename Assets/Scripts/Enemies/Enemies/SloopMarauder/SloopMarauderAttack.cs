@@ -15,6 +15,8 @@ public class SloopMarauderAttack : MonoBehaviour
     [SerializeField] private GameObject ship;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private bool isCanShoot = true;
+    [SerializeField] private float slowdownBySidesGunProcent = 30f; // Для автоматов по бокам с возможностью замедлить атаку
+    [SerializeField] private float slowdownBySidesGunDuration = 10f; // Для автоматов по бокам с возможностью замедлить атаку
     private float time;
     private int counts;
     private float distance;
@@ -65,5 +67,24 @@ public class SloopMarauderAttack : MonoBehaviour
         {
             isCanShoot = false;
         }
+    }
+
+    // Для чертежа автоматов по бокам
+    private void SetNormalAttackSpeedFromSidesGun()
+    {
+        timeToShoot += timeToShoot / 100 * slowdownBySidesGunProcent;
+    }
+
+    // Для чертежа автоматов по бокам
+    private void SetSlowdownAttackSpeedBySidesGun()
+    {
+        timeToShoot -= timeToShoot / 100 * slowdownBySidesGunProcent;
+    }
+
+    // Для чертежа боковых автоматов с замедлением стрельбы противника
+    public void SlowdownAttackBySidesGun()
+    {
+        SetSlowdownAttackSpeedBySidesGun();
+        Invoke("SetNormalAttackSpeedFromSidesGun", slowdownBySidesGunDuration);
     }
 }

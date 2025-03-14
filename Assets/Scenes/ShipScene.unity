@@ -10302,7 +10302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ship: {fileID: 2064911075}
-  rotationSpeed: 90
+  rotationSpeed: 180
   zoomSpeed: 0.6
   maxDistance: 10
   minDistance: 3.5
@@ -13187,6 +13187,8 @@ MonoBehaviour:
   ship: {fileID: 2064911074}
   shootPoint: {fileID: 252614879}
   isCanShoot: 1
+  slowdownBySidesGunProcent: 30
+  slowdownBySidesGunDuration: 10
 --- !u!1 &370517907
 GameObject:
   m_ObjectHideFlags: 0
@@ -20419,6 +20421,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 617998305}
   m_CullTransparentMesh: 1
+--- !u!1 &624196681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 624196682}
+  m_Layer: 12
+  m_Name: Top
+  m_TagString: Untagged
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &624196682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624196681}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.15545993, z: -0, w: 0.98784226}
+  m_LocalPosition: {x: 0, y: 1.167, z: -0.27}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 830997222}
+  m_LocalEulerAnglesHint: {x: 0, y: 17.887, z: 0}
 --- !u!1 &627974484
 GameObject:
   m_ObjectHideFlags: 0
@@ -24241,6 +24274,8 @@ MonoBehaviour:
   ship: {fileID: 2064911074}
   shootPoint: {fileID: 1867984331}
   isCanShoot: 1
+  slowdownBySidesGunProcent: 30
+  slowdownBySidesGunDuration: 10
 --- !u!114 &734366237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26747,6 +26782,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 624196682}
   - {fileID: 1598428730}
   - {fileID: 998924258}
   - {fileID: 1901632566}
@@ -28469,7 +28505,7 @@ Transform:
   m_GameObject: {fileID: 891954030}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2, y: -0.06, z: 0.46}
+  m_LocalPosition: {x: -0.25, y: -0.06, z: 0.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -32639,8 +32675,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.06439972
-        value: 0.0703125
+        time: 0.068103425
+        value: 0.113790765
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -34982,7 +35018,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -65, y: -632}
+  m_AnchoredPosition: {x: -58, y: -632}
   m_SizeDelta: {x: 120, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1068349989
@@ -35047,12 +35083,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60.9
+  m_fontSize: 56.3
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 60.9
+  m_fontSizeMin: 9.7
+  m_fontSizeMax: 56.3
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -41734,7 +41770,7 @@ Transform:
   m_GameObject: {fileID: 1318378452}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2, y: -0.06, z: 0.46}
+  m_LocalPosition: {x: 0.25, y: -0.06, z: 0.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -51898,7 +51934,7 @@ Transform:
   m_GameObject: {fileID: 1598428729}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.152, z: 0.101}
+  m_LocalPosition: {x: 0, y: 0.152, z: 0.167}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54855,7 +54891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ship: {fileID: 2064911075}
-  rotationSpeed: 80
+  rotationSpeed: 90
   zoomSpeed: 0
   maxDistance: 4
   minDistance: 4
@@ -62362,7 +62398,7 @@ Transform:
   m_GameObject: {fileID: 1901632565}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.152, z: -0.545}
+  m_LocalPosition: {x: 0, y: 0.152, z: -0.603}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -67585,33 +67621,32 @@ MonoBehaviour:
   cannon: {fileID: 8682693522825396822, guid: 6011d36f11a6845398a83e298228a924, type: 3}
   bigCannon: {fileID: 8682693522825396822, guid: 041100c75d0de443caa6b6248f13ad35, type: 3}
   cannonShootPoint: {fileID: 998924258}
-  cannonSpeed: 2
+  cannonSpeed: 8
   cannonReload: 1
   cannonDistance: 6
-  cannonShootAngle: 50
-  cannonAngleMultiplier: 1.5
   crossbow: {fileID: 8682693522825396822, guid: 99527daade7e04a928da8a7e07714550, type: 3}
   slowCrossbow: {fileID: 8682693522825396822, guid: 0f3ea1688cc9342e5b2d55a4960ea0bd, type: 3}
-  crossbowFrontShootPoint: {fileID: 1598428730}
-  crossbowBackShootPoint: {fileID: 1901632566}
-  crossbowSpeed: 14
-  crossbowReload: 0.5
+  crossbowShootPoint: {fileID: 998924258}
+  crossbowSpeed: 2
+  crossbowReload: 1
   crossbowDistance: 10
+  crossbowShootAngle: 50
+  crossbowAngleMultiplier: 1.5
   machinegun: {fileID: 8682693522825396822, guid: bd9f2f425c9684cd78b17bc7b407e193, type: 3}
   leadMachinegun: {fileID: 8682693522825396822, guid: d11c98e7361b244bbac58ad6786659ff, type: 3}
   machinegunShootPoint: {fileID: 998924258}
   machinegunSpeed: 15
-  machinegunReload: 0.25
+  machinegunReload: 0.5
   machinegunDistance: 5
   machinegunCounts: 6
   machinegunAngle: 20
   gun: {fileID: 42459099261647579, guid: eab78247a9eab4f9b91b4fe1acef9aca, type: 3}
   sidesGun: {fileID: 42459099261647579, guid: 5e7f55a54f4134c28931ae119905d4c1, type: 3}
-  gunShootPoint: {fileID: 998924258}
+  gunShootPoint: {fileID: 624196682}
   leftGunShootPoint: {fileID: 891954031}
   rightGunShootPoint: {fileID: 1318378453}
   gunSpeed: 20
-  gunReload: 0.5
+  gunReload: 1
   gunDistance: 12
   resolution: 18
   correctionFactor: -0.28

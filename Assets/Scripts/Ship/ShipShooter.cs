@@ -12,8 +12,6 @@ public class ShipShooter : MonoBehaviour
     [SerializeField] private float cannonSpeed;
     [SerializeField] private float cannonReload;
     [SerializeField] private float cannonDistance;
-    [SerializeField] private float cannonShootAngle; // Если угол = 50
-    [SerializeField] private float cannonAngleMultiplier; // То множитель = 1.5
     private string cannonWeapon = "Пушка";
     private bool isCannonAvailable = true;
     private bool isBigCannonAvailable; // Для открытия улучшения BigCannon
@@ -22,11 +20,12 @@ public class ShipShooter : MonoBehaviour
     [Header("Crossbow settings")]
     [SerializeField] private Rigidbody crossbow;
     [SerializeField] private Rigidbody slowCrossbow;
-    [SerializeField] private Transform crossbowFrontShootPoint;
-    [SerializeField] private Transform crossbowBackShootPoint;
+    [SerializeField] private Transform crossbowShootPoint;
     [SerializeField] private float crossbowSpeed;
     [SerializeField] private float crossbowReload;
     [SerializeField] private float crossbowDistance;
+    [SerializeField] private float crossbowShootAngle; // Если угол = 50
+    [SerializeField] private float crossbowAngleMultiplier; // То множитель = 1.5
     private string crossbowWeapon = "Арбалет";
     private bool isCrossbowAvailable;
     private bool isSlowCrossbowAvailable; // Для открытия улучшения SlowCrossbow
@@ -60,7 +59,7 @@ public class ShipShooter : MonoBehaviour
     private bool isSidesGunAvailable; // Для открытия улучшения SidesMachinegun
 
 
-    [Header("Cannon draw trajectory")]
+    [Header("Crossbow draw trajectory")]
     [SerializeField] private int resolution;
     [SerializeField] private float correctionFactor; // При угле = 50, множителе 1.5, фактор = -0.28
     private Vector3 launchDirection;
@@ -79,6 +78,7 @@ public class ShipShooter : MonoBehaviour
     private float currentDamage;
     private float distance;
     private Vector3 direction;
+    private Vector3 gunDirection;
     private Vector3 aimPosition;
     private int weaponCount;
 
@@ -115,6 +115,9 @@ public class ShipShooter : MonoBehaviour
     {
         direction = aimPosition - shootPoint.position;
         direction.Normalize();
+
+        gunDirection = aimPosition - gunShootPoint.position;
+        gunDirection.Normalize();
     }
 
     private void Distance()
@@ -130,19 +133,16 @@ public class ShipShooter : MonoBehaviour
             // Стрельба из пушки
             if (currentWeapon == cannonWeapon)
             {
-                //lineRenderer.enabled = true;
-                CannonShootTarget();
-                CannonShowTrajectory();
-
-                if (shipInput.GetShootButton() && Time.time >= currentReload && distance <= cannonDistance)
+                if (isBigCannonAvailable == false)
                 {
-                    if (isBigCannonAvailable == false)
+                    if (shipInput.GetShootButton() && Time.time >= currentReload && distance <= cannonDistance)
                     {
                         Rigidbody currentCannon = Instantiate(cannon, cannonShootPoint.position, cannonShootPoint.rotation);
-                        currentCannon.velocity = launchDirection * cannonSpeed;
+                        currentCannon.velocity = direction * cannonSpeed;
                         currentCannon.transform.LookAt(currentCannon.transform.position + currentCannon.velocity);
 
                         ShipBullet bullet = currentCannon.GetComponent<ShipBullet>();
+
                         if (isImprovedAllDamage)
                         {
                             bullet.ImproveProcentDamage();
@@ -150,60 +150,68 @@ public class ShipShooter : MonoBehaviour
 
                         currentReload = Time.time + cannonReload;
                     }
-                    if (isBigCannonAvailable == true)
+                }
+                if (isBigCannonAvailable == true)
+                {
+                    if (shipInput.GetShootButton() && Time.time >= currentReload && distance <= cannonDistance)
                     {
                         Rigidbody currentCannon = Instantiate(bigCannon, cannonShootPoint.position, cannonShootPoint.rotation);
-                        currentCannon.velocity = launchDirection * cannonSpeed;
+                        currentCannon.velocity = direction * cannonSpeed;
                         currentCannon.transform.LookAt(currentCannon.transform.position + currentCannon.velocity);
 
                         ShipBullet bullet = currentCannon.GetComponent<ShipBullet>();
+
                         if (isImprovedAllDamage)
                         {
                             bullet.ImproveProcentDamage();
                         }
 
                         currentReload = Time.time + cannonReload;
+                    }
+                }
+            }
+
+            // Стрельба из арбалета
+            if (currentWeapon == crossbowWeapon)
+            {
+                CannonShootTarget();
+                CannonShowTrajectory();
+
+                if (shipInput.GetShootButton() && Time.time >= currentReload && distance <= crossbowDistance)
+                {
+                    if (isSlowCrossbowAvailable == false)
+                    {
+                        Rigidbody currentCrossbow = Instantiate(crossbow, crossbowShootPoint.position, crossbowShootPoint.rotation);
+                        currentCrossbow.velocity = launchDirection * crossbowSpeed;
+                        currentCrossbow.transform.LookAt(currentCrossbow.transform.position + currentCrossbow.velocity);
+
+                        ShipBullet bullet = currentCrossbow.GetComponent<ShipBullet>();
+                        if (isImprovedAllDamage)
+                        {
+                            bullet.ImproveProcentDamage();
+                        }
+
+                        currentReload = Time.time + crossbowReload;
+                    }
+                    if (isSlowCrossbowAvailable == true)
+                    {
+                        Rigidbody currentCrossbow = Instantiate(slowCrossbow, crossbowShootPoint.position, crossbowShootPoint.rotation);
+                        currentCrossbow.velocity = launchDirection * crossbowSpeed;
+                        currentCrossbow.transform.LookAt(currentCrossbow.transform.position + currentCrossbow.velocity);
+
+                        ShipBullet bullet = currentCrossbow.GetComponent<ShipBullet>();
+                        if (isImprovedAllDamage)
+                        {
+                            bullet.ImproveProcentDamage();
+                        }
+
+                        currentReload = Time.time + crossbowReload;
                     }
                 }
             }
             else
             {
                 lineRenderer.enabled = false;
-            }
-
-            // Стрельба из арбалета
-            if (currentWeapon == crossbowWeapon)
-            {
-                if (isSlowCrossbowAvailable == false)
-                {
-                    if (shipInput.GetShootButton() && Time.time >= currentReload && distance <= crossbowDistance)
-                    {
-                        Rigidbody currentFrontCrossbow = Instantiate(crossbow, crossbowFrontShootPoint.position, crossbowFrontShootPoint.rotation);
-                        currentFrontCrossbow.velocity = direction * crossbowSpeed;
-                        currentFrontCrossbow.transform.LookAt(currentFrontCrossbow.transform.position + currentFrontCrossbow.velocity);
-
-                        Rigidbody currentBackCrossbow = Instantiate(crossbow, crossbowBackShootPoint.position, crossbowBackShootPoint.rotation);
-                        currentBackCrossbow.velocity = direction * crossbowSpeed;
-                        currentBackCrossbow.transform.LookAt(currentBackCrossbow.transform.position + currentBackCrossbow.velocity);
-
-                        currentReload = Time.time + crossbowReload;
-                    }
-                }
-                if (isSlowCrossbowAvailable == true)
-                {
-                    if (shipInput.GetShootButton() && Time.time >= currentReload && distance <= crossbowDistance)
-                    {
-                        Rigidbody currentFrontCrossbow = Instantiate(slowCrossbow, crossbowFrontShootPoint.position, crossbowFrontShootPoint.rotation);
-                        currentFrontCrossbow.velocity = direction * crossbowSpeed;
-                        currentFrontCrossbow.transform.LookAt(currentFrontCrossbow.transform.position + currentFrontCrossbow.velocity);
-
-                        Rigidbody currentBackCrossbow = Instantiate(slowCrossbow, crossbowBackShootPoint.position, crossbowBackShootPoint.rotation);
-                        currentBackCrossbow.velocity = direction * crossbowSpeed;
-                        currentBackCrossbow.transform.LookAt(currentBackCrossbow.transform.position + currentBackCrossbow.velocity);
-
-                        currentReload = Time.time + crossbowReload;
-                    }
-                }
             }
 
             // Стрельба из пулемета
@@ -222,6 +230,12 @@ public class ShipShooter : MonoBehaviour
                             Quaternion machinegunRotation = Quaternion.Euler(0, angle, 0);
                             Rigidbody currentMachinegun = Instantiate(machinegun, machinegunShootPoint.position, machinegunShootPoint.rotation);
                             currentMachinegun.velocity = machinegunRotation * direction * machinegunSpeed;
+
+                            ShipBullet bullet = currentMachinegun.GetComponent<ShipBullet>();
+                            if (isImprovedAllDamage)
+                            {
+                                bullet.ImproveProcentDamage();
+                            }
                         }
 
                         currentReload = Time.time + machinegunReload;
@@ -240,6 +254,12 @@ public class ShipShooter : MonoBehaviour
                             Quaternion machinegunRotation = Quaternion.Euler(0, angle, 0);
                             Rigidbody currentMachinegun = Instantiate(leadMachinegun, machinegunShootPoint.position, machinegunShootPoint.rotation);
                             currentMachinegun.velocity = machinegunRotation * direction * machinegunSpeed;
+
+                            ShipBullet bullet = currentMachinegun.GetComponent<ShipBullet>();
+                            if (isImprovedAllDamage)
+                            {
+                                bullet.ImproveProcentDamage();
+                            }
                         }
 
                         currentReload = Time.time + machinegunReload;
@@ -255,8 +275,14 @@ public class ShipShooter : MonoBehaviour
                     if (shipInput.GetShootButton() && Time.time >= currentReload && distance <= gunDistance)
                     {
                         Rigidbody currentGun = Instantiate(gun, gunShootPoint.position, gunShootPoint.rotation);
-                        currentGun.velocity = direction * gunSpeed;
+                        currentGun.velocity = gunDirection * gunSpeed;
                         currentGun.transform.LookAt(currentGun.transform.position + currentGun.velocity);
+
+                        ShipBullet bullet = currentGun.GetComponent<ShipBullet>();
+                        if (isImprovedAllDamage)
+                        {
+                            bullet.ImproveProcentDamage();
+                        }
 
                         currentReload = Time.time + gunReload;
                     }
@@ -269,9 +295,21 @@ public class ShipShooter : MonoBehaviour
                         currentLeftSideGun.velocity = transform.forward * gunSpeed;
                         currentLeftSideGun.transform.LookAt(currentLeftSideGun.transform.position + currentLeftSideGun.velocity);
 
+                        ShipBullet bulletLeft = currentLeftSideGun.GetComponent<ShipBullet>();
+                        if (isImprovedAllDamage)
+                        {
+                            bulletLeft.ImproveProcentDamage();
+                        }
+
                         Rigidbody currentRightSideGun = Instantiate(sidesGun, rightGunShootPoint.position, gunShootPoint.rotation);
                         currentRightSideGun.velocity = transform.forward * gunSpeed;
                         currentRightSideGun.transform.LookAt(currentRightSideGun.transform.position + currentRightSideGun.velocity);
+
+                        ShipBullet bulletRight = currentRightSideGun.GetComponent<ShipBullet>();
+                        if (isImprovedAllDamage)
+                        {
+                            bulletRight.ImproveProcentDamage();
+                        }
 
                         currentReload = Time.time + gunReload;
                     }
@@ -334,35 +372,35 @@ public class ShipShooter : MonoBehaviour
         directionToTarget.y = 0;
         float horizontalDistance = directionToTarget.magnitude;
 
-        float angleRad = cannonShootAngle * Mathf.Deg2Rad;
+        float angleRad = crossbowShootAngle * Mathf.Deg2Rad;
 
         gravityAcceleration = Physics.gravity.y;
-        float verticalSpeed = cannonSpeed * Mathf.Sin(angleRad);
+        float verticalSpeed = crossbowSpeed * Mathf.Sin(angleRad);
         float requiredLaunchSpeed = Mathf.Sqrt(horizontalDistance * gravityAcceleration /
                                         (horizontalDistance * Mathf.Tan(angleRad) - heightDifference));
 
-        if (cannonSpeed < requiredLaunchSpeed)
+        if (crossbowSpeed < requiredLaunchSpeed)
         {
-            cannonSpeed = requiredLaunchSpeed;
+            crossbowSpeed = requiredLaunchSpeed;
         }
 
-        launchDirection = directionToTarget / cannonAngleMultiplier;
+        launchDirection = directionToTarget / crossbowAngleMultiplier;
         launchDirection.y = verticalSpeed;
     }
 
     // Метод отрисовки траектории ядра пушки
     private void CannonShowTrajectory()
     {
+        lineRenderer.enabled = true;
+
         if (cameraController.GetIsAimButtonPressed())
         {
-            lineRenderer.enabled = true;
-
             for (int i = 0; i <= resolution; i++)
             {
                 float t = i / (float)resolution;
-                float x = launchDirection.x * cannonSpeed * t;
+                float x = launchDirection.x * crossbowSpeed * t;
                 float y = launchDirection.y * t - (correctionFactor * gravityAcceleration * t * t);
-                float z = launchDirection.z * cannonSpeed * t;
+                float z = launchDirection.z * crossbowSpeed * t;
 
                 if (i < lineRenderer.positionCount)
                 {
