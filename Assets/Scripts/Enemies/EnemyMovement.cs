@@ -6,8 +6,10 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Transform ship;
 
     [Header("Slowdown mechanics")]
-    [SerializeField] private float slowdownProcent = 20f;
-    [SerializeField] private float slowdownDuration = 10f;
+    [SerializeField] private float slowdownByCrossbowProcent = 20f;
+    [SerializeField] private float slowdownByCrossbowDuration = 10f;
+    [SerializeField] private float slowdownBySidesGunProcent = 40f;
+    [SerializeField] private float slowdownBySidesGunDuration = 10f;
     private NavMeshAgent agent;
 
     private void Start()
@@ -20,10 +22,10 @@ public class EnemyMovement : MonoBehaviour
         agent.SetDestination(ship.position);
     }
 
-    // Для чертежа арбалета
-    private void SetSlowerSpeed()
+    // Для чертежа оружий с замедлением противника
+    private void SetSlowerSpeed(float procent)
     {
-        agent.speed -= agent.speed / 100 * slowdownProcent;
+        agent.speed -= agent.speed / 100 * procent;
     }
 
     // Для чертежа арбалета
@@ -36,7 +38,15 @@ public class EnemyMovement : MonoBehaviour
     // при попадании в противника 
     public void SlowdownByCrossbow()
     {
-        SetSlowerSpeed();
-        Invoke("SetNormalSpeed", slowdownDuration);
+        SetSlowerSpeed(slowdownByCrossbowProcent);
+        Invoke("SetNormalSpeed", slowdownByCrossbowDuration);
+    }
+
+    // Метод используется для чертежа автоматов по бокам
+    // при попадании в противника 
+    public void SlowdownBySidesGun()
+    {
+        SetSlowerSpeed(slowdownBySidesGunProcent);
+        Invoke("SetNormalSpeed", slowdownBySidesGunDuration);
     }
 }
