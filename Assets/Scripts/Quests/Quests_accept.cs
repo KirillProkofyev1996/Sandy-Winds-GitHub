@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Quests_accept : MonoBehaviour
 {
+    [SerializeField] private InputSchemeSwitcher inputSchemeSwitcher;
     [SerializeField] private GameObject dialogText;
     [SerializeField] private GameObject acceptNotify;
     
@@ -21,6 +22,7 @@ public class Quests_accept : MonoBehaviour
             {
                 acceptNotify.SetActive(false);
                 dialog.SetActive(true);
+                inputSchemeSwitcher.SetUiInput();
                 M_dialog.Say();
                 Destroy(this.gameObject);
             }
