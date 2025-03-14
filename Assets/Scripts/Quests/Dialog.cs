@@ -8,7 +8,8 @@ using TMPro;
 
 public class Dialog : MonoBehaviour
 {
-    [SerializeField] private GameObject dialogText;
+    [SerializeField] private GameObject dialog;
+    [SerializeField] private GameObject buttons;
     [SerializeField] private string[] phrases = {"hello", "hello", "test1", "test2"};
     int phrase = 0;
 
@@ -16,12 +17,13 @@ public class Dialog : MonoBehaviour
     {
         if (phrase >= phrases.Length) 
         {
-            gameObject.SetActive(false);
+            dialog.SetActive(false);
+            buttons.SetActive(true);
             return;
         }
 
         Debug.Log(phrases[phrase]);
-        dialogText.GetComponent<TMP_Text>().SetText(phrases[phrase]);
+        dialog.GetComponentInChildren<TMP_Text>().SetText(phrases[phrase]);
         ++phrase;
 
         Invoke("Say", 1f);
