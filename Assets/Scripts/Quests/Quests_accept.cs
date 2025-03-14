@@ -10,7 +10,7 @@ public class Quests_accept : MonoBehaviour
     [SerializeField] private ShipInput input;
     [SerializeField] private GameObject dialog;
     [SerializeField] private GameObject buttons;
-    [SerializeField] private dialog M_dialog;
+    [SerializeField] private Dialog M_dialog;
     [SerializeField] private GameObject accept_notify;
     void OnCollisionStay(Collision collision)
     {
@@ -23,7 +23,7 @@ public class Quests_accept : MonoBehaviour
                 accept_notify.SetActive(false);
                 dialog.SetActive(true);
                 buttons.SetActive(false);
-                M_dialog.say();
+                M_dialog.Say();
                 Destroy(this.gameObject);
             }
         }   
