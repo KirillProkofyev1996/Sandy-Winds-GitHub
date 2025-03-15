@@ -12,9 +12,9 @@ public class Quests_accept : MonoBehaviour
     [SerializeField] private GameObject dialog;
     [SerializeField] private GameObject buttons;
     [SerializeField] private Dialog M_dialog;
-    void OnCollisionStay(Collision collision)
+    void OnTriggerStay(Collider other)
     {
-        if (collision.gameObject.tag == "Ship") 
+        if (other.gameObject.tag == "Ship") 
         {
             acceptNotify.SetActive(true);
 
@@ -29,9 +29,9 @@ public class Quests_accept : MonoBehaviour
         }   
     }
 
-    void OnCollisionExit(Collision collision) 
+    void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.tag == "Ship") 
+        if (other.gameObject.tag == "Ship") 
         {
             acceptNotify.SetActive(false);
         }
