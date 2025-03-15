@@ -21355,7 +21355,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4.75
+      scalar: 5.02
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -21797,7 +21797,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3.25
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -48355,7 +48355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de0995e63219ca718993b8764b0636ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.4
+      value: -3.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de0995e63219ca718993b8764b0636ad, type: 3}
       propertyPath: m_LocalPosition.y
@@ -48399,11 +48399,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4d081361a43864c05b487e838c0dd083, type: 2}
     - target: {fileID: 919132149155446097, guid: de0995e63219ca718993b8764b0636ad, type: 3}
       propertyPath: m_Name
-      value: item1
+      value: crate1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: de0995e63219ca718993b8764b0636ad, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
